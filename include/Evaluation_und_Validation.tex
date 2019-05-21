@@ -1,7 +1,7 @@
 \chapter{Evaluation und Validation}
 \label{ch:Eval}
 
-Um das System zu validieren und die Grenzen der Infrarotbildverarbeitung in diesem Gebiet zu ermitteln wurden einige Experimente durchgeführt. Diese Experimente zeigen was das System kann und wo die Grenzen des Systems und auch der Infrarottechnik liegen.\\
+Um das System zu validieren und die Grenzen der Infrarotbildverarbeitung in diesem Gebiet zu ermitteln wurden einige Experimente durchgeführt. Diese Experimente zeigen, was das System kann und wo die Grenzen des Systems und auch der Infrarottechnik liegen.\\
 \\
 Zur Auswertung der Experimente werden Bilder mit Markierungen verwendet. Diese sind wie folgt Farbcodiert.
 
@@ -15,7 +15,7 @@ Zur Auswertung der Experimente werden Bilder mit Markierungen verwendet. Diese s
 \section{Vergleich mit Anforderungen}
 \label{sec:VergleichAnforderungen}
 
-Die Aufgabe war es ein System zu entwickeln welches in dem Sitzungszimmer auf den Bildern der Infrarotkameras die Anzahl und Position der Personen ermittelt. Dieser Punkt wurde erfüllt. Das System kann dynamisch Personen und deren Position ermitteln und diese ausgeben. Das System zeigte bei den Tests wie in Abbildung \ref{fig:ExperimentSummary} zu sehen eine Precision Score von 97\% das bedeutet, dass es fast gar keine False Positives gab. Die Accuracy liegt nur bei 85\%, dies weil in den Experimenten auch die Grenzen der Personenerkennung getestet werden wie in Kapitel \ref{sec:cloths} diskutiert wird.
+Die Aufgabe war es, ein System zu entwickeln, welches in dem Sitzungszimmer auf den Bildern der Infrarotkameras die Anzahl und Position der Personen ermittelt. Dieser Punkt wurde erfüllt. Das System kann dynamisch Personen und deren Position ermitteln und diese ausgeben. Das System zeigte bei den Tests wie in Abbildung \ref{fig:ExperimentSummary} zu sehen eine Precision Score von 97\% das bedeutet, dass es fast gar keine False Positives gab. Die Accuracy liegt nur bei 85\%, dies weil in den Experimenten auch die Grenzen der Personenerkennung getestet werden wie in Kapitel \ref{sec:cloths} diskutiert wird.
 
 \begin{figure}[H]
 	\centering
@@ -29,14 +29,19 @@ Die Aufgabe war es ein System zu entwickeln welches in dem Sitzungszimmer auf de
 \section{Fremde Wärmequellen}
 \label{sec:FremdeWärmequellen}
 
-In diesem Versuch wurde der Einfluss von fremden Wärmequellen wie zum Beispiel Laptops, Natels, oder Kaffees, evaluiert. Dabei wurde der Effekt von Störquellen mit und ohne Personen im Raum analysiert.
+In diesem Versuch wurde der Einfluss von fremden Wärmequellen, wie zum Beispiel Laptops, Natels, oder Kaffees, evaluiert. Dabei wurde der Effekt von Störquellen mit und ohne Personen im Raum analysiert.
 
-\subsection{Resultate}
-\label{subsec:FWresultate}
+\subsection{Versuchsaufbau}
 
-Die Threshold-Methode kann wie erwartet nicht gut mit anderen Wärmequellen umgehen. Dies, weil die Threshold-Methode nur durch Temperatur und Mindestgrösse eines Objekts entscheiden kann ob es sich um eine Person handelt. Deshalb hatte dieser bei einem Experiment mit einer Person und einem Laptop, nur eine Precision Score von 64\% erreicht (Siehe Abbildung \ref{fig:ThreshPersonLaptop}).
+Um die Performance der Algorithmen spezifisch in Bezug auf fremde Wärmequellen zu testen, wurden verschiedene Testsituationen erzeugt. Zuerst wurden nur Laptops auf den Sitzungstisch gestellt, um zu sehen, ob Laptops ohne Personen Treffer generieren. Dann wurden Laptops und Personen zusammen aufgenommen. Zusätzlich wurden auch Tests mit kleineren Wärmequellen wie Kaffees und Natels durchgeführt.
 
-Das \gls{CNN} kann sehr gut mit anderen Wärmequellen umgehen, solange diese in ähnlicher Form antrainiert wurden. Dabei ist es von Vorteil, dass in einem Sitzungszimmer nicht viele unterschiedliche Wärmequellen vorkommen. Die momentane Version des \gls{CNN}'s identifiziert teilweise grössere Laptops als Personen, wenn sie in einem ähnlichen Wärmebereich wie Personen befinden. Dieses Problem könnte, wie im Kapitel \ref{ch:Ausblick} noch diskutiert wird, durch verbesserte Trainingsdaten eliminiert werden.
+
+\subsection{Evaluation}
+
+Die Threshold-Methode kann, wie erwartet, nicht gut mit anderen Wärmequellen umgehen. Dies, weil die Threshold-Methode nur durch Temperatur und Mindestgrösse eines Objekts entscheiden kann, ob es sich um eine Person handelt oder nicht. Deshalb hatte dieser auf den Testbildern mit einer Person und einem Laptop, nur eine Precision Score von 64\% erreicht (Siehe Abbildung \ref{fig:ThreshPersonLaptop}).\\
+\\
+Das \gls{CNN} kann sehr gut mit anderen Wärmequellen umgehen, solange diese in ähnlicher Form antrainiert wurden. Dabei hilft es, dass in einem Sitzungszimmer nicht viele unterschiedliche Wärmequellen vorkommen können. \\
+Die momentane Version des \gls{CNN}'s identifiziert teilweise grössere Laptops als Personen, wenn sie sich in einem ähnlichen Wärmebereich wie Personen befinden. Dieses Problem könnte, wie im Kapitel \ref{ch:Ausblick} noch diskutiert wird, durch verbesserte Trainingsdaten eliminiert werden.
 
 \vspace{.5em}
 \begin{figure}[H]
@@ -74,13 +79,17 @@ Das \gls{CNN} kann sehr gut mit anderen Wärmequellen umgehen, solange diese in 
 \section{Distanz}
 \label{sec:distanz}
 
-Die Distanz zwischen zwei Personen ist ein wichtiger Faktor, der sich gleichermassen auf die Threshold-Methode auswirkt, wie auch auf das \gls{CNN}. Da bei dem \gls{CNN} mit einer Sliding-Window Methode und clustern der Treffer gearbeitet wird, kann das System bei Personen, welche zu wenig Abstand zueinander haben, nicht mehr zwischen den Treffern unterscheiden. Bei der Threshold-Methode wird die Silhouette der Personen leicht vergrössert, wodurch mehrere Personen bei geringem Abstand als einzelner Treffer gewertet werden.
+Die Distanz zwischen zwei Personen ist ein wichtiger Faktor, der sich gleichermassen auf die Threshold-Methode auswirkt, wie auch auf das \gls{CNN}. Da bei dem \gls{CNN} mit einer Sliding-Window Methode und Clustern der Treffer gearbeitet wird, kann das System, bei Personen, welche zu wenig Abstand zueinander haben, nicht mehr zwischen den Treffern unterscheiden. Bei der Threshold-Methode wird die Silhouette der Personen leicht vergrössert, wodurch mehrere Personen bei geringem Abstand als einzelner Treffer gewertet werden.
 
-\subsection{Resultate}
+\subsection{Versuchsaufbau}
 
-Die Algorithmen können Personen bereits ab einem Abstand von 10cm auseinanderhalten, sofern die Personen so ausgerichtet sind, dass die optische Verzerrung keinen Einfluss auf den Zwischenraum hat. Wie in den Abbildungen und auf der linken Seite zu sehen, wenn die Personen auf die Kamera ausgerichtet sind, können sie unterschieden werden. Sind die Personen wie auf der rechten Seite von der Kamera aus gesehen hintereinander kann bei so kleinem Abstand nicht ermittelt werden, ob es sich um eine oder zwei Personen handelt.\\
+Es wurden vier Personen in zwei Paaren so platziert, dass sich das eine Paar in einem idealen Winkel zur Infrarotkamera aufhält und das andere Paar in einem möglichst schwierigen Winkel. Dies ist in Abbildung \ref{fig:cnnDistance10} gut zu sehen. Zwei Personen sind deutlich von einander getrennt, die anderen zwei überlappen sich auf Grund des Kamerawinkels. Beim Test wurde schrittweise der Abstand zwischen den Testpersonen erhöht, um festzustellen, ab welcher Distanz die Algorithmen erfolgreich die Personen erkennen.
+
+\subsection{Evaluation}
+
+Die Algorithmen können Personen bereits ab einem Abstand von 10cm auseinanderhalten, sofern die Personen so ausgerichtet sind, dass die optische Verzerrung keinen Einfluss auf den Zwischenraum hat. Wie in den Abbildungen in der linken Bildhälfte zu sehen ist, können die Personen, die auf die Kamera ausgerichtet sind, unterschieden werden. Sind die Person jedoch so platziert, wie auf der rechten Bildhälfte zu sehen ist, sind diese von der Kamera aus gesehen, hintereinander. Bei so kleinen Abstand kann der Algorithmus deshalb nicht mehr herausfiltern, ob es sich um eine oder mehrere Personen handelt.\\
 \\
-Befinden sich die Personen in der schlechtest möglichen Position benötigen die Algorithmen einen Mindestabstand von 30cm um die Personen fehlerfrei unterscheiden zu können. Siehe Abbildungen \ref{fig:cnnDistance30} und \ref{fig:thresholdDistance30}
+Befinden sich die Personen in der schlechtest möglichen Position, benötigen die Algorithmen einen Mindestabstand von 30cm, um die Personen fehlerfrei unterscheiden zu können. Siehe Abbildungen \ref{fig:cnnDistance30} und \ref{fig:thresholdDistance30}
 
 \begin{figure}[H]
 	\begin{subfigure}{.45\linewidth}
@@ -101,7 +110,7 @@ Befinden sich die Personen in der schlechtest möglichen Position benötigen die
 		\caption{Ground-Truth Distanzexperiment mit 10cm Abstand}
 		\label{fig:groundDistance10}
 	\end{subfigure}
-	\caption{Distanz Experiment 10cm}
+	\caption{Distanzexperiment 10cm}
 	\label{fig:Distance10}
 \end{figure}
 
@@ -124,25 +133,32 @@ Befinden sich die Personen in der schlechtest möglichen Position benötigen die
 		\caption{Ground-Truth}
 		\label{fig:groundDistance30}
 	\end{subfigure}
-	\caption{Distanz Experiment 30cm}
+	\caption{Distanzexperiment 30cm}
 	\label{fig:Distance30}
 \end{figure}
 
 \section{Kamerahöhe}
 \label{sec:cameraHeight}
-Eine Spezialität des Sitzungszimmers, das zur Verfügung gestellt wurde ist, dass die Höhe der Decke verändert werden kann. Da die Infrarotkameras an der Decke montiert sind, kann die Möglichkeit, dass die Decke verstellt wird, nicht ausser acht gelassen werden. Deshalb wurde auch dazu ein Experiment durchgeführt. Dabei wurden Minimal- und Maximalhöhe analysiert.
+Eine Spezialität des Sitzungszimmers, das zur Verfügung gestellt wurde, ist, dass die Höhe der Decke verändert werden kann. Da die Infrarotkameras an der Decke montiert sind, kann die Möglichkeit, dass die Decke verstellt wird, nicht ausser Acht gelassen werden. Deshalb wurde auch dazu ein Experiment durchgeführt. Dabei wurden Minimal- und Maximalhöhe der Decke analysiert.
 
-\subsection{Resultate}
+\subsection{Versuchsaufbau}
+
+Die verstellbare Decke des Sitzungszimmers wurde auf die vom Mobiliar zugelassene Minimalhöhe, ca. 255cm, heruntergefahren. Danach wurden wiederum Infrarotbilder von Testpersonen aufgenommen. Anschliessend wurde die Decke maximal hochgefahren, etwa 400cm, und noch einmal Bilder aufgezeichnet.
+
+
+\subsection{Evaluation}
 Beide Algorithmen können sehr gut mit dem Verstellen der Decke umgehen. Das einzige Problem ist, dass umso tiefer die Decke eingestellt ist, umso kleiner ist die Fläche im Raum, die von den Infrarotkameras aufgenommen wird. Anderweitig hat die Deckenhöhe keinen Einfluss auf die Algorithmen.\\
-Wenn die Position der Personen auf den realen Raum abgebildet werden soll, muss die Deckenhöhe zusätzlich berechnet oder gemessen werden.
+Möchte man jedoch die reale Position der Personen aus dem Bild berechnen, müsste die Deckenhöhe zusätzlich berechnet oder gemessen werden.
 
 \begin{figure}[H]
 	\begin{subfigure}{.45\linewidth}
+		\centering
 		\includegraphics[keepaspectratio, height=4cm]{cameraHeightLow}
 		\caption{Ergebnis des \gls{CNN} mit Deckenhöhe 255cm}
 		\label{fig:cameraHeightLow}
 	\end{subfigure}
 	\begin{subfigure}{.45\linewidth}
+		\centering
 		\includegraphics[keepaspectratio, height=4cm]{cameraHeightHigh}
 		\caption{Ergebnis des \gls{CNN} mit Deckenhöhe 400cm}
 		\label{fig:cameraHeightHigh}
@@ -153,14 +169,18 @@ Wenn die Position der Personen auf den realen Raum abgebildet werden soll, muss 
 \section{Kleider}
 \label{sec:cloths}
 
-Infrarotbilder zeigen die Wärmeabstrahlung der verschiedenen Objekte im Bild. Wird eine Wärmequelle isoliert, verschwindet sie auf dem Infrarotbild. Genau das passiert, wenn stark isolierende Kleider getragen werden. Da in dieser Arbeit die Vogelperspektive analysiert wird, sind vor allem Kopfbedeckungen, Schals und Jacken ein grosser Einfluss. 
+Infrarotbilder zeigen die Wärmeabstrahlung der verschiedenen Objekte im Bild. Wird eine Wärmequelle isoliert, verschwindet sie auf dem Infrarotbild. Genau das passiert, wenn stark isolierende Kleider getragen werden. Da in dieser Arbeit die Vogelperspektive analysiert wird, haben vor allem Kopfbedeckungen, Schals und Jacken einen grossen Einfluss. 
 
-\subsection{Resultate}
-Kleider beeinflussen die Performance der Algorithmen massiv. Trägt eine Person eine Mütze, wird sie vom \gls{CNN} noch zu 80\% erkannt. Bei der Threshold-Methode kann es zudem dazu führen, dass eine Person zwei Treffer erzeugt(Siehe Abbildung \ref{fig:thresholdClothHat}).\\
+\subsection{Versuchsaufbau}
+
+Eine Testperson hielt sich im Raum auf und trug verschiedene Kleidungsstücke. Dabei wurden eine Mütze, ein Schal und eine Jacke einzeln und in allen möglichen Kombinationen von der Testperson getragen.
+
+\subsection{Evaluation}
+Kleider beeinflussen die Performance der Algorithmen massiv. Trägt eine Person z.B. eine Mütze, wird sie vom \gls{CNN} noch zu 80\% erkannt. Bei der Threshold-Methode sind es ..\%. Zudem kann es dazu führen, dass eine Person zwei Treffer erzeugt (siehe Abbildung \ref{fig:thresholdClothHat}).\\
 \\
 Wenn ein Schal getragen wird, sinkt die Accuracy auf ca. 60\% bei beiden Algorithmen. Betrachtet man Abbildung \ref{fig:scarfIR} sieht man deutlich, wie der Schal einen Teil der Wärme der Person verdeckt.\\
 \\
-Das Tragen einer Jacke macht es für die Algorithmen beinahe unmöglich die Personen zu erkennen. Die Person wird nur noch in wenigen Fällen erkannt. Das \gls{CNN} könnte wahrscheinlich mit den entsprechenden Trainingsdaten erweitert werden, so, dass auch diese Personen erkannt werden. Da aber die Fläche, der Abwärme, einer Person so nur noch wenige Pixel beträgt, wird es schwieriger diese von fremden Wärmequellen zu unterscheiden.\\
+Das Tragen einer Jacke macht es für die Algorithmen beinahe unmöglich die Personen zu erkennen. Die Person wird nur noch in wenigen Fällen erkannt. Das \gls{CNN} könnte wahrscheinlich mit den entsprechenden Trainingsdaten erweitert werden, sodass auch diese Personen erkannt werden. Da aber die Fläche der Abwärme einer Person so nur noch wenige Pixel beträgt, wird es schwieriger diese von fremden Wärmequellen zu unterscheiden.\\
 
 \begin{figure}[H]
 	\begin{subfigure}{.45\linewidth}
@@ -178,13 +198,13 @@ Das Tragen einer Jacke macht es für die Algorithmen beinahe unmöglich die Pers
 	
 \end{figure}
 
-Die Tests zeigen schon bei der manuellen, visuellen Analyse der Abbildung \ref{fig:rawClothAll}, dass wenn Jacke Mütze und Schal zusammen getragen werden, man die Person nicht mehr erkennen kann.
+Die Tests zeigen schon bei der manuellen, visuellen Analyse der Abbildung \ref{fig:rawClothAll}, dass wenn Jacke, Mütze und Schal zusammen getragen werden, man die Person nicht mehr erkennen kann.
 
 \begin{figure}[H]
 	\begin{subfigure}{.45\linewidth}
 		\centering
 		\includegraphics[keepaspectratio, height=4cm]{rawClothAll}
-		\caption{Infrarotbild des Experiments mit Jacke Mütze und Schal}
+		\caption{Infrarotbild des Experiments mit Jacke, Mütze und Schal}
 		\label{fig:rawClothAll}
 	\end{subfigure}
 	\begin{subfigure}{.45\linewidth}
