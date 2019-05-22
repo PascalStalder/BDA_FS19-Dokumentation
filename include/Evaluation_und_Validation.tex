@@ -55,19 +55,19 @@ Die momentane Version des \gls{CNN}'s identifiziert teilweise grössere Laptops 
 		\centering
 		\includegraphics[keepaspectratio,height=4cm]{ThresholdLaptop}
 		\caption{Threshold-Methode Ergebnis des Experiments mit nur einem Laptop}
-		\label{fig:thresholdDistanice10}
+		\label{fig:thresholdLaptop}
 	\end{subfigure}
 \begin{subfigure}{.45\linewidth}
 	\centering
-	\includegraphics[keepaspectratio,height=4cm]{ThresholdLaptop}
-	\caption{Threshold-Methode Ergebnis des Experiments mit nur einem Laptop}
-	\label{fig:thresholdDistanice10}
+	\includegraphics[keepaspectratio,height=4cm]{cnnPersonLaptop}
+	\caption{\gls{CNN} Ergebnis des Experiments mit Laptop und Person}
+	\label{fig:cnnPersonLaptop}
 \end{subfigure}
 	\begin{subfigure}{.55\linewidth}
 		\centering
 		\includegraphics[keepaspectratio,height=4cm]{GroundHeatSources}
 		\caption{Ground-Truth des Experiments mit Laptop und Person}
-		\label{fig:groundDiistance10}
+		\label{fig:groundPersonLaptop}
 	\end{subfigure}
 	\caption{Experimente mit fremden Wärmequellen}
 	\label{fig:HeatSources}
@@ -176,7 +176,7 @@ Infrarotbilder zeigen die Wärmeabstrahlung der verschiedenen Objekte im Bild. W
 Eine Testperson hielt sich im Raum auf und trug verschiedene Kleidungsstücke. Dabei wurden eine Mütze, ein Schal und eine Jacke einzeln und in allen möglichen Kombinationen von der Testperson getragen.
 
 \subsection{Evaluation}
-Kleider beeinflussen die Performance der Algorithmen massiv. Trägt eine Person z.B. eine Mütze, wird sie vom \gls{CNN} noch zu 80\% erkannt. Bei der Threshold-Methode sind es ..\%. Zudem kann es dazu führen, dass eine Person zwei Treffer erzeugt (siehe Abbildung \ref{fig:thresholdClothHat}).\\
+Kleider beeinflussen die Performance der Algorithmen massiv. Trägt eine Person z.B. eine Mütze, wird sie vom \gls{CNN} noch zu 80\% erkannt. Bei der Threshold-Methode sind es 76\%. Zudem kann es dazu führen, dass eine Person zwei Treffer erzeugt (siehe Abbildung \ref{fig:thresholdClothHat}).\\
 \\
 Wenn ein Schal getragen wird, sinkt die Accuracy auf ca. 60\% bei beiden Algorithmen. Betrachtet man Abbildung \ref{fig:scarfIR} sieht man deutlich, wie der Schal einen Teil der Wärme der Person verdeckt.\\
 \\
