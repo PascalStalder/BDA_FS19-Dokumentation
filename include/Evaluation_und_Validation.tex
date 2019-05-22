@@ -8,14 +8,22 @@ Zur Auswertung der Experimente werden Bilder mit Markierungen verwendet. Diese s
 \begin{itemize}
 	\item Grün -> Korrekt gefundene Person (True Positive)
 	\item Gelb -> Nicht gefundene Person (False Negative)
-	\item Rot -> Nichtiger Treffer (False Positive)
+	\item Rot -> Nichtiger Treffer (False Positive)\\
+\end{itemize}
+Zudem werden die folgenden Metriken verwendet, diese sind leicht angepasst, da die Klasse True Negative fehlt:
+
+\begin{itemize}
+	\item Accuracy: \[\dfrac{TP}{Anzahl\: moegliche\: Treffer}\]
+	\item Precision: \[\dfrac{TP}{TP + FP}\]
+	\item Recall: \[\dfrac{TP}{TP + FN}\]
+	\item F1-Score: \[\dfrac{2*Precision*Recall}{Precision + Recall}\]
 \end{itemize}
 
 
 \section{Vergleich mit Anforderungen}
 \label{sec:VergleichAnforderungen}
 
-Die Aufgabe war es, ein System zu entwickeln, welches in dem Sitzungszimmer auf den Bildern der Infrarotkameras die Anzahl und Position der Personen ermittelt. Dieser Punkt wurde erfüllt. Das System kann dynamisch Personen und deren Position ermitteln und diese ausgeben. Das System zeigte bei den Tests wie in Abbildung \ref{fig:ExperimentSummary} zu sehen eine Precision Score von 97\% das bedeutet, dass es fast gar keine False Positives gab. Die Accuracy liegt nur bei 85\%, dies weil in den Experimenten auch die Grenzen der Personenerkennung getestet werden wie in Kapitel \ref{sec:cloths} diskutiert wird.
+Die Aufgabe war es, ein System zu entwickeln, welches in dem Sitzungszimmer auf den Bildern der Infrarotkameras die Anzahl und Position der Personen ermittelt. Dieser Punkt wurde erfüllt. Das System kann dynamisch Personen und deren Position ermitteln und diese ausgeben. Das System zeigte bei den Tests wie in Abbildung \ref{fig:ExperimentSummary} zu sehen eine \gls{Precision} Score von 97\% das bedeutet, dass es fast gar keine False Positiv Treffer gab. Die Accuracy liegt nur bei 85\%, dies weil in den Experimenten auch die Grenzen der Personenerkennung getestet werden wie in Kapitel \ref{sec:cloths} diskutiert wird.
 
 \begin{figure}[H]
 	\centering
@@ -33,8 +41,32 @@ In diesem Versuch wurde der Einfluss von fremden Wärmequellen, wie zum Beispiel
 
 \subsection{Versuchsaufbau}
 
-Um die Performance der Algorithmen spezifisch in Bezug auf fremde Wärmequellen zu testen, wurden verschiedene Testsituationen erzeugt. Zuerst wurden nur Laptops auf den Sitzungstisch gestellt, um zu sehen, ob Laptops ohne Personen Treffer generieren. Dann wurden Laptops und Personen zusammen aufgenommen. Zusätzlich wurden auch Tests mit kleineren Wärmequellen wie Kaffees und Natels durchgeführt.
+Um die Performance der Algorithmen spezifisch in Bezug auf fremde Wärmequellen zu testen, wurden verschiedene Testsituationen erzeugt. Zuerst wurden fünf Laptops, von 13" bis 17",auf den Sitzungstisch gestellt, um zu sehen, ob Laptops ohne Personen Treffer generieren. Die Geräte wurden auf den gesamten Kamerawinkel verteilt, vom Zentrum des Bildes bis an den Rand. Da die Algorithmen nicht durch die Anzahl Wärmequellen, sondern nur durch die Distanz zwischen den Wärmequellen beeinflusst werden, konnte der ganze Kamerawinkel in einem einzigen Versuch getestet werden.\\
+Die Laptops waren seit ca. 1.5h in leichtem Betrieb, ihre Temparatur war ca. 25\degree C, somit leicht diese etwas unter der Abstrahlungswärme einer Person. Die Hauttemperatur einer Person wird von den Infrarotkameras zwischen 27\degree C und 33\degree C gemessen, je nach Kleidung und Behaarung.\\
+Danach nahmen fünf Personen bei den Laptops platz,  ohne dass die Laptops verschoben wurde. Um zu testen, ob False Positives generiert werden, wenn jemand den Laptop bedient, die Arme zum Laptop reichen.\\
+\\
+Schon bei der Erstellung der Modelle wurde ersichtlich, dass das Herausfiltern von Wärmequellen mit sehr kleiner Fläche für beide Algorithmen kein Problem darstellt. Aus diesem Grund wurden die Versuche mit kleineren Wärmequellen nur in kleinem Rahmen durchgeführt. Es wurde Test mit einem Mobiltelefon durchgeführt, in dem ein Natel an verschiedenen Postionen auf den Tisch gelegt wurde. Da Mobiltelefone meist in der Hosentasche getragen werden, weisen diese Temperaturen bis zu 34\degree C auf.\\
+\\
 
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+		\hline
+		\textbf{Ergebnisse Fremde Wärmequellen} & \textbf{Nur Laptops} & \textbf{Laptops mit Personen} & \textbf{Mobiltelefon} & \textbf{Essen}\\
+		\hline 
+		\textbf{\gls{Accuracy}} & 93\% & \textasciitilde 1m & \textasciitilde 4-5m & ..\\
+		\hline  Precision
+		\textbf{\gls{Precision}} & passiv & passiv & passiv oder aktiv & ..\\
+		\hline
+		\textbf{F1-Score} & langsam & langsam & .. & ..\\
+		\hline
+		\textbf{Interferenz durch Wasser und Metal} & wenig & wenig & viel & ..\\
+		\hline
+		\textbf{Grösse der Tags} & gross & gross & klein & ..\\
+		\hline
+	\end{tabularx}
+	\caption{Ergebnisse der Experimente mit fremden Wärmequellen}
+	\label{tbl:heatSources}
+\end{table}
 
 \subsection{Evaluation}
 
@@ -83,7 +115,29 @@ Die Distanz zwischen zwei Personen ist ein wichtiger Faktor, der sich gleicherma
 
 \subsection{Versuchsaufbau}
 
-Es wurden vier Personen in zwei Paaren so platziert, dass sich das eine Paar in einem idealen Winkel zur Infrarotkamera aufhält und das andere Paar in einem möglichst schwierigen Winkel. Dies ist in Abbildung \ref{fig:cnnDistance10} gut zu sehen. Zwei Personen sind deutlich von einander getrennt, die anderen zwei überlappen sich auf Grund des Kamerawinkels. Beim Test wurde schrittweise der Abstand zwischen den Testpersonen erhöht, um festzustellen, ab welcher Distanz die Algorithmen erfolgreich die Personen erkennen.
+Es wurden vier Personen in zwei Paaren so platziert, dass sich das eine Paar in einem idealen Winkel zur Infrarotkamera aufhält und das andere Paar in einem möglichst schwierigen Winkel. Dies ist in Abbildung \ref{fig:cnnDistance10} gut zu sehen. Zwei Personen sind deutlich von einander getrennt, die anderen zwei überlappen sich auf Grund des Kamerawinkels. Beim Test wurde schrittweise der Abstand zwischen den Testpersonen erhöht, um festzustellen, ab welcher Distanz die Algorithmen erfolgreich die Personen erkennen. Die Distanz wird in 10cm Schritten erhöht, weil 10cm auf Tischhöhe ca. einem Pixel auf dem Bild entspricht. 
+
+\subsection{Resultate}
+
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+		\hline
+		\textbf{Ergebnisse Distanztest} & \textbf{10cm} & \textbf{20cm} & \textbf{30cm} & \textbf{40cm}\\
+		\hline 
+		\textbf{\gls{Accuracy}} & 93\% & \textasciitilde 1m & \textasciitilde 4-5m & ..\\
+		\hline  Precision
+		\textbf{\gls{Precision}} & passiv & passiv & passiv oder aktiv & ..\\
+		\hline
+		\textbf{F1-Score} & langsam & langsam & .. & ..\\
+		\hline
+		\textbf{Interferenz durch Wasser und Metal} & wenig & wenig & viel & ..\\
+		\hline
+		\textbf{Grösse der Tags} & gross & gross & klein & ..\\
+		\hline
+	\end{tabularx}
+	\caption{Ergebnisse des Distanztests}
+	\label{tbl:distance}
+\end{table}
 
 \subsection{Evaluation}
 
@@ -137,9 +191,9 @@ Befinden sich die Personen in der schlechtest möglichen Position, benötigen di
 	\label{fig:Distance30}
 \end{figure}
 
-\section{Kamerahöhe}
-\label{sec:cameraHeight}
-Eine Spezialität des Sitzungszimmers, das zur Verfügung gestellt wurde, ist, dass die Höhe der Decke verändert werden kann. Da die Infrarotkameras an der Decke montiert sind, kann die Möglichkeit, dass die Decke verstellt wird, nicht ausser Acht gelassen werden. Deshalb wurde auch dazu ein Experiment durchgeführt. Dabei wurden Minimal- und Maximalhöhe der Decke analysiert.
+\section{Grösse Des Objekts auf dem Bild}
+\label{sec:objectSize}
+Eine Spezialität des Sitzungszimmers, das zur Verfügung gestellt wurde, ist, dass die Höhe der Decke verändert werden kann. Da die Infrarotkameras an der Decke montiert sind, wurde dies als Möglichkeit genutzt um zu testen wie die Algorithmen auf grössen der Objekte im Bild reagieren. 
 
 \subsection{Versuchsaufbau}
 
