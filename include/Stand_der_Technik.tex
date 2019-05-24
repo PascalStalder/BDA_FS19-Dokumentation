@@ -8,10 +8,12 @@ Die momentan gängigsten Algorithmen sind \gls{CNN} \parencite{li2015convolution
 \gls{CNN}’s trainieren vereinfacht ausgedrückt einen Vielschichtigen Filter, der die gesuchten Features bestmöglich repräsentiert. Da dieses Produkt als Bild für Menschen jedoch keinen Sinn ergeben würde, wird es direkt mit einer Aktivierungsfunktion in eine Wahrscheinlichkeit oder eine Klassifizierung umgewandelt.\\
 Die Kaskadierung von \gls{CNN}’s ist eine Methode bei schrittweise komplexere und rechenintensivere \gls{CNN}’s nacheinander verwendet werden. Dies hat den Vorteil, dass Bildausschnitte die nur Hintergrund enthalten sehr schnell verworfen werden können. Um so wahrscheinlicher es ist einen Treffer zu haben um so bessere \gls{CNN}’s werden verwendet und so trotzdem eine sehr hohe Genauigkeit gewahrt.\\
 \\
-Um mittels Hough-Transformationen Formen zu erkennen wird zuerst mit einem Kantenerkennungsalgorithmus, wie z.B. der Canny-Algorithmus, alle Kanten in einem Binärbild repräsentiert. Im nächsten Schritt werden dann mittels Hough-Transformationen Formen wie Linien oder Kreise in diesem Binärbild identifiziert. Aus diesen Formen kann danach abgeleitet werden ob es sich um ein potentiell relevantes Objekt handelt.
+Um mittels Hough-Transformationen Formen zu erkennen wird zuerst mit einem Kantenerkennungsalgorithmus, wie z.B. der Canny-Algorithmus, alle Kanten in einem Binärbild repräsentiert. Im nächsten Schritt werden dann mittels Hough-Transformationen Formen wie Linien oder Kreise in diesem Binärbild identifiziert. Aus diesen Formen kann danach abgeleitet werden ob es sich um ein potenziell relevantes Objekt handelt.
 
 
 \section{Technologische Grundlagen}
+
+
 
 Ein \gls{RFID} System besteht generell aus zwei Teilen: Einem Sender und Empfänger, diese werden Interrogator (dt. Anfragender) und Transponder (dt. Sendegerät) genannt. Der Transponder wird auch als \gls{RFID} Tag bezeichnet und kann sowohl passiv, das heisst ohne Stromversorgung auf dem Tag, wie auch aktiv sein, das heisst der Chip und die Antenne werden durch eine integrierte Batterie versorgt. Der Vorteil eines aktiven Tags liegt in dessen höherer Reichweite. Als Mischung zwischen den Beiden ist der semi-aktive Tag, bei dem nur der Chip durch die Batterie mit Energie versorgt wird, und die Antenne durch das Feld des Interrogators gespiesen wird.
 
@@ -30,24 +32,4 @@ Da auf eine Anfrage eines Interrogators alle Chips in dessen Nähe antworten, is
 \end{enumerate}
 Der Interrogator unterteilt daher während einer Inventur seine Anfrage in unterschiedliche Zeitbereiche. Pro Bereich fragt er nach den Identifikationsnummern von Tags mit einer Maske, diese Antworten nur falls die Maske auf Ihre Identifikationsnummer passt. Geschieht dabei eine Kollision, so wird der betreffende Bereich weiter unterteilt, bis das ganze Inventar erfasst wurde \parencite{ISO15693-3}.
 
-Für \gls{RFID} sind in den ISO Diskussionen verschiedene Frequenzen festgelegt worden. Diese bieten unterschiedliche Vor- und Nachteile welche in der Tabelle \ref{tbl:RFIDFrequencies} dargestellt werden.
 
-\begin{table}[htb]
-	\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
-		\hline
-		\textbf{Frequenz\-bereich} & \textbf{LF (< 135kHz)} & \textbf{HF (13.56MHz)} & \textbf{UHF (860-960MHz)} & \textbf{Mikrowelle (2.45GHz)}\\
-		\hline
-		\textbf{Lesereichweite} & <0.5m & \textasciitilde 1m & \textasciitilde 4-5m & \textasciitilde 1m\\
-		\hline
-		\textbf{Typ} & passiv & passiv & passiv oder aktiv & passiv oder aktiv\\
-		\hline
-		\textbf{Parallele Leserate} & langsam & langsam & schnell & schnell \\
-		\hline
-		\textbf{Interferenz durch Wasser und Metal} & wenig & wenig & viel & viel \\
-		\hline
-		\textbf{Grösse der Tags} & gross & gross & klein & klein \\
-		\hline
-	\end{tabularx}
-	\caption{Vor- und Nachteile der unterschiedlichen Betriebsfrequenzen von \gls{RFID} Tags \parencite{chawla2007}}
-	\label{tbl:RFIDFrequencies}
-\end{table}

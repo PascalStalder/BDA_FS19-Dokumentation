@@ -44,18 +44,25 @@ In diesem Versuch wurde der Einfluss von fremden Wärmequellen, wie zum Beispiel
 Um die Performance der Algorithmen spezifisch in Bezug auf fremde Wärmequellen zu testen, wurden verschiedene Testsituationen erzeugt. Zuerst wurden fünf Laptops, von 13" bis 17",auf den Sitzungstisch gestellt, um zu sehen, ob Laptops ohne Personen Treffer generieren. Die Geräte wurden auf den gesamten Kamerawinkel verteilt, vom Zentrum des Bildes bis an den Rand. Da die Algorithmen nicht durch die Anzahl Wärmequellen, sondern nur durch die Distanz zwischen den Wärmequellen beeinflusst werden, konnte der ganze Kamerawinkel in einem einzigen Versuch getestet werden.\\
 Die Laptops waren seit ca. 1.5h in leichtem Betrieb, ihre Temparatur war ca. 25\degree C, somit leicht diese etwas unter der Abstrahlungswärme einer Person. Die Hauttemperatur einer Person wird von den Infrarotkameras zwischen 27\degree C und 33\degree C gemessen, je nach Kleidung und Behaarung.\\
 Danach nahmen fünf Personen bei den Laptops platz,  ohne dass die Laptops verschoben wurde. Um zu testen, ob False Positives generiert werden, wenn jemand den Laptop bedient, die Arme zum Laptop reichen.\\
+Um auch Wärmere Laptops überprüfen zu können wurde Bilder während einer Besprechung aufgezeichnet. Dabei war ein Laptop, dessen Temperatur im Bereich der Hauttemperatur einer Person liegt, in der Mitte des Tischs. Die szene sah, wie in Abbildung \ref{fig:groundDeviceTest2} zu sehen, aus.
 \\
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=4cm]{groundDeviceTest2}
+	\caption{Ansicht des Sitzungszimmers während der aufnahme des zusätzlichen Laptop und Personen Testsets}
+	\label{fig:groundDeviceTest2}
+\end{figure}
 Schon bei der Erstellung der Modelle wurde ersichtlich, dass das Herausfiltern von Wärmequellen mit sehr kleiner Fläche für beide Algorithmen kein Problem darstellt. Aus diesem Grund wurden die Versuche mit kleineren Wärmequellen nur in kleinem Rahmen durchgeführt. Es wurde Test mit einem Mobiltelefon durchgeführt, in dem ein Natel an verschiedenen Postionen auf den Tisch gelegt wurde. Da Mobiltelefone meist in der Hosentasche getragen werden, weisen diese Temperaturen bis zu 34\degree C auf.\\
 \\
 
 \begin{table}[H]
 	\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
 		\hline
-		\textbf{Ergebnisse Fremde Wärmequellen} & \textbf{Nur Laptops} & \textbf{Laptops mit Personen} & \textbf{Mobiltelefon} & \textbf{Essen}\\
+		\textbf{Ergebnisse Fremde Wärmequellen} & \textbf{Nur Laptops} & \textbf{Laptops mit Personen} &\textbf{Warmer Laptop mit Personen} \textbf{Mobiltelefon} & \textbf{Essen}\\
 		\hline 
-		\textbf{\gls{Accuracy}} & 93\% & \textasciitilde 1m & \textasciitilde 4-5m & ..\\
-		\hline  Precision
-		\textbf{\gls{Precision}} & passiv & passiv & passiv oder aktiv & ..\\
+		\textbf{Accuracy} & 93\% & \textasciitilde 1m & \textasciitilde 4-5m & ..\\
+		\hline  
+		\textbf{Precision} & passiv & passiv & passiv oder aktiv & ..\\
 		\hline
 		\textbf{F1-Score} & langsam & langsam & .. & ..\\
 		\hline
@@ -115,7 +122,8 @@ Die Distanz zwischen zwei Personen ist ein wichtiger Faktor, der sich gleicherma
 
 \subsection{Versuchsaufbau}
 
-Es wurden vier Personen in zwei Paaren so platziert, dass sich das eine Paar in einem idealen Winkel zur Infrarotkamera aufhält und das andere Paar in einem möglichst schwierigen Winkel. Dies ist in Abbildung \ref{fig:cnnDistance10} gut zu sehen. Zwei Personen sind deutlich von einander getrennt, die anderen zwei überlappen sich auf Grund des Kamerawinkels. Beim Test wurde schrittweise der Abstand zwischen den Testpersonen erhöht, um festzustellen, ab welcher Distanz die Algorithmen erfolgreich die Personen erkennen. Die Distanz wird in 10cm Schritten erhöht, weil 10cm auf Tischhöhe ca. einem Pixel auf dem Bild entspricht. 
+Es wurden vier Personen in zwei Paaren so platziert, dass sich das eine Paar in einem idealen Winkel zur Infrarotkamera aufhält und das andere Paar in einem möglichst schwierigen Winkel. Dies ist in Abbildung \ref{fig:cnnDistance10} gut zu sehen. Zwei Personen sind deutlich voneinander getrennt, die anderen zwei überlappen sich auf Grund des Kamerawinkels. Dieses Setting wurde gewählt, um in einem Test beide Extreme überprüfen zu können. 
+Beim Test wurde schrittweise der Abstand zwischen den Testpersonen erhöht, um festzustellen, ab welcher Distanz die Algorithmen erfolgreich die Personen erkennen. Der Abstand wird in 10cm Schritten erhöht, weil 10cm auf Tischhöhe ca. einem Pixel auf dem Bild entspricht.
 
 \subsection{Resultate}
 
@@ -199,8 +207,30 @@ Eine Spezialität des Sitzungszimmers, das zur Verfügung gestellt wurde, ist, d
 
 Die verstellbare Decke des Sitzungszimmers wurde auf die vom Mobiliar zugelassene Minimalhöhe, ca. 255cm, heruntergefahren. Danach wurden wiederum Infrarotbilder von Testpersonen aufgenommen. Anschliessend wurde die Decke maximal hochgefahren, etwa 400cm, und noch einmal Bilder aufgezeichnet.
 
+\subsection{Resultate}
+
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+		\hline
+		\textbf{Ergebnisse des Objektgrössenexperiments} & \textbf{255cm} & \textbf{400cm} & \textbf{30cm} & \textbf{40cm}\\
+		\hline 
+		\textbf{\gls{Accuracy}} & 93\% & \textasciitilde 1m & \textasciitilde 4-5m & ..\\
+		\hline  Precision
+		\textbf{\gls{Precision}} & passiv & passiv & passiv oder aktiv & ..\\
+		\hline
+		\textbf{F1-Score} & langsam & langsam & .. & ..\\
+		\hline
+		\textbf{Interferenz durch Wasser und Metal} & wenig & wenig & viel & ..\\
+		\hline
+		\textbf{Grösse der Tags} & gross & gross & klein & ..\\
+		\hline
+	\end{tabularx}
+	\caption{Ergebnisse des Distanztests}
+	\label{tbl:distance}
+\end{table}
 
 \subsection{Evaluation}
+Beide Algorithmen können mit der getesteten Reichweite von Objektgrössen 
 Beide Algorithmen können sehr gut mit dem Verstellen der Decke umgehen. Das einzige Problem ist, dass umso tiefer die Decke eingestellt ist, umso kleiner ist die Fläche im Raum, die von den Infrarotkameras aufgenommen wird. Anderweitig hat die Deckenhöhe keinen Einfluss auf die Algorithmen.\\
 Möchte man jedoch die reale Position der Personen aus dem Bild berechnen, müsste die Deckenhöhe zusätzlich berechnet oder gemessen werden.
 
