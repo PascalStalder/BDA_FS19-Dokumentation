@@ -10,26 +10,5 @@ Die Kaskadierung von \gls{CNN}’s ist eine Methode bei schrittweise komplexere 
 \\
 Um mittels Hough-Transformationen Formen zu erkennen wird zuerst mit einem Kantenerkennungsalgorithmus, wie z.B. der Canny-Algorithmus, alle Kanten in einem Binärbild repräsentiert. Im nächsten Schritt werden dann mittels Hough-Transformationen Formen wie Linien oder Kreise in diesem Binärbild identifiziert. Aus diesen Formen kann danach abgeleitet werden ob es sich um ein potenziell relevantes Objekt handelt.
 
-
-\section{Technologische Grundlagen}
-
-
-
-Ein \gls{RFID} System besteht generell aus zwei Teilen: Einem Sender und Empfänger, diese werden Interrogator (dt. Anfragender) und Transponder (dt. Sendegerät) genannt. Der Transponder wird auch als \gls{RFID} Tag bezeichnet und kann sowohl passiv, das heisst ohne Stromversorgung auf dem Tag, wie auch aktiv sein, das heisst der Chip und die Antenne werden durch eine integrierte Batterie versorgt. Der Vorteil eines aktiven Tags liegt in dessen höherer Reichweite. Als Mischung zwischen den Beiden ist der semi-aktive Tag, bei dem nur der Chip durch die Batterie mit Energie versorgt wird, und die Antenne durch das Feld des Interrogators gespiesen wird.
-
-Bei der Funktionsweise von \gls{RFID} Tags muss man zwischen zwei Funktionalitäten unterscheiden, welche auf die Entfernung zwischen Transponder und Interrogator abhängig sind. Im Nahbereich (engl. Near-Field \gls{RFID}) funktioniert die Stromversorgung über magnetische Induktion (die Arbeitsspannung der Chips liegt im Mikro- bis Miliwattbereich). Die Kommunikation zwischen Interrogator und Transponder wird über "load modulation"\ realisiert. Dies bedeutet, dass der Transponder, aktiviert durch das Feld des Interrogator, selber beginnt ein Feld auszustrahlen. Dadurch entstehen Interferenzen im Feld welche sich durch minimale Spannungsänderungen in der Spule des Interrogators messen lassen \parencite{want2006}. Die Distanz des Nahfelds ist durch die Gleichung \ref{NearFieldEM} gegeben. Für \gls{HF} Tags (wie diejenigen die auch in der Speicherbibliothek verwendet werden) ist die Betriebsfrequenz durch den ISO Standard 18000-3 auf 13.56MHz festgelegt und ergibt damit eine Distanz von 3.519m für das Nahfeld.
-
-
-Im Fernfeldbereich erhält der \gls{RFID} Tag direkt über die ausgestrahlte Elektromagnetischen Wellen. Die Abnahme der Energiedichte auf Distanz ist dabei proportional zu $\frac{1}{r^2}$. Dennoch ist es durch Fortschritte in der Miniaturisierung und besserer Energieeffizienz moderner Halbleiter und Chips möglich dadurch \gls{UHF} Tags mit Strom zu versorgen. Die Kommunikation funktioniert mittels "back scattering"\ - eine Antenne welche auf eine bestimmte Frequenz eingestellt ist, absorbiert den Grossteil der Wellen die gesendet werden. Passt jedoch die Impedanz nicht genau, so reflektiert die Antenne ein Teil des Signals an die Quelle, den Interrogator, zurück. Durch das Anpassen der Impedanz der Antenne über die Zeit, kann mehr oder weniger des Signals reflektiert und so eine Nachricht codiert werden \parencite{want2006}.
-
-
-\section{Technische Konzepte}
-
-Da auf eine Anfrage eines Interrogators alle Chips in dessen Nähe antworten, ist der Luft\-raum daher als eine Kollisionsdomäne zu verstehen. Dies bedeutet, dass alle beteiligten Parteien auf dem gleichen Medium sind, sich also gegenseitig stören können. Dieses Problem kennt man in der Netzwerktechnik seit Tokenring, und heutzutage vor allem im WLAN Bereich. Die bei \gls{RFID} verwendete Strategie ist dabei die Kollisionsvermeidung und funktioniert nach dem folgenden Prinzip:
-\begin{enumerate}
-	\item Ein Tag sendet nur nach Empfang der kompletten Befehlssequenz des Interrogator
-	\item Ein Tag sendet nur falls er spezifisch angefragt wurde
-\end{enumerate}
-Der Interrogator unterteilt daher während einer Inventur seine Anfrage in unterschiedliche Zeitbereiche. Pro Bereich fragt er nach den Identifikationsnummern von Tags mit einer Maske, diese Antworten nur falls die Maske auf Ihre Identifikationsnummer passt. Geschieht dabei eine Kollision, so wird der betreffende Bereich weiter unterteilt, bis das ganze Inventar erfasst wurde \parencite{ISO15693-3}.
-
+Weiter gibt es auch noch Methoden wie \gls{k-NN} oder \gls{SVM}. Diese werden aber immer weniger verwendet, da sie in nahezu jedem Anwendungsfall von neuronalen Netzen überholt wurden. \gls{k-NN} werden oft als erster einfacher versuch oder als simpler Algorithmus für einfache Problemstellungen verwendet, sowie in Kombination mit anderen Methoden. \gls{SVM}'s waren lange die besten Kandidaten in Objekterkennungs-Wettbewerben wie zum Beispiel ImageNet \parencite{ILSVRC15}. Bis die nötige Rechenleistung verfügbar war um Tiefe \gls{CNN} zu trainieren. Seither gewannen in solchen Challanges fast ausschliesslich \gls{CNN}.
 
