@@ -2,7 +2,7 @@
 
 Gemäss der Problemstellung sollten passende Algorithmen gesucht und Analysiert werden. Dazu wurde in der Ersten Projektphase eine breite Recherche durchgeführt wobei in erster Linie verschiedene Lösungsansätze gesucht wurden.
 
-\subsection{Algorithmensuche}
+\section{Algorithmensuche}
 
 Um Diese Aufgabe zu lösen wird ein bewährter und passender Algorithmus benötigt. Dazu wurde in der Recherchephase ermittelt welche Arten von Algorithmen für solche Fälle verwendet werden. Die gefundenen Algorithmen, werden dann evaluiert und bewertet so, dass schlussendlich ein Algorithmus ausgewählt werden kann der bestmöglich zur Lösung der Aufgabe verwendet werden kann.
 
@@ -35,4 +35,21 @@ Da einige der erwähnten Methoden einen relativ grossen Datensatz benötigen, um
 Das Labeln der Infrarotbilder konnte auf zwei Arten umgesetzt werden. Man Labelt alle Bilder die verwendet werden sollen manuell mit Hilfe eines Labeling Tools. Oder man erstellt ein Komplexes Program, das mittels 'State of the Art' Bildverarbeitung aus den optischen Bilder die Personen erkennt und deren Position auf die Position im Infrarotbild umrechnet.\\
 \\
 Dieser zweite Ansatz wäre vollautomatisch, schnell und wiederverwendbar, jedoch wäre die Erstellung eines solchen Programms sehr aufwendig und es könnte auch nicht garantiert werden, dass alle Personen korrekt markiert wurden. Es müsste also trotzdem Manuell kontrolliert werden, ob das Labeln korrekt ablief. 
+
+\section{Unterstützende Techniken}
+
+Um dem Umgang mit den Algorithmen zu vereinfachen und deren ergebnisse zu optimieren können verschiedene Techniken eingesetzt werden.
+
+\subsection{Windowing}
+
+Es wird jeweils nur ein kleiner Ausschnitt des Bildes analysiert. Dazu wird mit einem Fenster über Bild iteriert und z.B. immer 20x20 Pixel analysiert. Dies reduziert die Aufgabe auf ein Klassifizierungsproblem. D.h. der Algorithmus muss nur noch entscheiden ob es sich in dem Ausschnitt um eine Person handelt. Zudem können mit dieser Methode reine Hintergrundausschnitte mittels einem Threshold verworfen werden. Dadurch kann bei Bildern mit grossem Hintergrundanteil die Performanz deutlich gesteigert werden.
+
+\subsection{Hintergrund Differenz Analyse}
+
+Es wird ein Referenzhintergrund mittels einem Rolling Average verfahren. Dabei werden fortlaufend Hintergrundbilder aufgezeichnet. Der Durchschnitt aller Hintergrundbilder der letzten n Tage wird berechnet und stellt dann den Referenzhintergrund dar. Dies bietet die Möglichkeit den Referenzhintergrund von dem zu analysierenden Bild zu subtrahieren, wodurch nur noch die relevanten Partien des Bildes übrig bleiben. Der Haupteffekt dieser Methode ist es, fremde Wärmequellen, die über längere Zeit existieren entfernt werden können.\\
+Das Problem bei dieser Methode besteht darin, dass keine Bilder mit Personen zu dem Rolling Average hinzugefügt werden sollten. Dies setzt voraus, dass man ein bereits funktionierendes System hat um die Bilder für den Rolling Average auszuwählen.
+
+\subsection{Clustering}
+
+Wird die Windowing Methode eingesetzt kann es passieren, dass die selbe Person mehrmals erkannt wird. Um solche Treffer einer einzelnen Person zuzuweisen, kann Clustering eingesetzt werden. Dabei wird ein Threshold festgelegt der dein Maximalabstand zwischen zusammengehörenden Treffern darstellt. Mittels diesem Threshold werden danach die Treffer zu Clustern zusammengeführt.
 
