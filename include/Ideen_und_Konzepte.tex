@@ -13,11 +13,15 @@ Es werden Cluster von Pixeln über einem bestimmten Temperatur-Threshold gebilde
 
 \subsection{K-Nearest Neighbors}
 
-\gls{k-NN}'s ist ein simpler Algorithmus das Datenpunkte vergleicht und danach entscheidet welche die grösste Ähnlichkeit besitzen. dieser Algorithmus wird ähnlich dem \gls{CNN} mit Referenzdaten bestückt und entscheidet daraufhin zu welcher Klasse ein Bild die grösste Ähnlichkeit aufweist. 
+\gls{k-NN} ist ein simpler Algorithmus der Datenpunkte vergleicht und danach entscheidet, welche die grösste Ähnlichkeit besitzen. dieser Algorithmus wird ähnlich dem \gls{CNN} mit Referenzdaten bestückt und entscheidet daraufhin, zu welcher Klasse ein Bild die grösste Ähnlichkeit aufweist.
+
+\subsection{Support Vector Machines}
+
+\gls{SVM}'s sind 
 
 \subsection{Hough-Transformationen}
 
-Hough-Transormationen erkennen Formen, wie Kreise und Linien auf Bildern. Dazu muss das Bild zuerst mittels ein Kantendetektionsalgorithmus so bearbeitet werden, dass nur noch kanten zu sehen sind. Danach extrahiert man mittel Hough-Transformationen Kreise und Linien. Diese Methodik könnte in diesem Projekt zur Unterstützung andere Algorithmen verwendet werden.
+Hough-Transormationen erkennen Formen, wie Kreise und Linien auf Bildern. Dazu muss das Bild zuerst mittels einem Kantendetektionsalgorithmus so bearbeitet werden, dass nur noch kanten zu sehen sind. Danach extrahiert man mittel Hough-Transformationen Kreise und Linien. Diese Methodik könnte in diesem Projekt zur Unterstützung andere Algorithmen verwendet werden.
 
 
 \subsection{Thresholding}
@@ -38,7 +42,7 @@ Dieser zweite Ansatz wäre vollautomatisch, schnell und wiederverwendbar, jedoch
 
 \section{Unterstützende Techniken}
 
-Um dem Umgang mit den Algorithmen zu vereinfachen und deren ergebnisse zu optimieren können verschiedene Techniken eingesetzt werden.
+Um dem Umgang mit den Algorithmen zu vereinfachen und deren ergebnisse zu optimieren, können verschiedene Techniken eingesetzt werden. Auch hier wurde Recherchiert, welche Möglichkeiten es gibt.
 
 \subsection{Windowing}
 
@@ -52,4 +56,27 @@ Das Problem bei dieser Methode besteht darin, dass keine Bilder mit Personen zu 
 \subsection{Clustering}
 
 Wird die Windowing Methode eingesetzt kann es passieren, dass die selbe Person mehrmals erkannt wird. Um solche Treffer einer einzelnen Person zuzuweisen, kann Clustering eingesetzt werden. Dabei wird ein Threshold festgelegt der dein Maximalabstand zwischen zusammengehörenden Treffern darstellt. Mittels diesem Threshold werden danach die Treffer zu Clustern zusammengeführt.
+
+\section{Algorithmen Auswahl}
+
+Eine Ideale Evaluation der Algorithmen würde die komplette Implementation und Validation aller Algorithmen voraussetzen. Da dies Zeitlich im Rahmen dieser Arbeit nicht möglich ist, werden die Algorithmen vor allem danach bewertet wie sie in ähnlichen Projekten oder Anwendungsfällen eingesetzt wurden und was für Ergebnisse sie in diesen geliefert haben. Dabei wird bei der Auswahl in Betracht gezogen in welchen Punkten sich die Projekte gleichen und welchen Einfluss das hat.\\
+\\
+Dabei wurde nach den folgenden Kriterien gewertet:
+\begin{itemize}
+	\item In ähnlichen Projekten erfolgreich verwendet
+	\item Performanz
+	\item Benötigte Datenmenge
+	\item Accuracy die in vergleichbaren Projekten erreicht wurde
+	\item Komplexität
+\end{itemize}
+
+\subsection{Ergebnis}
+
+Die meisten in diesem Themenbereich gefundenen, aktuellen Arbeiten wurden in einer Form mit \gls{CNN} durchgeführt. Auch die Ergebnisse dieser Arbeiten sprechen für die Verwendung eines \gls{CNN}, wie z.B. eine Arbeit der ETH Zürich \parencite{gomez2018thermal} in der erfolgreich ein \gls{CNN}, in einem sehr ähnlichen Projekt, eingesetzt wurde. \\
+Da sich in dieser Arbeit vorallem auf Ergebnisse
+
+
+ein \gls{k-NN} zu verwenden scheint nicht sinnvoll da ein \gls{CNN} etwa den Gleichen Entwicklungs- und Trainingsaufwand verlangt und dafür für gewöhnlich bessere Ergebnisse liefert.
+Deshalb wird nun ein CNN mit Unterstützung durch Windowing verwendet da sich diese Kombination bewährt hat \parencite{gomez2018thermal} und das Windowing das Training des CNN sehr vereinfacht.
+
 
