@@ -4,20 +4,21 @@ Gemäss der Problemstellung sollten passende Algorithmen gesucht und Analysiert 
 
 \section{Algorithmensuche}
 
-Um Diese Aufgabe zu lösen wird ein bewährter und passender Algorithmus benötigt. Dazu wurde in der Recherchephase ermittelt welche Arten von Algorithmen für solche Fälle verwendet werden. Die gefundenen Algorithmen, werden dann evaluiert und bewertet so, dass schlussendlich ein Algorithmus ausgewählt werden kann der bestmöglich zur Lösung der Aufgabe verwendet werden kann.
+Um Diese Aufgabe zu lösen wird ein bewährter und passender Algorithmus benötigt. Dazu wurde in der Recherchephase ermittelt welche Arten von Algorithmen für solche Fälle verwendet werden. Die gefundenen Algorithmen, werden dann evaluiert und bewertet so, dass schlussendlich ein Algorithmus ausgewählt werden kann, der bestmöglich zur Lösung der Aufgabe verwendet werden kann.\\
+Dazu werden in diesem Kapitel die analysierten Algorithmen kurz vorgestellt.
 
 \subsection{Clustering von Wärmebereichen}
 
-Es werden Cluster von Pixeln über einem bestimmten Temperatur-Threshold gebildet. diese werden einzeln analysiert und anhand von Temperaturverteilung innerhalb des Clusters und der Form des Clusters wird entschieden ob es sich um eine Person handelt. Sind die Cluster evaluiert und markiert als Person oder keine Person können die Zentren der Person-Cluster direkt als Treffer verwendet werden.
+Es werden Cluster von Pixeln über einem bestimmten Temperatur-Threshold gebildet. diese werden einzeln analysiert und anhand von Temperaturverteilung innerhalb des Clusters und der Form des Clusters wird entschieden ob es sich um eine Person handelt. Sind die Cluster evaluiert und markiert als Person oder keine Person, können die Zentren der Person-Cluster direkt als Treffer verwendet werden.
 
 
 \subsection{K-Nearest Neighbors}
 
-\gls{k-NN} ist ein simpler Algorithmus der Datenpunkte vergleicht und danach entscheidet, welche die grösste Ähnlichkeit besitzen. dieser Algorithmus wird ähnlich dem \gls{CNN} mit Referenzdaten bestückt und entscheidet daraufhin, zu welcher Klasse ein Bild die grösste Ähnlichkeit aufweist.
+\gls{k-NN} ist ein simpler Algorithmus der Datenpunkte vergleicht und danach entscheidet, welche die grösste Ähnlichkeit besitzen. Dieser Algorithmus wird ähnlich dem \gls{CNN} mit Referenzdaten bestückt und entscheidet daraufhin, zu welcher Klasse ein Bild die grösste Ähnlichkeit aufweist.
 
 \subsection{Support Vector Machines}
 
-\gls{SVM}'s sind 
+\gls{SVM}'s sind Klassifikatoren die versuchen bei klassifizierten Datenpunkten eine Funktion zu finden, bei der möglichst viel Abstand zwischen den Klassen bleibt. Diese Funktion wird danach verwendet, um neue Daten zu klassifizieren. Um diese Funktion zu generieren werden Klassifizierte Daten benötigt.\gls{SVM}'s waren das mittel der Wahl für Objekterkennung auf Bildern, bis sie von \gls{CNN}'s abgelöst wurden.
 
 \subsection{Hough-Transformationen}
 
@@ -26,7 +27,8 @@ Hough-Transormationen erkennen Formen, wie Kreise und Linien auf Bildern. Dazu m
 
 \subsection{Thresholding}
 
-Beim Thresholding wird das Infrarotbild mittels mehreren fixierten Werten in ein Binärbild umgewandelt in welchem dann nur noch weisse Flecken zu sehen sein sollten, die Personen repräsentieren. Dazu wird in diesem Fall eine Mindest- und Maximaltemperatur festgelegt. Alle Pixel die innerhalb dieses Bereichs liegen, werden weiss eingefärbt, alle anderen schwarz. Danach wird dieses Bild erodiert und dilatiert. Bei der Erosion wird mit einer kleine Matrix, ein sogenannter Kernel, über das Binärbild iteriert. Immer, wenn mindestens ein Feld des Kernels schwarz ist wird die gesamte Fläche des Kernels, auf dem resultierenden Bild schwarz eingefärbt. die Dilatation funktioniert nach dem gleichen Prinzip aber arbeitet dabei mit den weissen Pixel.
+Beim Thresholding wird das Infrarotbild mittels mehreren fixierten Werten in ein Binärbild umgewandelt in welchem dann nur noch weisse Flecken zu sehen sein sollten, die Personen repräsentieren. Dazu wird in diesem Fall eine Mindest- und Maximaltemperatur festgelegt. Alle Pixel die innerhalb dieses Bereichs liegen, werden weiss eingefärbt, alle anderen schwarz. Danach wird dieses Bild erodiert und dilatiert. Bei der Erosion wird mit einer kleine Matrix, ein sogenannter Kernel, über das Binärbild iteriert. Immer, wenn mindestens ein Feld des Kernels schwarz ist wird die gesamte Fläche des Kernels, auf dem resultierenden Bild schwarz eingefärbt. die Dilatation funktioniert nach dem gleichen Prinzip aber arbeitet dabei mit den weissen Pixel.\\
+Idealerweise, ist danach nur noch pro Person eine geschlossene, weisse Fläche übrig. Die Zentren dieser Flächen stellen dann die Position der Person dar.
 
 \subsection{Convolutional Neural Network}
 
@@ -73,7 +75,7 @@ Dabei wurde nach den folgenden Kriterien gewertet:
 \subsection{Ergebnis}
 
 Die meisten in diesem Themenbereich gefundenen, aktuellen Arbeiten wurden in einer Form mit \gls{CNN} durchgeführt. Auch die Ergebnisse dieser Arbeiten sprechen für die Verwendung eines \gls{CNN}, wie z.B. eine Arbeit der ETH Zürich \parencite{gomez2018thermal} in der erfolgreich ein \gls{CNN}, in einem sehr ähnlichen Projekt, eingesetzt wurde. \\
-Da sich in dieser Arbeit vorallem auf Ergebnisse
+Da sich in dieser Arbeit vorallem auf Ergebnisse von bereits erfolgreichen Arbeiten gestützt wird
 
 
 ein \gls{k-NN} zu verwenden scheint nicht sinnvoll da ein \gls{CNN} etwa den Gleichen Entwicklungs- und Trainingsaufwand verlangt und dafür für gewöhnlich bessere Ergebnisse liefert.
