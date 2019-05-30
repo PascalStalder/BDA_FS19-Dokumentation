@@ -9,7 +9,7 @@ Dazu werden in diesem Kapitel die analysierten Algorithmen kurz vorgestellt.
 
 \subsection{Clustering von Wärmebereichen}
 
-Es werden Cluster von Pixeln über einem bestimmten Temperatur-Threshold gebildet. diese werden einzeln analysiert und anhand von Temperaturverteilung innerhalb des Clusters und der Form des Clusters wird entschieden ob es sich um eine Person handelt. Sind die Cluster evaluiert und markiert als Person oder keine Person, können die Zentren der Person-Cluster direkt als Treffer verwendet werden.
+Es werden Cluster von Pixeln über einem bestimmten Temperatur-Threshold gebildet. Diese werden einzeln analysiert und anhand von Temperaturverteilung innerhalb des Clusters und der Form des Clusters wird entschieden ob es sich um eine Person handelt. Sind die Cluster evaluiert und markiert als Person oder keine Person, können die Zentren der Person-Cluster direkt als Treffer verwendet werden.
 
 
 \subsection{K-Nearest Neighbors}
@@ -82,10 +82,10 @@ Dabei wurde nach den folgenden Kriterien gewertet:
 \subsection{Ergebnis}
 
 Die meisten in diesem Themenbereich gefundenen, aktuellen Arbeiten wurden in einer Form mit \gls{CNN} durchgeführt. Auch die Ergebnisse dieser Arbeiten sprechen für die Verwendung eines \gls{CNN}, wie z.B. eine Arbeit der ETH Zürich \parencite{gomez2018thermal} in der erfolgreich ein \gls{CNN}, in einem sehr ähnlichen Projekt, eingesetzt wurde. \\
-Da sich in dieser Arbeit vorallem auf Ergebnisse von bereits erfolgreichen Arbeiten gestützt wird
-
-
-ein \gls{k-NN} zu verwenden scheint nicht sinnvoll da ein \gls{CNN} etwa den Gleichen Entwicklungs- und Trainingsaufwand verlangt und dafür für gewöhnlich bessere Ergebnisse liefert.
+ein \gls{k-NN} oder eine \gls{SVM} zu verwenden scheint nicht sinnvoll da ein \gls{CNN} etwa den Gleichen Entwicklungs- und Trainingsaufwand verlangt und dafür bessere Ergebnisse liefert \parencite{comparison_algorithms}.
 Deshalb wird nun ein CNN mit Unterstützung durch Windowing verwendet da sich diese Kombination bewährt hat \parencite{gomez2018thermal} und das Windowing das Training des CNN sehr vereinfacht.
+
+
+
 
 
