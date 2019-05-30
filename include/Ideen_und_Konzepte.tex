@@ -1,10 +1,11 @@
 \chapter{Ideen und Konzepte}
+\label{ch:ideasAndConcepts}
 
-Gemäss der Problemstellung sollten passende Algorithmen gesucht und Analysiert werden. Dazu wurde in der Ersten Projektphase eine breite Recherche durchgeführt wobei in erster Linie verschiedene Lösungsansätze gesucht wurden.
+Gemäss der Problemstellung sollten passende Algorithmen gesucht und analysiert werden. Dazu wurde in der ersten Projektphase eine breite Recherche durchgeführt, wobei in erster Linie verschiedene Lösungsansätze gesucht wurden.
 
 \section{Algorithmensuche}
 
-Um Diese Aufgabe zu lösen wird ein bewährter und passender Algorithmus benötigt. Dazu wurde in der Recherchephase ermittelt welche Arten von Algorithmen für solche Fälle verwendet werden. Die gefundenen Algorithmen, werden dann evaluiert und bewertet so, dass schlussendlich ein Algorithmus ausgewählt werden kann, der bestmöglich zur Lösung der Aufgabe verwendet werden kann.\\
+Um Diese Aufgabe zu lösen, wird ein bewährter und passender Algorithmus benötigt. Dazu wurde in der Recherchephase ermittelt, welche Arten von Algorithmen für solche Fälle verwendet werden. Die gefundenen Algorithmen, werden dann evaluiert und bewertet, sodass schlussendlich ein Algorithmus ausgewählt werden kann, der bestmöglich zur Lösung der Aufgabe verwendet werden kann.\\
 Dazu werden in diesem Kapitel die analysierten Algorithmen kurz vorgestellt.
 
 \subsection{Clustering von Wärmebereichen}
@@ -83,7 +84,8 @@ Dabei wurde nach den folgenden Kriterien gewertet:
 
 Die meisten in diesem Themenbereich gefundenen, aktuellen Arbeiten wurden in einer Form mit \gls{CNN} durchgeführt. Auch die Ergebnisse dieser Arbeiten sprechen für die Verwendung eines \gls{CNN}, wie z.B. eine Arbeit der ETH Zürich \parencite{gomez2018thermal} in der erfolgreich ein \gls{CNN}, in einem sehr ähnlichen Projekt, eingesetzt wurde. \\
 ein \gls{k-NN} oder eine \gls{SVM} zu verwenden scheint nicht sinnvoll da ein \gls{CNN} etwa den Gleichen Entwicklungs- und Trainingsaufwand verlangt und dafür bessere Ergebnisse liefert \parencite{comparison_algorithms}.
-Deshalb wird nun ein CNN mit Unterstützung durch Windowing verwendet da sich diese Kombination bewährt hat \parencite{gomez2018thermal} und das Windowing das Training des CNN sehr vereinfacht.
+Deshalb wurde in dieser Arbeit ein \gls{CNN} verwendet. zur Unterstützung wurde Windowing verwendet, da sich diese Kombination bewährt hat \parencite{gomez2018thermal} und da Windowing das Training des CNN sehr vereinfacht.\\
+Zusätzlich wurde entschieden als Referenz eine Threshold-Methode zu implementieren. Um abschätzen zu können wie gut das \gls{CNN} abschneidet.
 
 
 
