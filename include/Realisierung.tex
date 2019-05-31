@@ -30,9 +30,45 @@ Alle aufgezeichneten Bilder wurden lokal auf einer Festplatte des Computers im S
 \end{itemize}
 
 
-\section{Algorithmen}
+\section{CNN}
 
-Damit die beiden Algorithmen möglichst effizient und mit wenig Redundanz implementierte werden konnten, wurde die Software modular aufgebaut. 
+Um das \gls{CNN} Trainieren zu können müssen die Bilder gelabelt, gepaddet, Fenster extrahiert, und normalisiert werden. Dazu wurden verschiedene Module implementiert, die diese Aufgaben übernehmen.
+
+\subsection{Labeln}
+\label{sec:labeling}
+
+Für das Labeln der Bilder wurde \textit{labelme}\parencite{labelme2016} verwendet da dies einfaches und praktisches User Interface bietet. Die Labels wurden jeweils in dem Verzeichnis \textit{labels} abgelegt, der auf der gleichen ebene wie das Verzeichnis \textit{ir\_images} in dem die dazugehörigen Infrarotbilder abgelegt sind.\\
+Die rohen Infrarotbilder wurden als .npy \parencite{npyformat} Files gespeichert. Dies, weil die Pixel der Bilder in Kelvin*10 sind, d.h. 2731 entspricht 0\degree C. Aus diesem Grund konnten sie nicht auf einfache Art in ein Grafikformat persistiert werden. Zudem ist es wünschenswert Berechnungen mit den Originalwerten durchzuführen.\\
+Um die Infrarotbilder aber labeln zu können wird ein Bild mit .jpg oder ähnlichem Format benötigt. Dazu wurde das Bild auf Graustufen reduziert. Dabei geht zwar ein Teil der Information verloren, aber man kann genug erkennen um die Bilder korrekt zu Labeln. zudem konnte im Zweifelsfall das RGB Bild der Referenzkamera zu Hilfe gezogen werden. Da die konvertierten Bilder die gleichen Dimensionen aufweisen können die definierten Labels direkt auf die Infrarotbilder angewendet werden.
+
+\subsection{Preprocessing der Trainingsdaten}
+
+Um das vorbereiten der Trainigsdaten möglichst einfach zu gestalten wurde die Klasse Loader implementiert. Dies bietet die Methode \textit{load\_data\_by\_labels()} welche für ein spezifiziertes Verzeichnis alle Objekte lädt für die ein Label existiert. Diese Methode basiert darauf das die Labels und Infrarotbildern wie vorgängig erwähnt im selben Verzeichnis und in den Ordnern labels und ir\_images abgelegt wurden. Die Methode kann zudem mit mehreren Parameter angepasst weden.
+
+\subsubsection{Loader}
+
+\noindent -Konstruktor Parameter:
+\begin{itemize}[leftmargin=*, labelindent=3cm, labelsep=1cm]
+	\item[\textit{source\_folder}] String: Das Verzeichnis aus dem die Trainingsdaten geladen werden sollen, muss die Ordner \textit{ir\_images} und \textit{labels} beinhalten.
+	\item[\textit{window\_size}] (int, int): Die grösse des Fensters das um das Label extrahiert werden soll.
+	\item[\textit{extend\_by\_roaming}] Boolean: Um jedes Label wird in einem Umkreis drei Pixeln zusätzliche Fenster extrahiert. Dies ist eine Methode um mehr trainigsdaten zu generieren und das CNN darauf zu trainieren die Objekte nicht nur zentriert zu erkennen.
+\end{itemize}
+\vspace{2em}
+\noindent\textit{load\_data\_by\_labels()} Parameter:
+\begin{itemize}[leftmargin=*,labelindent=3cm, labelsep=1cm]
+		\item[\textit{cam}] Int: 1 oder 2 von welcher der Kameras die Bilder geladen werden sollen. Wird dieser Parameter nicht verwendet werden Bilder beider Kameras verwendet.
+		\item[\textit{no\_background}] Boolean: Es werden soviele, zufällig ausgewählte Hintergrundausschnitte aus einem Referenzbild geladen wie die negativ Klasse enthält, wenn True.
+		\item[\textit{rotate\_negatives}] Boolean: rotiert alle Fenster der negativ Klasse 3 mal um 90\degree und spiegelt sie, wenn True.
+		\item[\textit{rotate\_positives}] Boolean: rotiert alle Fenster der positiv Klasse 3 mal um 90\degree und spiegelt sie, wenn True.
+\end{itemize}
+
+\noindent mit diesen Möglichkeiten können die Daten in zwei Zeilen Code individuell für jedes Training vorbereitet werden.\\
+\\
+Vor dem Training werden die Daten dann zusätzlich noch normalisiert, damit alle Werte zwischen 0 und 1 liegen und das Datenset wird gemischt, dass beim Training nicht ganze Batches dieselbe Klasse repräsentieren.
+
+\subsection{Aufbau des CNN}
+
+Das \gls{CNN} wurde sehr klein gehalten und ohne 
 
 
 
