@@ -68,7 +68,21 @@ Vor dem Training werden die Daten dann zusätzlich noch normalisiert, damit alle
 
 \subsection{Aufbau des CNN}
 
-Das \gls{CNN} wurde sehr klein gehalten und ohne 
+Das \gls{CNN} wurde nach dem Vorbild von \parencite{cnnArchitecture} aufgebaut. Da diese Arbeit sich auf Bilder mit niedriger Auflösung spezialisiert. Das Netzwerk ist wie in Abbildung \ref{fig:cnnArchitecture} zu sehen. Es beginnt mit einem Convolutional Layer mit 64 5x5 Filter danach wird ein Maxpooling eingesetzt. Maxpooling funktioniert so, dass 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\linewidth]{MaxpoolSample}
+	\caption{Visualisierung Maxpooling \parencite{MaxpoolImg2018} }
+	\label{fig:maxpoolSample}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.7\linewidth]{modelSummary}
+	\caption{Architektur des CNN}
+	\label{fig:cnnArchitecture}
+\end{figure}
 
 
 
