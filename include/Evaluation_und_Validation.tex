@@ -3,46 +3,102 @@
 
 Um das System zu validieren und die Grenzen der Infrarotbildverarbeitung in diesem Gebiet zu ermitteln wurden einige Experimente durchgeführt. Diese Experimente zeigen, was das System kann und wo die Grenzen des Systems und auch der Infrarottechnik liegen.\\
 \\
-Zur Auswertung der Experimente werden Bilder mit Markierungen verwendet. Diese sind wie folgt Farbcodiert.
+\section{Erklärungen}
+In diesem Kapitel werden Test statistisch ausgewertet und analysiert. Dazu werden hier die wichtigsten Begriffe und Konzepte erklärt.
+
+\subsection{Farbcodierung}
+Zur Auswertung der Experimente werden Bilder mit Markierungen verwendet. Diese sind wie folgt Farbcodiert.\\
 
 \begin{itemize}
-	\item Grün -> Korrekt gefundene Person (True Positive)
-	\item Gelb -> Nicht gefundene Person (False Negative)
-	\item Rot -> Nichtiger Treffer (False Positive)\\
+	\item \textbf{Grün:} Korrekt gefundene Person (True Positive)
+	\item \textbf{Gelb:} Nicht gefundene Person (False Negative)
+	\item \textbf{Rot:} Nichtiger Treffer (False Positive)
 \end{itemize}
-Zudem werden die folgenden Metriken verwendet, diese sind leicht angepasst, da die Klasse True Negative fehlt:
+\vspace{1em}
+
+\subsection{Begriffserklärung}
+\noindent In dem Kapitel werden die folgenden Fachbegriffe verwendet:
+\begin{itemize}
+	\item $True\: Positive:$   Person wurde korrekt Identifiziert
+	\item $True\: Negative:$   Hintergrund oder fremde Wärmequelle wurde \textbf{nicht} als Person identifiziert. Diese werden in diesem Kapitel nicht weiter verwendet, da diese der standard Fall ist und nicht spezifisch ausgewertet werden kann.
+	\item $False\: Positive:$  Hintergrund oder fremde Wärmequelle wurde als Person identifiziert
+	\item $False\: Negative:$  Person wurde nicht erkannt.
+\end{itemize}
+\vspace{1em}
+
+\subsection{Statistische Metriken}
+\noindent Zudem werden die folgenden Metriken verwendet, diese sind leicht angepasst, da die Klasse True Negative fehlt:
 
 \begin{itemize}
-	\item Accuracy: \[\dfrac{TP}{Anzahl\: moegliche\: Treffer}\]
-	\item Precision: \[\dfrac{TP}{TP + FP}\]
-	\item Recall: \[\dfrac{TP}{TP + FN}\]
-	\item F1-Score: \[\dfrac{2*Precision*Recall}{Precision + Recall}\]
+	\item \textbf{Precision:} Korrekte Treffer / Alle Treffer\[\dfrac{True\: Positive}{True\: Positive + False\: Positive}\]
+	\item \textbf{Recall:} Korrekte Treffer / Anzahl Personen\[\dfrac{True\: Positive}{True\: Positive + False\: Negative}\]
+	\item \textbf{F1-Score:} \[\dfrac{2*Precision*Recall}{Precision + Recall}\]
 \end{itemize}
 
 
 \section{Vergleich mit Anforderungen}
 \label{sec:VergleichAnforderungen}
 
-Die Aufgabe war es, ein System zu entwickeln, welches in dem Sitzungszimmer auf den Bildern der Infrarotkameras die Anzahl und Position der Personen ermittelt. Dieser Punkt wurde erfüllt. Das System kann dynamisch Personen und deren Position ermitteln und diese ausgeben. Das System zeigte bei den Tests wie in Abbildung \ref{fig:ExperimentSummary} zu sehen eine Precision Score von 97\% das bedeutet, dass es fast gar keine False Positiv Treffer gab. Die Accuracy liegt nur bei 85\%, dies weil in den Experimenten auch die Grenzen der Personenerkennung getestet werden wie in Kapitel \ref{sec:cloths} diskutiert wird.
+Der erforderte Stand der Technik wurde in Kapitel \ref{ch:StandDerTechnik} präsentiert. Die gefundenen Algorithmen wurden in Kapitel \ref{ch:ideasAndConcepts} erklärt und evaluiert.\\
+Das erste Hauptziel war es ein lauffähiges System zu entwickeln, welches die Position und Anzahl der Personen in einem Infrarotbild bestimmen kann. Dieses Ziel wurde mit einem Recall von 91.5\%  erreicht (siehe Tabelle \ref{tbl:stat}). Die beim betrachten der Werte in Tabelle \ref{tbl:results} und \ref{tbl:stat} ist zu beachten, dass dabei auch die Grenzen des Systems getestet wurden. So zum Beispiel in Kapitel \ref{sec:cloths} wo der Einfluss isolierender Kleidung analysiert wird.\\
+Das zweite Hauptziel ist es Schwierigkeiten bei der Lösung der Aufgabe zu erläutern und Lösungsmöglichkeiten dazu vorzuschlagen. Dies wird in diesem Kapitel und im Kapitel \ref{ch:Ausblick} erfüllt.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=.9\linewidth]{ExperimentSummary}
-	\caption{Zusammenfassung aller ergebnisse der Experimente}
-	\label{fig:ExperimentSummary}
-\end{figure}
-
-
+% Tabelle mit ergebnissen
+{
+	\renewcommand{\arraystretch}{1.3}
+	
+	\begin{table}[H]
+		\scriptsize
+		\centering
+		\begin{tabularx}{.5\textwidth}{Xrr}\\
+			\hline
+			\multicolumn{3}{c}{\textbf{Ergebnisse der Algorithmen}}\\
+			\hline
+			\textbf{Kategorien} & \textbf{CNN} & \textbf{Threshold}\\
+			\hline
+			\textit{Anzahl verwendeter Aufnahmen} & 323 & 323\\
+			\hline 
+			\textit{Gesamtanzahl Personen in Bilder} & 718 & 718\\
+			\hline
+			\textit{True Positive} & 657 & 650\\
+			\hline
+			\textit{False Positive} & 120 & 142\\
+			\hline
+			\textit{False Negative} & 61 & 68\\
+		\end{tabularx}
+		\caption{Zusammenfassung der Ergebnisse beider Algorithmen}
+		\label{tbl:results}
+	\end{table}
+	\begin{table}[H]
+		\scriptsize
+		\centering
+		\begin{tabularx}{.5\textwidth}{Xrr}
+			\hline
+			\multicolumn{3}{c}{\textbf{Statistische Auswertung}}\\
+			\hline
+			\textbf{Kategorien} & \textbf{CNN} & \textbf{Threshold}\\
+			\hline
+			\textit{Recall} & 91.5\% & 90.5\%\\
+			\hline  
+			\textit{Precision} & 84.5\% & 82.1\%\\
+			\hline
+			\textit{F1-Score} & 87.9\% & 86.1\%\\
+			\hline
+		\end{tabularx}
+		\caption{Statistische Auswertung der Performance beider Algorithmen}
+		\label{tbl:stat}
+	\end{table}
+}
 
 \section{Fremde Wärmequellen}
 \label{sec:FremdeWärmequellen}
 
-In diesem Versuch wurde der Einfluss von fremden Wärmequellen, wie zum Beispiel Laptops, Natels, oder Kaffees, evaluiert. Dabei wurde der Effekt von Störquellen mit und ohne Personen im Raum analysiert.
+In diesem Versuch wurde der Einfluss von fremden Wärmequellen, wie zum Beispiel Laptops, Natels, Kaffees oder Radiatoren, evaluiert. Dabei wurde der Effekt von Störquellen mit und ohne Personen im Raum analysiert.
 
 \subsection{Versuchsaufbau}
 
 Um die Performance der Algorithmen spezifisch in Bezug auf fremde Wärmequellen zu testen, wurden verschiedene Testsituationen erzeugt. Zuerst wurden fünf Laptops, von 13" bis 17",auf den Sitzungstisch gestellt, um zu sehen, ob Laptops ohne Personen Treffer generieren. Die Geräte wurden auf den gesamten Kamerawinkel verteilt, vom Zentrum des Bildes bis an den Rand. Da die Algorithmen nicht durch die Anzahl Wärmequellen, sondern nur durch die Distanz zwischen den Wärmequellen beeinflusst werden, konnte der ganze Kamerawinkel in einem einzigen Versuch getestet werden.\\
-Die Laptops waren seit ca. 1.5h in leichtem Betrieb, ihre Temparatur war ca. 25\degree C, somit leicht diese etwas unter der Abstrahlungswärme einer Person. Die Hauttemperatur einer Person wird von den Infrarotkameras zwischen 27\degree C und 33\degree C gemessen, je nach Kleidung und Behaarung.\\
+Die Laptops waren seit ca. 1.5h in leichtem Betrieb, ihre Temperatur war ca. 25\degree C, somit leicht diese etwas unter der Abstrahlungswärme einer Person. Die Hauttemperatur einer Person wird von den Infrarotkameras zwischen 27\degree C und 33\degree C gemessen, je nach Kleidung und Behaarung.\\
 Danach nahmen fünf Personen bei den Laptops platz,  ohne dass die Laptops verschoben wurde. Um zu testen, ob False Positives generiert werden, wenn jemand den Laptop bedient, die Arme zum Laptop reichen.\\
 Um auch Wärmere Laptops überprüfen zu können wurde Bilder während einer Besprechung aufgezeichnet. Dabei war ein Laptop, dessen Temperatur im Bereich der Hauttemperatur einer Person liegt, in der Mitte des Tischs. Die szene sah, wie in Abbildung \ref{fig:groundDeviceTest2} zu sehen, aus.
 \\
@@ -70,7 +126,7 @@ Schon bei der Erstellung der Modelle wurde ersichtlich, dass das Herausfiltern v
 		\hline
 		\textbf{Nicht erkannte Personen} & 0 & 9 & 0\\
 		\hline
-		\textbf{Accuracy} & - & 90\% & -\\
+		\textbf{Recall} & - & 90\% & -\\
 		\hline  
 		\textbf{Precision} & 0\% & 87\% & 100\%\\
 		\hline
@@ -94,7 +150,7 @@ Schon bei der Erstellung der Modelle wurde ersichtlich, dass das Herausfiltern v
 		\hline
 		\textbf{Nicht erkannte Personen} & gross & 0 &..\\
 		\hline
-		\textbf{Accuracy} & 93\% & \textasciitilde 1m & \textasciitilde 4-5m & ..\\
+		\textbf{Recall} & 93\% & \textasciitilde 1m & \textasciitilde 4-5m & ..\\
 		\hline  
 		\textbf{Precision} & passiv & passiv & passiv oder aktiv & ..\\
 		\hline
@@ -162,7 +218,7 @@ Beim Test wurde schrittweise der Abstand zwischen den Testpersonen erhöht, um f
 		\hline
 		\textbf{Ergebnisse Distanztest} & \textbf{10cm} & \textbf{20cm} & \textbf{30cm} & \textbf{40cm}\\
 		\hline 
-		\textbf{Accuracy} & 93\% & \textasciitilde 1m & \textasciitilde 4-5m & ..\\
+		\textbf{Recall} & 93\% & \textasciitilde 1m & \textasciitilde 4-5m & ..\\
 		\hline  
 		\textbf{Precision} & passiv & passiv & passiv oder aktiv & ..\\
 		\hline
@@ -244,7 +300,7 @@ Die verstellbare Decke des Sitzungszimmers wurde auf die vom Mobiliar zugelassen
 		\hline
 		\textbf{Ergebnisse des Objektgrössenexperiments} & \textbf{255cm} & \textbf{400cm} & \textbf{30cm} & \textbf{40cm}\\
 		\hline 
-		\textbf{Accuracy} & 93\% & \textasciitilde 1m & \textasciitilde 4-5m & ..\\
+		\textbf{Recall} & 93\% & \textasciitilde 1m & \textasciitilde 4-5m & ..\\
 		\hline  Precision
 		\textbf{Precision} & passiv & passiv & passiv oder aktiv & ..\\
 		\hline
@@ -292,7 +348,7 @@ Eine Testperson hielt sich im Raum auf und trug verschiedene Kleidungsstücke. D
 \subsection{Evaluation}
 Kleider beeinflussen die Performance der Algorithmen massiv. Trägt eine Person z.B. eine Mütze, wird sie vom \gls{CNN} noch zu 80\% erkannt. Bei der Threshold-Methode sind es 76\%. Zudem kann es dazu führen, dass eine Person zwei Treffer erzeugt (siehe Abbildung \ref{fig:thresholdClothHat}).\\
 \\
-Wenn ein Schal getragen wird, sinkt die Accuracy auf ca. 60\% bei beiden Algorithmen. Betrachtet man Abbildung \ref{fig:scarfIR} sieht man deutlich, wie der Schal einen Teil der Wärme der Person verdeckt.\\
+Wenn ein Schal getragen wird, sinkt die Recall auf ca. 60\% bei beiden Algorithmen. Betrachtet man Abbildung \ref{fig:scarfIR} sieht man deutlich, wie der Schal einen Teil der Wärme der Person verdeckt.\\
 \\
 Das Tragen einer Jacke macht es für die Algorithmen beinahe unmöglich die Personen zu erkennen. Die Person wird nur noch in wenigen Fällen erkannt. Das \gls{CNN} könnte wahrscheinlich mit den entsprechenden Trainingsdaten erweitert werden, sodass auch diese Personen erkannt werden. Da aber die Fläche der Abwärme einer Person so nur noch wenige Pixel beträgt, wird es schwieriger diese von fremden Wärmequellen zu unterscheiden.\\
 
