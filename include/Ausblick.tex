@@ -3,4 +3,28 @@
 
 Zum Abschluss wird in diesem Kapitel über die Arbeit reflektiert und Diskutiert wie ein solches Projekt weitergeführt werden könnte und welche Verbesserungs- oder Erweiterungsmöglichkeiten es gibt.
 
+\section{Technisches Fazit}
+
+Technisch wurden die Anforderung erfüllt. Leider ist es jedoch nicht gelungen ein System zu entwickeln welches zuverlässig Personen und Andere Wärmequellen unterscheiden kann. Das \gls{CNN} ist darin zwar besser als die Threshold Methode, leider kann es aber auch nicht in allen Fällen korrekt entscheiden. Dieses Problem könnte sehr wahrscheinlich durch Training mit mehr Daten minimiert werden... todo:moare
+
 \section{Projekt Fazit}
+
+Das Projekt war im Rückblick erfolgreich. Auch wenn nicht ein System mit 100\% Accuracy erreicht wurde, konnte gezeigt werden, wo die Herausforderungen liegen und was getan werden kann um diese zu meistern. Es wurde gezeigt, dass das Erkennen von Personen relativ einfach ist, das unterscheiden von Personen anderen Wärmequellen ist allerdings eine Herausforderung. Da bei so kleiner Auflösung sehr wenig Information zur Verfügung steht und Personen viele verschiedene Haltungen einnehmen können (siehe Abbildung \ref{fig:postureExample}), ist es schwierig ein perfektes Modell dazu zu erstellen.
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{.4\linewidth}
+		\centering
+		\includegraphics[keepaspectratio, height=4cm]{postureExample1}
+	\end{subfigure}
+	\begin{subfigure}{.4\linewidth}
+		\centering
+		\includegraphics[keepaspectratio, height=4cm]{postureExample2}
+	\end{subfigure}	
+	\caption{Beispielbilder Haltung}
+	\label{fig:postureExample}
+\end{figure}
+
+\subsection{Persönliches Fazit}
+
+Ich sehe das Projekt auch persönlich als einen Erfolg an. Ich werde bestimmt viele Dinge mitnehmen die ich während des Projekts gelernt habe. Natürlich verlief auch in diesem Projekt nicht immer alles nach Plan und ich musste Zeit in die Lösung von Problemen investieren die nicht direkt das System betreffen. Doch alles in allem konnte ich ein funktionierendes System entwickeln, welches mit einer 90\% Sicherheit und 94\% Präzision Personen erkennt und deren Position bestimmen kann.
