@@ -58,7 +58,7 @@ Es wird jeweils nur ein kleiner Ausschnitt des Bildes analysiert. Dazu wird mit 
 
 \subsection{Hintergrund Differenz Analyse}
 
-Es wird ein Referenzhintergrund mittels einem Rolling Average verfahren. Dabei werden fortlaufend Hintergrundbilder aufgezeichnet. Der Durchschnitt aller Hintergrundbilder der letzten n Tage wird berechnet und stellt dann den Referenzhintergrund dar. Dies bietet die Möglichkeit den Referenzhintergrund von dem zu analysierenden Bild zu subtrahieren, wodurch nur noch die relevanten Partien des Bildes übrig bleiben. Der Haupteffekt dieser Methode ist es, fremde Wärmequellen, die über längere Zeit existieren entfernt werden können.\\
+Es wird ein Referenzhintergrund mittels einem Rolling Average verfahren erstellt. Dabei werden fortlaufend Hintergrundbilder aufgezeichnet. Der Durchschnitt aller Hintergrundbilder der letzten n Tage wird berechnet und stellt dann den Referenzhintergrund dar. Dies bietet die Möglichkeit den Referenzhintergrund von dem zu analysierenden Bild zu subtrahieren, wodurch nur noch die relevanten Partien des Bildes übrig bleiben. Der Haupteffekt dieser Methode ist es, fremde Wärmequellen, die über längere Zeit existieren entfernt werden können.\\
 Das Problem bei dieser Methode besteht darin, dass keine Bilder mit Personen zu dem Rolling Average hinzugefügt werden sollten. Dies setzt voraus, dass man ein bereits funktionierendes System hat um die Bilder für den Rolling Average auszuwählen.
 
 
