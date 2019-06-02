@@ -1,3 +1,30 @@
 \chapter{Methode}
 
-In diesem Kapitel wird beschreiben wie 
+In diesem Kapitel wird beschreiben, wie in dieser Arbeit vorgegangen wurde und welche Technologien und Techniken eingesetzt wurden.
+
+
+\section{Vorgehen}
+
+Da dies ein Innovationsprojekt ist, wurde in Explorativen Problemlösungszyklen gearbeitet. Dies alles im Rahmen einer Grobplanung, die diverse Meilensteine festlegte die zu erreichen waren.\\
+Das Projekt teilte sich in drei Phasen auf.  Die Intialrecherche, die Implementierung der ausgewählten Algorithmen und die Evaluation des Systems.\\
+Während der Initialrecherche wurde der Stand der Technik, in der Objekterkennung im Infrarotbereich, ermittelt. Danach wurden die gefundenen Algorithmen evaluiert und daraus zwei Algorithmen ausgewählt. Da der zeitliche Rahmen dieses Projekts es nicht zuliess, bei der Auswahl der Algorithmen alle gefundenen Methoden ausgiebig zu testen, wurde vorallem darauf geachtet ob und wie diese in ähnlichen Projekten erfolgreich eingesetzt wurden.
+
+\section{Technologien \& Frameworks}
+Zur Umsetzung dieses Projekt wurde Python 3.7 mit Unterstützung durch die Frameworks Tensorflow \parencite{tensorflow2015}, Keras \parencite{keras} und OpenCV \parencite{opencv} verwendet. Zudem wurden weitere open source Python Packages verwendet, z.B. Numpy \parencite{numpy} um die Implementation zu vereinfachen.\\
+Als \gls{IDE} wurde Pycharm von Jetbrains \parencite{pycharm} verwendet. Die zur Verfügung gestellten Infrarotkameras sind HTPA80x64d von Heimann Sensor GMBH.
+
+\section{Techniken}
+
+Wie in Kapitel \ref{ch:ideasAndConcepts} erwähnt wurde wurden das \gls{CNN} und die Threshold-Methode ausgewählt um in diesem Projekt zur Lösung der Aufgabe verwendet zu werden. 
+
+\subsection{CNN}
+
+Es wird ein \gls{CNN} trainiert und dazu verwendet einzelne Bildausschnitte als 'Person' oder 'keine Person' zu klassifizieren. Dazu werden Infrarotbilder gelabelt, um diese Label ein 16x16 Fenster ausgeschnitten und dem \gls{CNN} zum Trainieren übergeben.\\
+Um danach ein Infrarotbild auszuwerten und die Personen darauf zu bestimmen, wird mit einem Sliding Window über das Bild gefahren und jeder ausschnitt dem \gls{CNN} zu Klassifizierung übergeben.
+
+\subsubsection{Windowing}
+Um das Training des \gls{CNN} zu vereinfachen wird Windowing eingesetzt. Wodurch das \gls{CNN} nur noch Klassifizieren muss und nicht auch noch die Position der Person bestimmen.
+
+\subsection{Threshold-Methode}
+
+Bei der Threshold Methode werden mittels einigen Beispielbildern Parameterwerte festegelegt, mit denen bestmöglich die Personen aus einem Infrarotbild gefiltert werden können. Das Bild wird mittels diesen Parametern auf ein Binärbild reduziert, in dem idealerweise pro Person eine geschlossene weisse Fläche zu sehen ist. Die Zentren dieser Flächen entsprechen dann der Position der Personen.
