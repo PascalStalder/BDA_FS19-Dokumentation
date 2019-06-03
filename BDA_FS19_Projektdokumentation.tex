@@ -70,7 +70,7 @@
 \usepackage[absolute]{textpos}
 
 % Glossary, hyperref, babel, polyglossia, inputenc, fontenc must be loaded before this package if they are used
-\usepackage{glossaries}
+\usepackage[sort=def]{glossaries}
 % Redefine the quote charachter as we are using ngerman
 \GlsSetQuote{+}
 % Define the usage of an acronym, Abbreviation (Abbr.), next usage: The Abbr. of ...
@@ -120,6 +120,25 @@
 \newacronym{k-NN}{k-NN}{k-Nearest Neighbors}
 \newacronym{SVM}{SVM}{Support Vector Machine}
 \newacronym{IDE}{IDE}{Integrated Development Environment}
+\newglossaryentry{Erode}{
+	name={Erode},
+	description={Morphologische Operation zur Verdünnung von Pixelflächen}
+}
+\newglossaryentry{Dilate}{
+	name={Dilate},
+	description={Morphologische Operation zur Expansion von Pixelflächen}
+}
+
+\newglossaryentry{Window}{
+	name={Window},
+	plural={Windows},
+	description={Ein Bildausschnitt mit festgelegter Grösse}
+}
+\newglossaryentry{Padding}{
+	name={Padding},
+	description={Erweiterung eines Bildes in alle Richtungen mit bestimmten Pixelwerten}
+}
+\newglossaryentry{Cluster}{name={Cluster},description={Eine Gruppe von Datenobjekten mit ähnlichen Eigenschaften}}
 
 %%% DOCUMENT %%%
 
