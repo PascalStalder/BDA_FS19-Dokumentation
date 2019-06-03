@@ -10,6 +10,6 @@
 
 # Bachelordiplomarbeit - Dokumentation
 
-[travis-url]: https://travis-ci.org/PascalStalder/BDA_FS19-Dokumentation
-[travis-badge]: https://travis-ci.org/PascalStalder/BDA_FS19-Dokumentation.svg?branch=master
+[travis-url]: https://travis-ci.com/PascalStalder/BDA_FS19-Dokumentation
+[travis-badge]: https://travis-ci.com/PascalStalder/BDA_FS19-Dokumentation.svg?branch=master
 [travis-history]: https://buildstats.info/travisci/chart/PascalStalder/BDA_FS19-Dokumentation?branch=master&includeBuildsFromPullRequest=false
