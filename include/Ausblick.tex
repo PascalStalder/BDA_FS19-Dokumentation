@@ -1,4 +1,4 @@
-\chapter{Ausblick}
+\chapter{Fazit und Ausblick}
 \label{ch:Ausblick}
 
 Zum Abschluss wird in diesem Kapitel über die Arbeit reflektiert und Diskutiert wie ein solches Projekt weitergeführt werden könnte und welche Verbesserungs- oder Erweiterungsmöglichkeiten es gibt.
@@ -28,3 +28,12 @@ Das Projekt war im Rückblick erfolgreich. Auch wenn nicht ein System mit 100\% 
 \subsection{Persönliches Fazit}
 
 Ich sehe das Projekt auch persönlich als einen Erfolg an. Ich werde bestimmt viele Dinge mitnehmen die ich während des Projekts gelernt habe. Natürlich verlief auch in diesem Projekt nicht immer alles nach Plan und ich musste Zeit in die Lösung von Problemen investieren die nicht direkt das System betreffen. Doch alles in allem konnte ich ein funktionierendes System entwickeln, welches mit einer 90\% Sicherheit und 94\% Präzision Personen erkennt und deren Position bestimmen kann.
+
+\section{Ausblick}
+Um dieses Projekt erfolgreich weiterzuführen und auszubauen, könnte man das CNN verbessern durch einen grösseren Trainingsdatensatz von mindestens 1000 Bildern jeder Klasse.\\ Auch wäre es angebracht zu evaluieren, ob mehr verschiedene Klassen sinnvoll wären. Die momentane fremde-Wärmequellen-Klasse beinhaltet sehr verschiedene Objekte, wie Laptops, Kaffees oder die erwärmte Fensterbank. Würde man dies feiner granulieren, könnte das \gls{CNN} sie besser erkennen.\\
+Die Threshold-Methode hingegen bietet Kaum Optimierungspotenzial. Man könnte einzig noch umgebungsspezifische Anpassungen vornehmen, zum Beispiel könnte die Fensterbank oder der Bereich des Sitzungstisches ausgeschlossen werden. Diese Methode ist jedoch sehr anfällig auf Änderungen im Raum, wird der Tisch verschoben funktioniert der Algorithmus nicht mehr. Auch wäre dadurch der Einsatz in einer anderen Umgebung nicht ohne grössere Änderungen des Algorithmus möglich.
+\\
+Sollte dieses System in einer anderen Umgebung eingesetzt werden, muss Evaluiert werden, ob die Vogelperspektive der Kamera die richtige Wahl ist. Sollte dies nicht der Fall sein müsste das CNN mit komplett neuen Trainingsdaten trainiert werden. Auch die Threshold-Methode müsste sehr wahrscheinlich überarbeitet werden.
+
+
+
