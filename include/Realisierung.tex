@@ -153,7 +153,12 @@ Für das training wurden x Auschnitte aus x Bildern verwendet. Diese wurden Roti
 
 \subsection{Anwendung des Trainierten Modells}
 
-Um nun ein Bild zu analysieren und zu bestimmen wo sich die Personen im Bild befinden, wurde die Klasse \textit{People\_Finder} implementiert. Diese bietet nach aussen die Methode \textit{find\_people(image)} an. Diese Methode returniert die Treffer und deren Position. 
+Um nun ein Bild zu analysieren und zu bestimmen, wo sich die Personen im Bild befinden, wurde die Klasse \textit{People\_Finder} implementiert. Diese bietet nach aussen die Methode \textit{find\_people(image)} an. Diese Methode returniert die Treffer und deren Position.\\
+In dieser Methode wird das Bild gepadded und in Windows unterteilt, diese werden dann mit dem \gls{CNN} ausgewertet. Wird ein Window als Person markiert, wird das Zentrum des Windows gespeichert. Um mehrere Treffer auf derselben Person zu verhindern werden abschliessend alle Treffer geclustert. So werden Treffer die direkt nebeneinander liegen zu einem einzelnen Treffer zusammengeführt.
+
+\section{Threshold-Methode}
+
+Die Threshold-Methode zu Beginn so implementiert, dass mit verschiedenen Slidern die Parameter festgelegt werden konnten. Diese Methode vereinfachte das Finden von passenden Parameter enorm. Die finale Version der Threshold-Methode nimmt ein \textit{Threshold} Datenobjekt als Parameter entgegen. So können die Parameter angepasst werden ohne, dass die Implementation geändert werden muss.
 
 
 
