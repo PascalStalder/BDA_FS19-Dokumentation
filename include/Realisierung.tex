@@ -24,9 +24,9 @@ In einer ersten Variante wurde in dieser Schnittstelle mit Einzelbilder gearbeit
 Um die Trainingsdaten effizient zu sammeln wurde ein  Skript erstellt, welches von beiden Kameras gleichzeitig Bilder anfordert und Abspeichert. Dieses musste über mehrere Monate unterbruchlos laufen und wurde deshalb so Implementiert, dass es sich bei einem Fehler automatisch neu startet. Zusätzlich wurden parallel dazu auch Bilder der Referenzkamera aufgezeichnet, um das Labeling der Infrarotbilder zu vereinfachen und als Ground Truth zu verifizieren.\\
 Alle aufgezeichneten Bilder wurden lokal auf einer Festplatte des Computers im Sitzungszimmer gespeichert. Um alle Bilder eindeutig zu identifizieren, wurden sie mit Art des Bildes, Infrarot oder Ground Truth, Zeitstempel und bei den Infrarotbildern mit Kamera 1 oder 2 versehen. Um das ganze übersichtlicher zu gestalten wurde das ganze in einem Ordnersystem abgelegt, das wie folgt aufgebaut ist.
 
-\begin{itemize}
-	\item ../ [Jahr] / [Monat] / [Tag] / [Bildtyp]\_[Uhrzeit]\_[Kamera].[Dateityp]
-	\item Bsp.: ../2019/05/23/IR\_Image\_10\_33\_45\_2.npy
+\begin{itemize}[leftmargin=4cm, align=left, labelsep=*, labelwidth=*]
+	\item[Ordnerschema] ../ [Jahr] / [Monat] / [Tag] / [Bildtyp]\_[Uhrzeit]\_[Kamera].[Dateityp]
+	\item[Beispiel] ../2019/05/23/IR\_Image\_10\_33\_45\_2.npy
 \end{itemize}
 
 
@@ -153,12 +153,12 @@ Für das training wurden x Auschnitte aus x Bildern verwendet. Diese wurden Roti
 
 \subsection{Anwendung des Trainierten Modells}
 
-Um nun ein Bild zu analysieren und zu bestimmen, wo sich die Personen im Bild befinden, wurde die Klasse \textit{People\_Finder} implementiert. Diese bietet nach aussen die Methode \textit{find\_people(image)} an. Diese Methode returniert die Treffer und deren Position.\\
-In dieser Methode wird das Bild gepadded und in Windows unterteilt, diese werden dann mit dem \gls{CNN} ausgewertet. Wird ein Window als Person markiert, wird das Zentrum des Windows gespeichert. Um mehrere Treffer auf derselben Person zu verhindern werden abschliessend alle Treffer geclustert. So werden Treffer die direkt nebeneinander liegen zu einem einzelnen Treffer zusammengeführt.
+Um nun ein Bild zu analysieren und zu bestimmen, an welchen Positionen sich die Personen im Bild befinden, wurde die Klasse \textit{People\_Finder} implementiert. Diese bietet nach aussen die Methode \textit{find\_people(image)} an. Diese Methode returniert die Treffer und deren Position.\\
+In dieser Methode wird das Bild mit \gls{Padding} und in \glspl{Window} unterteilt, diese werden dann mit dem \gls{CNN} ausgewertet. Wird ein \gls{Window} als Person markiert, wird das Zentrum des \glspl{Window} gespeichert. Um mehrere Treffer auf derselben Person zu verhindern werden abschliessend alle Treffer zu \gls{Cluster} zusammengefasst. So werden Treffer die direkt nebeneinander liegen zu einem einzelnen Treffer zusammengeführt.
 
 \section{Threshold-Methode}
 
-Die Threshold-Methode zu Beginn so implementiert, dass mit verschiedenen Slidern die Parameter festgelegt werden konnten. Diese Methode vereinfachte das Finden von passenden Parameter enorm. Die finale Version der Threshold-Methode nimmt ein \textit{Threshold} Datenobjekt als Parameter entgegen. So können die Parameter angepasst werden ohne, dass die Implementation geändert werden muss.\\
+Die Threshold-Methode wurde zu Beginn so implementiert, dass mit verschiedenen Schieberegler die Parameter festgelegt werden konnten. Diese Methode vereinfachte das Finden von passenden Parameter enorm. Die finale Version der Threshold-Methode nimmt ein \textit{Threshold} Datenobjekt als Parameter entgegen. So können die Parameter angepasst werden ohne, dass die Implementation geändert werden muss.\\
 Die Folgenden Thresholds wurden verwendet:
 
 % Tabelle mit ergebnissen
@@ -199,13 +199,13 @@ Bei der Bearbeitung des Bildes werden alle Pixel, die zwischen Minimal- und Maxi
 
 Damit die Evaluation simpel und effizient durchgeführt werden konnte, wurde ein System zur automatisierten Testauswertung implementiert. Dazu wurde eine spezifische Ordnerstruktur aufgebaut, nach folgendem Schema:
 
-\begin{itemize}
-	\item ../ Experimente / [Experimentgruppe] / [Experimentname] /
-	\item Bsp.: ../Experimente / distance / 20cm / 
+\begin{itemize}[leftmargin=4cm, align=left, labelsep=*, labelwidth=*]
+	\item[Ordnerschema] ../ Experimente / [Experimentgruppe] / [Experimentname] /
+	\item[Beispiel] ../Experimente / distance / 20cm / 
 \end{itemize}
 
 \noindent
-Im untersten Verzeichnis müssen die beiden Ordner, \textit{/ir\_images/} und \textit{/labels/}, enthalten sein. Bei der Auswertung der Experimente wird zu jeder .json Datein in \textit{/labels/} das passende Infrarotbild aus \textit{/ir\_images/} geladen und mittels dem zu testenden Algorithmus ausgewertet. Die Resultate des Algorithmus werden daraufhin in der \textit{Validator} Klasse mit den Labels verglichen. Dabei werden True Positive, False Positive, False Negative sowie der Mean Squared Error der Treffer zu den Labels ermittelt. Diese Daten werden als \textit{Score} Objekt retourniert.\\
+Im untersten Verzeichnis müssen die beiden Ordner, \textit{/ir\_images/} und \textit{/labels/}, enthalten sein. Bei der Auswertung der Experimente wird zu jeder .json-Datei in \textit{/labels/} das passende Infrarotbild aus \textit{/ir\_images/} geladen und mittels dem zu testenden Algorithmus ausgewertet. Die Resultate des Algorithmus werden daraufhin in der \textit{Validator} Klasse mit den Labels verglichen. Dabei werden True Positive, False Positive, False Negative sowie der Mean Squared Error der Treffer zu den Labels ermittelt. Diese Daten werden als \textit{Score} Objekt retourniert.\\
 
 \subsection{Klassen}
 
@@ -219,7 +219,7 @@ In den folgenden Abschnitten verwendete Fachbegriffe werden im Kapitel \ref{sec:
 \end{itemize}
 
 \noindent
-Um die Ergebnisse mehrere Bilder oder Experimente zusammenfassen zu können und diese wiederum zu visualisieren. Wurde die \textit{Summary} Klasse erstellt. Die \textit{Summary} Klasse bietet die Möglichkeit mehrere \textit{Score} Objekte zusammenzufassen. Zudem können beliebig viele \textit{Summary}'s zusammengeführt werden.
+Um die Ergebnisse mehrere Bilder oder Experimente zusammenfassen und visualisieren zu können. Wurde die \textit{Summary} Klasse erstellt. Die \textit{Summary} Klasse bietet die Möglichkeit mehrere \textit{Score} Objekte zusammenzufassen. Zudem können beliebig viele \textit{Summary}'s zusammengeführt werden.
 
 \subsubsection{Summary}
 
@@ -234,5 +234,4 @@ Um die Ergebnisse mehrere Bilder oder Experimente zusammenfassen zu können und 
 
 \subsection{Auswertung}
 
-Um nun die Experimente auszuwerten wurde ein das \textit{validate\_experiments} Skript implementiert. Dieses Iteriert über alle Experimente und führt für jedes, die \textit{Validator.validate()} Methode aus. Danach werden die Resultate der Einzelnen Experimente und eine Zusammenfassung aller Resultate auf der Konsole ausgegeben. Zusätzlich bietet dieses Skript die Möglichkeit die Resultate jedes Bildes einzuzeichnen und diese anzuzeigen oder direkt in dem zum Experiment gehörenden Verzeichnis als .jpg abzuspeichern.
-
+Um nun die Experimente auszuwerten wurde das \textit{validate\_experiments} Skript implementiert. Dieses iteriert über alle Experimente und führt für jedes die \textit{Validator.validate()} Methode aus. Danach werden die Resultate der einzelnen Experimente und eine Zusammenfassung aller Resultate auf der Konsole ausgegeben. Zusätzlich bietet dieses Skript die Möglichkeit die Resultate jedes Bildes einzuzeichnen und diese anzuzeigen oder direkt in dem zum Experiment gehörenden Verzeichnis als .jpg-Datei abzuspeichern.
