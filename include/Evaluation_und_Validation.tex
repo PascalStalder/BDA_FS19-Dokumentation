@@ -101,7 +101,7 @@ In diesem Versuch wurde der Einfluss von fremden Wärmequellen, wie zum Beispiel
 Um die Performance der Algorithmen spezifisch in Bezug auf fremde Wärmequellen zu testen, wurden verschiedene Testsituationen erzeugt. Zuerst wurden fünf Laptops, von 13" bis 17",auf den Sitzungstisch gestellt, um zu sehen, ob Laptops ohne Personen Treffer generieren. Die Geräte wurden auf den gesamten Kamerawinkel verteilt, vom Zentrum des Bildes bis an den Rand. Da die Algorithmen nicht durch die Anzahl Wärmequellen, sondern nur durch die Distanz zwischen den Wärmequellen beeinflusst werden, konnte der ganze Kamerawinkel in einem einzigen Versuch getestet werden.\\
 Die Temperatur der Laptops wurde von der Infrarotkamera als ca. 25\degree C erfasst, somit etwas unter der Abstrahlungswärme einer Person. Die Hauttemperatur einer Person wird von den Infrarotkameras zwischen 27\degree C und 33\degree C gemessen, je nach Kleidung und Behaarung.\\
 Danach nahmen fünf Personen bei den Laptops platz,  ohne dass die Laptops verschoben wurde. Um zu testen, ob False Positives generiert werden, wenn jemand den Laptop bedient, die Arme zum Laptop reichen.\\
-Um auch Wärmere Laptops überprüfen zu können wurde Bilder während einer Besprechung aufgezeichnet. Dabei war ein Laptop, dessen Temperatur im Bereich der Hauttemperatur einer Person liegt, in der Mitte des Tischs, ein anderer nahe bei einer Person. Die Szene sah, wie in Abbildung \ref{fig:exampleDeviceTest2} zu sehen, aus.
+Um auch Wärmere Laptops überprüfen zu können wurde Bilder während einer Besprechung aufgezeichnet. Dabei war ein Laptop, dessen Temperatur im Bereich der Hauttemperatur einer Person liegt, in der Mitte des Tischs, ein anderer nahe bei einer Person. Die Szene ist in Abbildung \ref{fig:exampleDeviceTest2} zu sehen.
 \\
 \begin{figure}[htb]
 	\centering
@@ -113,7 +113,7 @@ Um auch Wärmere Laptops überprüfen zu können wurde Bilder während einer Bes
 		\centering
 		\includegraphics[keepaspectratio, height=4cm]{exampleDeviceTest2}
 	\end{subfigure}
-	\caption{Ansicht des Sitzungszimmers während der Aufnahem des zusätzlichen Laptop und Personen Testsets}
+	\caption{Ansicht des Sitzungszimmers während der Aufnahme des zusätzlichen Laptop- und Personen-Testsets}
 	\label{fig:exampleDeviceTest2}
 \end{figure}
 Schon bei der Erstellung der Modelle wurde ersichtlich, dass das Herausfiltern von Wärmequellen mit sehr kleiner Fläche für beide Algorithmen kein Problem darstellt. Aus diesem Grund wurden die Versuche mit kleineren Wärmequellen nur in kleinem Rahmen durchgeführt. Es wurde Test mit einem Mobiltelefon durchgeführt, in dem ein Natel an verschiedenen Postionen auf den Tisch gelegt wurde. Da Mobiltelefone meist in der Hosentasche getragen werden, weisen diese Temperaturen bis zu 34\degree C auf.\\
@@ -183,7 +183,7 @@ Schon bei der Erstellung der Modelle wurde ersichtlich, dass das Herausfiltern v
 
 Die Threshold-Methode kann, wie erwartet, nicht gut mit anderen Wärmequellen umgehen. Dies, weil die Threshold-Methode nur durch Temperatur und Mindestgrösse eines Objekts entscheiden kann, ob es sich um eine Person handelt oder nicht. Deshalb hatte dieser auf den Testbildern mit Personen und Laptops, nur eine Precision Score von 70\% erreicht und bei dem Versuch mit Radiator auf hoher Stufe sogar nur eine von 18.7\% (Siehe Abbildungen  \ref{fig:ThreshPersonLaptop} und \ref{fig:thresholdRadiator}).\\
 \\
-Das \gls{CNN} kann gut mit anderen Wärmequellen umgehen, solange diese in ähnlicher Form antrainiert wurden (siehe Abbildung \ref{fig:cnnPersonLaptop}. Ist dies jedoch nicht der Fall und die Wärmequelle ist dem \gls{CNN} nicht in ähnlicher Form bekannt tendiert es dazu diese, wenn sie etwas grösser sind, als Personen zu identifizieren, was in Abbildung \ref{fig:cnnRadiator} gut zu sehen ist. Eine Lösung zu diesem Problem wird in Kapitel \ref{ch:Ausblick} diskutiert. 
+Das \gls{CNN} kann gut mit anderen Wärmequellen umgehen, solange diese in ähnlicher Form antrainiert wurden (siehe Abbildung \ref{fig:cnnPersonLaptop}. Ist dies jedoch nicht der Fall und die Wärmequelle ist dem \gls{CNN} nicht in ähnlicher Form bekannt tendiert es dazu diese, wenn sie etwas grösser sind, als Personen zu identifizieren, was in Abbildung \ref{fig:cnnRadiator} zu sehen ist. Eine Lösung zu diesem Problem wird in Kapitel \ref{ch:Ausblick} diskutiert. 
 
 \vspace{.5em}
 \begin{figure}[htb]
@@ -228,11 +228,11 @@ Das \gls{CNN} kann gut mit anderen Wärmequellen umgehen, solange diese in ähnl
 \section{Distanz}
 \label{sec:distanz}
 
-Die Distanz zwischen zwei Personen ist ein wichtiger Faktor, der auf beide Algorithmen Einfluss hat. Da bei dem \gls{CNN} mit einer Sliding-Window Methode und Clustern der Treffer gearbeitet wird, kann das System, bei Personen, welche zu wenig Abstand zueinander haben, möglicherweise die Treffer nicht mehr auseinanderhalten. Bei der Threshold-Methode wird die Silhouette der Personen leicht vergrössert, wodurch mehrere Personen bei geringem Abstand als einzelner Treffer gewertet werden können.
+Die Distanz zwischen zwei Personen ist ein wichtiger Faktor, der auf beide Algorithmen Einfluss hat. Da bei dem \gls{CNN} mit einer Sliding-Window Methode und Clustern der Treffer gearbeitet wird, kann das System, bei Personen, welche zu wenig Abstand zueinander haben, die Treffer nicht mehr auseinanderhalten. Bei der Threshold-Methode wird die Silhouette der Personen leicht vergrössert, wodurch mehrere Personen bei geringem Abstand als einzelner Treffer gewertet werden können.
 
 \subsection{Versuchsaufbau}
 
-Es wurden vier Personen in zwei Paaren so platziert, dass sich das eine Paar in einem idealen Winkel zur Infrarotkamera aufhält und das andere Paar in einem möglichst schwierigen Winkel. Dies ist in Abbildung \ref{fig:cnnDistance10} gut zu sehen. Zwei Personen sind deutlich voneinander getrennt, die anderen zwei überlappen sich aufgrund des Kamerawinkels. Dieses Setting wurde gewählt, um in einem Test beide Extreme überprüfen zu können. 
+Es wurden vier Personen in zwei Paaren so platziert, dass sich das eine Paar in einem idealen Winkel zur Infrarotkamera aufhält und das andere Paar in einem möglichst schwierigen Winkel. Dies ist in Abbildung \ref{fig:cnnDistance10} gut zu sehen. Zwei Personen sind deutlich voneinander getrennt, die anderen zwei überlappen sich aufgrund des Kamerawinkels. Diese Versuchsanordnung wurde gewählt, um in einem Test beide Extreme überprüfen zu können. 
 Beim Test wurde schrittweise der Abstand zwischen den Testpersonen erhöht, um festzustellen, ab welcher Distanz die Algorithmen erfolgreich die Personen erkennen. Der Abstand wird in 10cm Schritten erhöht, weil 10cm auf Tischhöhe ca. einem Pixel auf dem Bild entspricht.
 
 \subsection{Resultate}
@@ -299,8 +299,8 @@ Beim Test wurde schrittweise der Abstand zwischen den Testpersonen erhöht, um f
 
 
 Das \gls{CNN} Kann bereits ab einem Abstand von 10cm zuverlässig Personen auseinanderhalten.\\
-Die Threshold-Methode kann Personen bereits ab einem Abstand von 10cm auseinanderhalten, sofern die Personen so ausgerichtet sind, dass die optische Verzerrung keinen Einfluss auf den Zwischenraum hat. Wie in der Abbildung \ref{fig:thresholdDistance10} in der linken Bildhälfte zu sehen ist, können die Personen, die auf die Kamera ausgerichtet sind, unterschieden werden. Sind die Person jedoch so platziert, wie auf der rechten Bildhälfte zu sehen ist, sind diese von der Kamera aus gesehen, hintereinander. Bei so kleinen Abstand kann der Algorithmus deshalb nicht mehr herausfiltern, ob es sich um eine oder mehrere Personen handelt.\\
-Befinden sich die Personen in der schlechtest möglichen Position, benötigt die Threshold-Methode einen Mindestabstand von 30cm, um die Personen fehlerfrei unterscheiden zu können (siehe Abbildung \ref{fig:thresholdDistance30}).
+Die Threshold-Methode kann Personen bereits ab einem Abstand von 10cm auseinanderhalten, sofern die Personen so ausgerichtet sind, dass die optische Verzerrung keinen Einfluss auf den Zwischenraum hat. Wie in der Abbildung \ref{fig:thresholdDistance10} in der linken Bildhälfte zu sehen ist, können die Personen, die auf die Kamera ausgerichtet sind, unterschieden werden. Sind die Person jedoch so platziert, wie auf der rechten Bildhälfte zu sehen ist, sind diese von der Kamera aus gesehen, hintereinander. Bei dieser geringen Distanz kann der Algorithmus deshalb nicht mehr bestimmen, ob es sich um eine oder mehrere Personen handelt.\\
+Befinden sich die Personen in der schlechtestmöglichen Position, benötigt die Threshold-Methode einen Mindestabstand von 30cm, um die Personen fehlerfrei unterscheiden zu können (siehe Abbildung \ref{fig:thresholdDistance30}).
 
 \begin{figure}[H]
 	\begin{subfigure}{.45\linewidth}
@@ -425,7 +425,7 @@ Die verstellbare Decke des Sitzungszimmers wurde auf die vom Mobiliar zugelassen
 
 \subsection{Evaluation}
 Beide Algorithmen können die Personen in beiden Situationen noch immer in über 95\% der Fälle identifizieren. Werden die Objekte jedoch zu gross kann es bei beiden dazu führen, dass Personen doppelt gezählt werden. Da eine solch kleine Distanz aber nur schon durch das sehr kleine Sichtfeld für einen solchen Anwendungsfall nicht praktikabel ist, ist dies kein Problem, das weiter verfolgt werden müsste.\\
-Werden die Objekte kleiner stellt dies für Algorithmen kein messbares Problem dar, solange die Charakteristiken noch klar erkennbar sind und die Personen eine Fläche von mindestens 10x10 Pixel einnehmen. Ein Test um die Grenze in diesem Bereich zu testen konnte in den zur Verfügung stehenden Räumlichkeiten leider nicht durchgeführt werden.\\
+Werden die Objekte kleiner stellt dies für beide Algorithmen kein messbares Problem dar, solange die Charakteristiken noch klar erkennbar sind und die Personen eine Fläche von mindestens 10x10 Pixel einnehmen. Ein Test um die Grenze in diesem Bereich zu testen konnte in den zur Verfügung stehenden Räumlichkeiten leider nicht durchgeführt werden.\\
 Möchte man jedoch die reale Position der Personen aus dem Bild berechnen, müsste die Deckenhöhe zusätzlich berechnet oder gemessen werden.
 
 \begin{figure}[H]
@@ -585,7 +585,7 @@ Das Tragen einer Jacke macht es für die Algorithmen beinahe unmöglich die Pers
 \end{figure}
 
 \noindent
-Die Tests mit allen Kleidungsstücken zeigen schon bei der manuellen, visuellen Analyse der Abbildung \ref{fig:rawClothAll}, dass wenn Jacke, Mütze und Schal zusammen getragen werden, dass die Person nicht mehr zu finden ist.
+Die Tests mit allen Kleidungsstücken zeigen schon bei der manuellen, visuellen Analyse der Abbildung \ref{fig:rawClothAll}, dass wenn Jacke, Mütze und Schal zusammen getragen werden, dass die Person nicht mehr erkennbar ist.
 
 \begin{figure}[H]
 	\begin{subfigure}{.45\linewidth}
