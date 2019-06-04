@@ -38,7 +38,7 @@ Um das \gls{CNN} trainieren zu können müssen die Bilder gelabelt, \gls{Padding
 \label{sec:labeling}
 
 Für das Labeln der Bilder wurde \textit{labelme}\parencite{labelme2016} verwendet da dies einfaches und praktisches User Interface bietet. Die Labels wurden jeweils in dem Verzeichnis \textit{labels} abgelegt, der auf der gleichen ebene wie das Verzeichnis \textit{ir\_images} in dem die dazugehörigen Infrarotbilder abgelegt sind.\\
-Die rohen Infrarotbilder wurden als .npy \parencite{npyformat} Files gespeichert. Dies, weil die Pixelwerte der Bilder in Kelvin*10 sind, d.h. 2731 entspricht 0\degree C. Aus diesem Grund konnten sie nicht auf einfache Art in ein Grafikformat persistiert werden. Zudem ist es wünschenswert Berechnungen mit den Originalwerten durchzuführen.\\
+Die rohen Infrarotbilder wurden als .npy-Dateien gespeichert \parencite{npyformat}. Dies, weil die Pixelwerte der Bilder in Kelvin*10 sind, d.h. 2731 entspricht 0\degree C. Aus diesem Grund konnten sie nicht auf einfache Art in ein Grafikformat persistiert werden. Zudem ist es wünschenswert Berechnungen mit den Originalwerten durchzuführen.\\
 Um die Infrarotbilder aber labeln zu können wird ein Bild mit .jpg oder ähnlichem Format benötigt. Dazu wurde das Bild auf Graustufen reduziert. Dabei geht zwar ein Teil der Information verloren, aber man kann genug erkennen um die Bilder korrekt zu Labeln. zudem konnte im Zweifelsfall das RGB Bild der Referenzkamera zu Hilfe gezogen werden. Da die konvertierten Bilder die gleichen Dimensionen aufweisen können die definierten Labels direkt auf die Infrarotbilder angewendet werden.
 
 \subsection{Preprocessing der Trainingsdaten}
