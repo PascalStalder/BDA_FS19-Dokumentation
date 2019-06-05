@@ -192,7 +192,7 @@ Die Folgenden Thresholds wurden verwendet:
 }
 
 \noindent
-Bei der Bearbeitung des Bildes werden alle Pixel, die zwischen Minimal- und Maximaltemperatur liegen, auf den Wert 255 (Weiss) und alle übrigen auf den Wert 0 (Schwarz) gesetzt. Auf das resultierende Bild wird zuerst horizontal und danach vertikal, \gls{Erode} und \gls{Dilate} angewendet. Auf dem daraus resultierenden Binärbild werden nun mittels der OpenCV-Funktion \textit{find\_contours()} die Zentren aller geschlossenen weissen Flächen bestimmt. Diese Zentren entsprechen der Position der Personen.
+Bei der Verarbeitung wird das Infrarotbild zuerst um Faktor 10 vergrössert, da die Kernel sonst zu gross wären. Danach werden alle Pixel, die zwischen Minimal- und Maximaltemperatur liegen, auf den Wert 255 (Weiss) und alle übrigen auf den Wert 0 (Schwarz) gesetzt. Auf das resultierende Bild wird zuerst horizontal und danach vertikal, \gls{Erode} und \gls{Dilate} angewendet. Auf dem daraus resultierenden Binärbild werden nun mittels der OpenCV-Funktion \textit{find\_contours()} die Zentren aller geschlossenen weissen Flächen bestimmt. Diese Zentren entsprechen der Position der Personen.
 
 
 \section{Evaluationssystem}
