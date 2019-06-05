@@ -140,13 +140,6 @@ Es wurden Verschiedene \gls{CNN} Architekturen getestet. Zu Beginn wurde versuch
 	\label{fig:maxpoolSample}
 \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=.7\linewidth]{modelSummary}
-	\caption{Architektur des CNN}
-	\label{fig:cnnArchitecture}
-\end{figure}
-
 \subsection{Training}
 
 Für das training wurden x Auschnitte aus x Bildern verwendet. Diese wurden Rotiert und Gespiegelt. Für die Negativklasse wurde zusätzlich Roaming eingesetzt, Dies weil auf diese Art Randgebiete von Wärmequellen eher als kein Treffer gewertet werden. Insgesamt wurden auf diese Weise 7323 Trainingsbilder erzeugt. Mit denen das \gls{CNN} trainiert werden konnte. Für die Grösse des Bildausschnitts wurde ein 16x16 Fenster verwendet, da dieses gross genug ist um im Normalfalls eine ganze Person zu beinhalten aber auch klein genug um nur eine einzelne Person zu umschliessen.
@@ -234,4 +227,12 @@ Um die Ergebnisse mehrere Bilder oder Experimente zusammenfassen und visualisier
 
 \subsection{Auswertung}
 
-Um nun die Experimente auszuwerten wurde das \textit{validate\_experiments} Skript implementiert. Dieses iteriert über alle Experimente und führt für jedes die \textit{Validator.validate()} Methode aus. Danach werden die Resultate der einzelnen Experimente und eine Zusammenfassung aller Resultate auf der Konsole ausgegeben. Zusätzlich bietet dieses Skript die Möglichkeit die Resultate jedes Bildes einzuzeichnen und diese anzuzeigen oder direkt in dem zum Experiment gehörenden Verzeichnis als .jpg-Datei abzuspeichern.
+Um nun die Experimente auszuwerten wurde das \textit{validate\_experiments} Skript implementiert. Dieses iteriert über alle Experimente und führt für jedes die \textit{Validator.validate()} Methode aus. Danach werden die Resultate der einzelnen Experimente und eine Zusammenfassung aller Resultate auf der Konsole ausgegeben (siehe Abbildung \ref{fig:resultExample}). Zusätzlich bietet dieses Skript die Möglichkeit die Resultate jedes Bildes einzuzeichnen und diese anzuzeigen oder direkt in dem zum Experiment gehörenden Verzeichnis als .jpg-Datei abzuspeichern.\\
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\linewidth]{resultExample}
+	\caption{Beispiel der Konsolenausgabe der Auswertung}
+	\label{fig:resultExample}
+\end{figure}
