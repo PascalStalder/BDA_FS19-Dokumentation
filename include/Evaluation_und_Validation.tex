@@ -21,7 +21,7 @@ Zur Auswertung der Experimente werden Bilder mit Markierungen verwendet. Diese s
 \noindent In dem Kapitel werden die folgenden Fachbegriffe verwendet:
 \begin{itemize}
 	\item $True\: Positive:$   Person wurde korrekt Identifiziert
-	\item $True\: Negative:$   Hintergrund oder fremde Wärmequelle wurde \textbf{nicht} als Person identifiziert. Diese werden in diesem Kapitel nicht weiter verwendet, da diese der standard Fall ist und nicht spezifisch ausgewertet werden kann.
+	\item $True\: Negative:$   Hintergrund oder fremde Wärmequelle wurde \textbf{nicht} als Person identifiziert. Diese werden in diesem Kapitel nicht weiter verwendet, da diese der Standardfall ist und nicht spezifisch ausgewertet werden kann.
 	\item $False\: Positive:$  Hintergrund oder fremde Wärmequelle wurde als Person identifiziert
 	\item $False\: Negative:$  Person wurde nicht erkannt.
 \end{itemize}
@@ -98,7 +98,7 @@ In diesem Versuch wurde der Einfluss von fremden Wärmequellen, wie zum Beispiel
 
 \subsection{Versuchsaufbau}
 
-Um die Performance der Algorithmen spezifisch in Bezug auf fremde Wärmequellen zu testen, wurden verschiedene Testsituationen erzeugt. Zuerst wurden fünf Laptops, von 13" bis 17",auf den Sitzungstisch gestellt, um zu sehen, ob Laptops ohne Personen Treffer generieren. Die Geräte wurden auf den gesamten Kamerawinkel verteilt, vom Zentrum des Bildes bis an den Rand. Da die Algorithmen nicht durch die Anzahl Wärmequellen, sondern nur durch die Distanz zwischen den Wärmequellen beeinflusst werden, konnte der ganze Kamerawinkel in einem einzigen Versuch getestet werden.\\
+Um die Performance der Algorithmen spezifisch in Bezug auf fremde Wärmequellen zu testen, wurden verschiedene Testsituationen erzeugt. Zuerst wurden fünf Laptops, von 13'' bis 17'', auf den Sitzungstisch gestellt, um zu sehen, ob Laptops ohne Personen Treffer generieren. Die Geräte wurden auf den gesamten Kamerawinkel verteilt, vom Zentrum des Bildes bis an den Rand. Da die Algorithmen nicht durch die Anzahl Wärmequellen, sondern nur durch die Distanz zwischen den Wärmequellen beeinflusst werden, konnte der ganze Kamerawinkel in einem einzigen Versuch getestet werden.\\
 Die Temperatur der Laptops wurde von der Infrarotkamera als ca. 25\degree C erfasst, somit etwas unter der Abstrahlungswärme einer Person. Die Hauttemperatur einer Person wird von den Infrarotkameras zwischen 27\degree C und 33\degree C gemessen, je nach Kleidung und Behaarung.\\
 Danach nahmen fünf Personen bei den Laptops platz,  ohne dass die Laptops verschoben wurde. Um zu testen, ob False Positives generiert werden, wenn jemand den Laptop bedient, die Arme zum Laptop reichen.\\
 Um auch Wärmere Laptops überprüfen zu können wurde Bilder während einer Besprechung aufgezeichnet. Dabei war ein Laptop, dessen Temperatur im Bereich der Hauttemperatur einer Person liegt, in der Mitte des Tischs, ein anderer nahe bei einer Person. Die Szene ist in Abbildung \ref{fig:exampleDeviceTest2} zu sehen.\\
@@ -118,7 +118,7 @@ Um auch Wärmere Laptops überprüfen zu können wurde Bilder während einer Bes
 \end{figure}
 
 \noindent
-Bereits bei der Erstellung der Modelle wurde ersichtlich, dass das Herausfiltern von Wärmequellen mit sehr kleiner Fläche für beide Algorithmen kein Problem darstellt. Aus diesem Grund wurden die Versuche mit kleineren Wärmequellen nur in kleinem Rahmen durchgeführt. Es wurde Test mit einem Mobiltelefon durchgeführt, in dem ein Natel an verschiedenen Postionen auf den Tisch gelegt wurde. Da Mobiltelefone meist in der Hosentasche getragen werden, weisen diese Temperaturen bis zu 34\degree C auf.\\
+Bereits bei der Erstellung der Modelle wurde ersichtlich, dass das Herausfiltern von Wärmequellen mit sehr kleiner Fläche für beide Algorithmen kein Problem darstellt. Aus diesem Grund wurden die Versuche mit kleineren Wärmequellen nur in kleinem Rahmen durchgeführt. Es wurde ein Test mit einem Mobiltelefon durchgeführt, in dem ein Natel an verschiedenen Postionen auf den Tisch gelegt wurde. Da Mobiltelefone meist in der Hosentasche getragen werden, weisen diese Temperaturen bis zu 34\degree C auf.\\
 \\
 
 \subsection{Resultate}
@@ -193,7 +193,7 @@ Das \gls{CNN} kann gut mit anderen Wärmequellen umgehen, solange diese in ähnl
 	\begin{subfigure}{.45\linewidth}
 		\centering
 		\includegraphics[keepaspectratio,height=4cm]{ThreshPersonLaptop}
-		\caption{Ergebnis der Threshold-Methode des Experiments mit Laptop und Person}
+		\caption{Ergebnis der Threshold-Methode des Experiments mit Laptop und Personen}
 		\label{fig:ThreshPersonLaptop}
 	\end{subfigure}\hfill%
 	\begin{subfigure}{.45\linewidth}
@@ -214,12 +214,18 @@ Das \gls{CNN} kann gut mit anderen Wärmequellen umgehen, solange diese in ähnl
 		\caption{CNN Ergebnis des Radiator Experiments}
 		\label{fig:cnnRadiator}
 	\end{subfigure}\hfill%
-	\begin{subfigure}{.55\linewidth}
+	\begin{subfigure}{.5\linewidth}
 		\centering
 		\includegraphics[keepaspectratio,height=3cm]{groundDeviceTest2}
 		\caption{Ground-Truth des Experiments mit Laptop und Person}
 		\label{fig:groundPersonLaptop}
-	\end{subfigure}
+	\end{subfigure}\hfill%
+	\begin{subfigure}{.5\linewidth}
+		\centering
+		\includegraphics[keepaspectratio,height=3cm]{groundRadiator}
+		\caption{Ground-Truth des Radiator Experiments}
+		\label{fig:groundRadiator}
+	\end{subfigure}\hfill%
 	\caption{Experimente mit fremden Wärmequellen}
 	\label{fig:HeatSources}
 \end{figure}
@@ -350,7 +356,7 @@ Befinden sich die Personen in der schlechtestmöglichen Position, benötigt die 
 	\label{fig:Distance30}
 \end{figure}
 
-\section{Grösse Des Objekts auf dem Bild}
+\section{Grösse des Objekts auf dem Bild}
 \label{sec:objectSize}
 Eine Spezialität des Sitzungszimmers, das zur Verfügung gestellt wurde, ist, dass die Höhe der Decke verändert werden kann. Da die Infrarotkameras an der Decke montiert sind, wurde dies als Möglichkeit genutzt um zu testen wie die Algorithmen auf grössen der Objekte im Bild reagieren. 
 
@@ -513,9 +519,9 @@ Eine Testperson hielt sich an den in den Abbildungen \ref{fig:clothPositions} zu
 			\hline
 			\textbf{Metriken} & \textbf{Kappe} & \textbf{Jacke} & \textbf{Schaal} & \textbf{Alle drei Kleidungsstücke}\\
 			\hline 
-			\textbf{Gesamtanzahl Personen in Bilder} & 19 & 18 & 21 & 3\\
+			\textbf{Gesamtanzahl Personen in Bilder} & 23 & 18 & 21 & 3\\
 			\hline
-			\textbf{Korrekt identifizierter Personen} & 23 & 0 & 15 & 0\\
+			\textbf{Korrekt identifizierter Personen} & 19 & 0 & 15 & 0\\
 			\hline
 			\textbf{Falsche Treffer} & 0 & 0 & 0 & 0\\
 			\hline
@@ -546,7 +552,7 @@ Eine Testperson hielt sich an den in den Abbildungen \ref{fig:clothPositions} zu
 			\hline
 			\textbf{Falsche Treffer} & 12 & 0 & 1 & 3\\
 			\hline
-			\textbf{Nicht erkannte Personen} & 4 & 13 & 5 & 0\\
+			\textbf{Nicht erkannte Personen} & 0 & 13 & 5 & 0\\
 			\hline
 			\textbf{Recall} & 100\% & 27.8\% & 76.2\% & -- \\
 			\hline  
