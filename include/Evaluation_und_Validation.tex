@@ -1,7 +1,7 @@
 \chapter{Evaluation und Validation}
 \label{ch:Eval}
 
-Um das System zu validieren und die Grenzen der Infrarotbildverarbeitung in diesem Gebiet zu ermitteln wurden einige Experimente durchgeführt. Diese Experimente zeigen, was das System kann und wo die Grenzen des Systems und auch der Infrarottechnik liegen.\\
+Um das System zu validieren und die Grenzen der Infrarotbildverarbeitung in diesem Gebiet zu ermitteln, wurden einige Experimente durchgeführt. Diese Experimente zeigen, was das System kann und wo die Grenzen des Systems und auch der Infrarottechnik liegen.\\
 \\
 \section{Erklärungen}
 \label{sec:explanation}
@@ -21,14 +21,14 @@ Zur Auswertung der Experimente werden Bilder mit Markierungen verwendet. Diese s
 \noindent In dem Kapitel werden die folgenden Fachbegriffe verwendet:
 \begin{itemize}
 	\item $True\: Positive:$   Person wurde korrekt Identifiziert
-	\item $True\: Negative:$   Hintergrund oder fremde Wärmequelle wurde \textbf{nicht} als Person identifiziert. Diese werden in diesem Kapitel nicht weiter verwendet, da diese der Standardfall ist und nicht spezifisch ausgewertet werden kann.
+	\item $True\: Negative:$   Hintergrund oder fremde Wärmequelle wurde \textbf{nicht} als Person identifiziert. True Negative werden in diesem Kapitel nicht weiter verwendet, da dies der Standardfall ist und nicht spezifisch ausgewertet werden kann.
 	\item $False\: Positive:$  Hintergrund oder fremde Wärmequelle wurde als Person identifiziert
 	\item $False\: Negative:$  Person wurde nicht erkannt.
 \end{itemize}
 \vspace{1em}
 
 \subsection{Statistische Metriken}
-\noindent Zudem werden die folgenden Metriken verwendet, diese sind leicht angepasst, da die Klasse True Negative fehlt:
+\noindent Zudem werden die folgenden Metriken verwendet. Diese sind leicht angepasst, da die Klasse True Negative fehlt:
 
 \begin{itemize}
 	\item \textbf{Precision:} Korrekte Treffer / Alle Treffer\[\dfrac{True\: Positive}{True\: Positive + False\: Positive}\]
@@ -41,8 +41,8 @@ Zur Auswertung der Experimente werden Bilder mit Markierungen verwendet. Diese s
 \label{sec:VergleichAnforderungen}
 
 Der erforderte Stand der Technik wurde in Kapitel \ref{ch:StandDerTechnik} präsentiert. Die gefundenen Algorithmen wurden in Kapitel \ref{ch:ideasAndConcepts} erklärt und evaluiert.\\
-Das erste Hauptziel war es ein lauffähiges System zu entwickeln, welches die Position und Anzahl der Personen in einem Infrarotbild bestimmen kann. Dieses Ziel wurde mit einem Recall von 91.5\%  erreicht (siehe Tabelle \ref{tbl:stat}). Die beim betrachten der Werte in Tabelle \ref{tbl:results} und \ref{tbl:stat} ist zu beachten, dass dabei auch die Grenzen des Systems getestet wurden. So zum Beispiel in Kapitel \ref{sec:cloths} wo der Einfluss isolierender Kleidung analysiert wird.\\
-Das zweite Hauptziel ist es Schwierigkeiten bei der Lösung der Aufgabe zu erläutern und Lösungsmöglichkeiten dazu vorzuschlagen. Dies wird in diesem Kapitel und im Kapitel \ref{ch:Ausblick} erfüllt.
+Das erste Hauptziel war es, ein lauffähiges System zu entwickeln, welches die Position und Anzahl der Personen in einem Infrarotbild bestimmen kann. Dieses Ziel wurde mit einem Recall von 91.5\%  erreicht (siehe Tabelle \ref{tbl:stat}). Beim Betrachten der Werte in Tabelle \ref{tbl:results} und \ref{tbl:stat} ist zu beachten, dass dabei auch die Grenzen des Systems getestet wurden. So zum Beispiel in Kapitel \ref{sec:cloths} wo der Einfluss isolierender Kleidung analysiert wird.\\
+Das zweite Hauptziel ist es, Schwierigkeiten bei der Lösung der Aufgabe zu erläutern und Lösungsmöglichkeiten dazu vorzuschlagen. Dies wird in diesem Kapitel und im Kapitel \ref{ch:Ausblick} erfüllt.
 
 % Tabelle mit ergebnissen
 {
@@ -100,8 +100,8 @@ In diesem Versuch wurde der Einfluss von fremden Wärmequellen, wie zum Beispiel
 
 Um die Performance der Algorithmen spezifisch in Bezug auf fremde Wärmequellen zu testen, wurden verschiedene Testsituationen erzeugt. Zuerst wurden fünf Laptops, von 13'' bis 17'', auf den Sitzungstisch gestellt, um zu sehen, ob Laptops ohne Personen Treffer generieren. Die Geräte wurden auf den gesamten Kamerawinkel verteilt, vom Zentrum des Bildes bis an den Rand. Da die Algorithmen nicht durch die Anzahl Wärmequellen, sondern nur durch die Distanz zwischen den Wärmequellen beeinflusst werden, konnte der ganze Kamerawinkel in einem einzigen Versuch getestet werden.\\
 Die Temperatur der Laptops wurde von der Infrarotkamera als ca. 25\degree C erfasst, somit etwas unter der Abstrahlungswärme einer Person. Die Hauttemperatur einer Person wird von den Infrarotkameras zwischen 27\degree C und 33\degree C gemessen, je nach Kleidung und Behaarung.\\
-Danach nahmen fünf Personen bei den Laptops platz,  ohne dass die Laptops verschoben wurde. Um zu testen, ob False Positives generiert werden, wenn jemand den Laptop bedient, die Arme zum Laptop reichen.\\
-Um auch Wärmere Laptops überprüfen zu können wurde Bilder während einer Besprechung aufgezeichnet. Dabei war ein Laptop, dessen Temperatur im Bereich der Hauttemperatur einer Person liegt, in der Mitte des Tischs, ein anderer nahe bei einer Person. Die Szene ist in Abbildung \ref{fig:exampleDeviceTest2} zu sehen.\\
+Danach nahmen fünf Personen bei den Laptops Platz,  ohne dass die Laptops verschoben wurde. Um zu testen, ob False Positives generiert werden, wenn jemand den Laptop bedient, wurden die Probanden angeleitet eine Haltung einzunehmen, als würden sie die Laptops benutzen.\\
+Um auch wärmere Laptops überprüfen zu können, wurden Bilder während einer Besprechung aufgezeichnet. Dabei war ein Laptop, dessen Temperatur im Bereich der Hauttemperatur einer Person liegt, in der Mitte des Tisches, ein Anderer nahe bei einer Person platziert. Die Szene ist in Abbildung \ref{fig:exampleDeviceTest2} zu sehen.\\
 \\
 \begin{figure}[htb]
 	\centering
@@ -130,7 +130,7 @@ Bereits bei der Erstellung der Modelle wurde ersichtlich, dass das Herausfiltern
 		\scriptsize
 		\begin{tabularx}{.9\textwidth}{Xrrrr}
 			\hline
-			\multicolumn{5}{c}{\textbf{\gls{CNN} Ergebnisse Fremde Wärmequellen}}\\
+			\multicolumn{5}{c}{\textbf{\gls{CNN} Ergebnisse: Fremde Wärmequellen}}\\
 			\hline
 			\textbf{Metriken} & \textbf{Nur Laptops} & \textbf{Laptops mit Personen} & \textbf{Mobiltelefon} & \textbf{Radiator}\\
 			\hline 
@@ -149,7 +149,7 @@ Bereits bei der Erstellung der Modelle wurde ersichtlich, dass das Herausfiltern
 			\textbf{F1-Score} & -- & 100\% & -- & 59.7\%\\
 			\hline
 		\end{tabularx}
-		\caption{Ergebnisse des \gls{CNN}, der Experimente mit fremden Wärmequellen}
+		\caption{Ergebnisse des \gls{CNN}'s der Experimente mit fremden Wärmequellen}
 		\label{tbl:heatSourcesCNN}
 	\end{table}
 	\begin{table}[H]
@@ -157,7 +157,7 @@ Bereits bei der Erstellung der Modelle wurde ersichtlich, dass das Herausfiltern
 		\scriptsize
 		\begin{tabularx}{.9\textwidth}{Xrrrr}
 			\hline
-			\multicolumn{5}{c}{\textbf{Threshold-Methode Ergebnisse Fremde Wärmequellen}}\\
+			\multicolumn{5}{c}{\textbf{Threshold-Methode: Ergebnisse Fremde Wärmequellen}}\\
 			\hline
 			\textbf{Metriken} & \textbf{Nur Laptops} & \textbf{Laptops mit Personen} & \textbf{Mobiltelefon} & \textbf{Radiator}\\
 			\hline 
@@ -176,7 +176,7 @@ Bereits bei der Erstellung der Modelle wurde ersichtlich, dass das Herausfiltern
 			\textbf{F1-Score} & -- & 76.7\% & -- & 31.5\%\\
 			\hline
 		\end{tabularx}
-		\caption{Ergebnisse, der Threshold-Methode, der Experimente mit fremden Wärmequellen}
+		\caption{Ergebnisse der Threshold-Methode der Experimente mit fremden Wärmequellen}
 		\label{tbl:heatSourcesThresh}
 	\end{table}
 }
@@ -185,7 +185,7 @@ Bereits bei der Erstellung der Modelle wurde ersichtlich, dass das Herausfiltern
 
 Die Threshold-Methode kann, wie erwartet, nicht gut mit anderen Wärmequellen umgehen. Dies, weil die Threshold-Methode nur durch Temperatur und Mindestgrösse eines Objekts entscheiden kann, ob es sich um eine Person handelt oder nicht. Deshalb hatte dieser auf den Testbildern mit Personen und Laptops, nur eine Precision Score von 70\% erreicht und bei dem Versuch mit Radiator auf hoher Stufe sogar nur eine von 18.7\% (Siehe Abbildungen  \ref{fig:ThreshPersonLaptop} und \ref{fig:thresholdRadiator}).\\
 \\
-Das \gls{CNN} kann gut mit anderen Wärmequellen umgehen, solange diese in ähnlicher Form antrainiert wurden (siehe Abbildung \ref{fig:cnnPersonLaptop}. Ist dies jedoch nicht der Fall und die Wärmequelle ist dem \gls{CNN} nicht in ähnlicher Form bekannt tendiert es dazu diese, wenn sie etwas grösser sind, als Personen zu identifizieren, was in Abbildung \ref{fig:cnnRadiator} zu sehen ist. Eine Lösung zu diesem Problem wird in Kapitel \ref{ch:Ausblick} diskutiert. 
+Das \gls{CNN} kann gut mit anderen Wärmequellen umgehen, solange diese in ähnlicher Form antrainiert wurden (siehe Abbildung \ref{fig:cnnPersonLaptop}). Ist dies jedoch nicht der Fall und die Wärmequelle ist dem \gls{CNN} nicht in ähnlicher Form bekannt, tendiert es dazu, diese, wenn sie etwas grösser sind, als Personen zu identifizieren, was in Abbildung \ref{fig:cnnRadiator} zu sehen ist. Eine Lösung zu diesem Problem wird in Kapitel \ref{ch:Ausblick} diskutiert. 
 
 \vspace{.5em}
 \begin{figure}[htb]
@@ -199,19 +199,19 @@ Das \gls{CNN} kann gut mit anderen Wärmequellen umgehen, solange diese in ähnl
 	\begin{subfigure}{.45\linewidth}
 		\centering
 		\includegraphics[keepaspectratio,height=4cm]{threshRadiator}
-		\caption{Threshold-Methode Ergebnis des Radiator Experiments}
+		\caption{Ergebnis der Threshold-Methode des Radiatorexperiments}
 		\label{fig:thresholdRadiator}
 	\end{subfigure}\hfill%
 	\begin{subfigure}{.45\linewidth}
 		\centering
 		\includegraphics[keepaspectratio,height=4cm]{cnnPersonLaptop}
-		\caption{CNN Ergebnis des Experiments mit Laptops und Personen}
+		\caption{Ergebnis des CNN's des Experiments mit Laptops und Personen}
 		\label{fig:cnnPersonLaptop}
 	\end{subfigure}\hfill%
 	\begin{subfigure}{.45\linewidth}
 		\centering
 		\includegraphics[keepaspectratio, height=4cm]{cnnRadiator}
-		\caption{CNN Ergebnis des Radiator Experiments}
+		\caption{Ergebnis des CNN's des Radiatorexperiments}
 		\label{fig:cnnRadiator}
 	\end{subfigure}\hfill%
 	\begin{subfigure}{.5\linewidth}
@@ -223,7 +223,7 @@ Das \gls{CNN} kann gut mit anderen Wärmequellen umgehen, solange diese in ähnl
 	\begin{subfigure}{.5\linewidth}
 		\centering
 		\includegraphics[keepaspectratio,height=3cm]{groundRadiator}
-		\caption{Ground-Truth des Radiator Experiments}
+		\caption{Ground-Truth des Radiatorexperiments}
 		\label{fig:groundRadiator}
 	\end{subfigure}\hfill%
 	\caption{Experimente mit fremden Wärmequellen}
@@ -236,7 +236,7 @@ Das \gls{CNN} kann gut mit anderen Wärmequellen umgehen, solange diese in ähnl
 \section{Distanz}
 \label{sec:distanz}
 
-Die Distanz zwischen zwei Personen ist ein wichtiger Faktor, der auf beide Algorithmen Einfluss hat. Da bei dem \gls{CNN} mit einer Sliding-Window Methode und Clustern der Treffer gearbeitet wird, kann das System, bei Personen, welche zu wenig Abstand zueinander haben, die Treffer nicht mehr auseinanderhalten. Bei der Threshold-Methode wird die Silhouette der Personen leicht vergrössert, wodurch mehrere Personen bei geringem Abstand als einzelner Treffer gewertet werden können.
+Die Distanz zwischen zwei Personen ist ein wichtiger Faktor, der auf beide Algorithmen Einfluss hat. Da bei dem \gls{CNN} mit einer Sliding-Window Methode und Clustern der Treffer gearbeitet wird, kann das System bei Personen, welche zu wenig Abstand zueinander haben, die Treffer nicht mehr auseinanderhalten. Bei der Threshold-Methode wird die Silhouette der Personen leicht vergrössert, wodurch mehrere Personen bei geringem Abstand als einzelner Treffer gewertet werden können.
 
 \subsection{Versuchsaufbau}
 
@@ -271,7 +271,7 @@ Beim Test wurde schrittweise der Abstand zwischen den Testpersonen erhöht, um f
 			\textbf{F1-Score} & 100\% & 100\% & 100\% & 100\% & 100\% & 100\%\\
 			\hline
 		\end{tabularx}
-		\caption{Ergebnisse des \gls{CNN}, der Distanz Experimente}
+		\caption{Ergebnisse des \gls{CNN}'s der Distanzexperimente}
 		\label{tbl:distanceCNN}
 	\end{table}
 	\begin{table}[H]
@@ -298,7 +298,7 @@ Beim Test wurde schrittweise der Abstand zwischen den Testpersonen erhöht, um f
 			\textbf{F1-Score} & 80.0\% & 88.2\% & 97.2\% & 97.2\% & 97.1\% & 100\%\\
 			\hline
 		\end{tabularx}
-		\caption{Ergebnisse, der Threshold-Methode, der Distanz Experimente}
+		\caption{Ergebnisse der Threshold-Methode der Distanzexperimente}
 		\label{tbl:distanceThresh}
 	\end{table}
 }
@@ -306,7 +306,7 @@ Beim Test wurde schrittweise der Abstand zwischen den Testpersonen erhöht, um f
 \subsection{Evaluation}
 
 
-Das \gls{CNN} Kann bereits ab einem Abstand von 10cm zuverlässig Personen auseinanderhalten.\\
+Das \gls{CNN} kann bereits ab einem Abstand von 10cm zuverlässig Personen auseinanderhalten.\\
 Die Threshold-Methode kann Personen bereits ab einem Abstand von 10cm auseinanderhalten, sofern die Personen so ausgerichtet sind, dass die optische Verzerrung keinen Einfluss auf den Zwischenraum hat. Wie in der Abbildung \ref{fig:thresholdDistance10} in der linken Bildhälfte zu sehen ist, können die Personen, die auf die Kamera ausgerichtet sind, unterschieden werden. Sind die Person jedoch so platziert, wie auf der rechten Bildhälfte zu sehen ist, sind diese von der Kamera aus gesehen, hintereinander. Bei dieser geringen Distanz kann der Algorithmus deshalb nicht mehr bestimmen, ob es sich um eine oder mehrere Personen handelt.\\
 Befinden sich die Personen in der schlechtestmöglichen Position, benötigt die Threshold-Methode einen Mindestabstand von 30cm, um die Personen fehlerfrei unterscheiden zu können (siehe Abbildung \ref{fig:thresholdDistance30}).
 
@@ -358,7 +358,7 @@ Befinden sich die Personen in der schlechtestmöglichen Position, benötigt die 
 
 \section{Grösse des Objekts auf dem Bild}
 \label{sec:objectSize}
-Eine Spezialität des Sitzungszimmers, das zur Verfügung gestellt wurde, ist, dass die Höhe der Decke verändert werden kann. Da die Infrarotkameras an der Decke montiert sind, wurde dies als Möglichkeit genutzt um zu testen wie die Algorithmen auf grössen der Objekte im Bild reagieren. 
+Eine Spezialität des Sitzungszimmers, das zur Verfügung gestellt wurde, ist, dass die Höhe der Decke verändert werden kann. Da die Infrarotkameras an der Decke montiert sind, wurde dies als Möglichkeit genutzt, um zu testen, wie die Algorithmen auf unterschiedliche Grössen der Objekte im Bild reagieren.
 
 \subsection{Versuchsaufbau}
 
@@ -399,7 +399,7 @@ Die verstellbare Decke des Sitzungszimmers wurde auf die vom Mobiliar zugelassen
 			\textbf{F1-Score} & 95.1\% & 96.6\%\\
 			\hline
 		\end{tabularx}
-		\caption{CNN, Ergebnisse des Distanztests}
+		\caption{CNN Ergebnisse des Distanztests}
 		\label{tbl:objectSizeCNN}
 	\end{table}
 	\begin{table}[H]
@@ -426,36 +426,36 @@ Die verstellbare Decke des Sitzungszimmers wurde auf die vom Mobiliar zugelassen
 			\textbf{F1-Score} & 94.5\% & 98.9\%\\
 			\hline
 		\end{tabularx}
-		\caption{Threshold-Methode, Ergebnisse des Distanztests}
+		\caption{Threshold-Methode Ergebnisse des Distanztests}
 		\label{tbl:objectSizeThresh}
 	\end{table}
 }
 
 \subsection{Evaluation}
-Beide Algorithmen können die Personen in beiden Situationen noch immer in über 95\% der Fälle identifizieren. Werden die Objekte jedoch zu gross kann es bei beiden dazu führen, dass Personen doppelt gezählt werden. Da eine solch kleine Distanz aber nur schon durch das sehr kleine Sichtfeld für einen solchen Anwendungsfall nicht praktikabel ist, ist dies kein Problem, das weiter verfolgt werden müsste.\\
-Werden die Objekte kleiner stellt dies für beide Algorithmen kein messbares Problem dar, solange die Charakteristiken noch klar erkennbar sind und die Personen eine Fläche von mindestens 10x10 Pixel einnehmen. Ein Test um die Grenze in diesem Bereich zu testen konnte in den zur Verfügung stehenden Räumlichkeiten leider nicht durchgeführt werden.\\
+Beide Algorithmen können die Personen in beiden Situationen noch immer in über 95\% der Fälle identifizieren. Werden die Objekte jedoch zu gross, kann es bei beiden dazu führen, dass Personen doppelt gezählt werden. Da eine solch kleine Distanz aber nur schon durch das sehr kleine Sichtfeld für einen solchen Anwendungsfall nicht praktikabel ist, ist dies kein Problem, das weiter verfolgt werden müsste.\\
+Werden die Objekte kleiner, stellt dies für beide Algorithmen kein messbares Problem dar, solange die Charakteristiken noch klar erkennbar sind und die Personen eine Fläche von mindestens 10x10 Pixel einnehmen. Ein Test um die Grenze in diesem Bereich zu testen konnte in den zur Verfügung stehenden Räumlichkeiten leider nicht durchgeführt werden.\\
 Möchte man jedoch die reale Position der Personen aus dem Bild berechnen, müsste die Deckenhöhe zusätzlich berechnet oder gemessen werden.
 
 \begin{figure}[H]
-	\begin{subfigure}{.45\linewidth}
+	\begin{subfigure}{.4\linewidth}
 		\centering
 		\includegraphics[keepaspectratio, height=4cm]{CNN255}
 		\caption{Ergebnis des CNN mit Deckenhöhe 255cm}
 		\label{fig:cnn255}
 	\end{subfigure}\hfill%
-	\begin{subfigure}{.45\linewidth}
+	\begin{subfigure}{.4\linewidth}
 		\centering
 		\includegraphics[keepaspectratio, height=4cm]{thresh255}
 		\caption{Ergebnis der Threshold-Methode mit Deckenhöhe 255cm}
 		\label{fig:thresh255}
 	\end{subfigure}\hfill%
-	\begin{subfigure}{.45\linewidth}
+	\begin{subfigure}{.4\linewidth}
 		\centering
 		\includegraphics[keepaspectratio, height=4cm]{CNN400}
 		\caption{Ergebnis des CNN mit Deckenhöhe 400cm}
 		\label{fig:cnn400}
 	\end{subfigure}\hfill%
-	\begin{subfigure}{.45\linewidth}
+	\begin{subfigure}{.4\linewidth}
 		\centering
 		\includegraphics[keepaspectratio, height=4cm]{thresh400}
 		\caption{Ergebnis der Threshold-Methode mit Deckenhöhe 400cm}
@@ -502,7 +502,7 @@ Eine Testperson hielt sich an den in den Abbildungen \ref{fig:clothPositions} zu
 		\includegraphics[keepaspectratio, height=3cm]{clothPos3}
 		\caption{Position 3}
 	\end{subfigure}
-	\caption{Positionen der Testperson im Kleidungs Experiment}
+	\caption{Positionen der Testperson im Kleidungsexperiment}
 	\label{fig:clothPositions}
 \end{figure}
 
@@ -515,9 +515,9 @@ Eine Testperson hielt sich an den in den Abbildungen \ref{fig:clothPositions} zu
 		\scriptsize
 		\begin{tabularx}{.9\textwidth}{Xrrrr}
 			\hline
-			\multicolumn{5}{c}{\textbf{CNN Ergebnisse Kleider Experiment}}\\
+			\multicolumn{5}{c}{\textbf{CNN Ergebnisse Kleidungsexperiment}}\\
 			\hline
-			\textbf{Metriken} & \textbf{Kappe} & \textbf{Jacke} & \textbf{Schaal} & \textbf{Alle drei Kleidungsstücke}\\
+			\textbf{Metriken} & \textbf{Kappe} & \textbf{Jacke} & \textbf{Schal} & \textbf{Alle drei Kleidungsstücke}\\
 			\hline 
 			\textbf{Gesamtanzahl Personen in Bilder} & 23 & 18 & 21 & 3\\
 			\hline
@@ -534,7 +534,7 @@ Eine Testperson hielt sich an den in den Abbildungen \ref{fig:clothPositions} zu
 			\textbf{F1-Score} & 90.5\% & -- & 83.3\% & -- \\
 			\hline
 		\end{tabularx}
-		\caption{Ergebnisse des CNN, des Kleider Experiments}
+		\caption{Ergebnisse des CNN des Kleidungsexperiments}
 		\label{tbl:clothCNN}
 	\end{table}
 	\begin{table}[H]
@@ -542,9 +542,9 @@ Eine Testperson hielt sich an den in den Abbildungen \ref{fig:clothPositions} zu
 		\scriptsize
 		\begin{tabularx}{.9\textwidth}{Xrrrr}
 			\hline
-			\multicolumn{5}{c}{\textbf{CNN Ergebnisse Kleider Experiment}}\\
+			\multicolumn{5}{c}{\textbf{CNN Ergebnisse Kleidungsexperiment}}\\
 			\hline
-			\textbf{Metriken} & \textbf{Kappe} & \textbf{Jacke} & \textbf{Schaal} & \textbf{Alle drei Kleidungsstücke}\\
+			\textbf{Metriken} & \textbf{Kappe} & \textbf{Jacke} & \textbf{Schal} & \textbf{Alle drei Kleidungsstücke}\\
 			\hline 
 			\textbf{Gesamtanzahl Personen in Bilder} & 23 & 18 & 21 & 3\\
 			\hline
@@ -561,7 +561,7 @@ Eine Testperson hielt sich an den in den Abbildungen \ref{fig:clothPositions} zu
 			\textbf{F1-Score} & 79.3\% & 43.5\% & 84.2\% & -- \\
 			\hline
 		\end{tabularx}
-		\caption{Ergebnisse der Threshold-Methode, des Kleider Experiments}
+		\caption{Ergebnisse der Threshold-Methode des Kleidungsexperiments}
 		\label{tbl:clothThresh}
 	\end{table}
 }
@@ -569,9 +569,9 @@ Eine Testperson hielt sich an den in den Abbildungen \ref{fig:clothPositions} zu
 
 
 \subsection{Evaluation}
-Kleider beeinflussen die Performance der Algorithmen massiv. Trägt eine Person z.B. eine Mütze, wird sie vom \gls{CNN} noch zu 83\% erkannt. Bei der Threshold-Methode sind es zwar 100\%,führt aber dazu, dass eine Person zwei Treffer erzeugt (siehe Abbildung \ref{fig:thresholdClothHat}).\\
+Kleider beeinflussen die Performance der Algorithmen massiv. Trägt eine Person z.B. eine Mütze, wird sie vom \gls{CNN} noch zu 83\% erkannt. Bei der Threshold-Methode sind es zwar 100\%, es führt aber dazu, dass eine Person zwei Treffer erzeugt (siehe Abbildung \ref{fig:thresholdClothHat}).\\
 \\
-Wenn ein Schal getragen wird, sinkt der Recall auf 71\% beim \gls{CNN} und 76\% bei der Threshold-methode. Betrachtet man Abbildung \ref{fig:scarfIR} sieht man deutlich, wie der Schal einen Teil der Wärme der Person verdeckt.\\
+Wenn ein Schal getragen wird, sinkt der Recall auf 71\% beim \gls{CNN} und 76\% bei der Threshold-Methode. Betrachtet man Abbildung \ref{fig:scarfIR} sieht man deutlich, wie der Schal einen Teil der Wärme der Person verdeckt.\\
 \\
 Das Tragen einer Jacke macht es für die Algorithmen beinahe unmöglich die Personen zu erkennen. Die Person wird nur noch in wenigen Fällen erkannt. Da die Fläche der Abwärme einer Person so nur noch wenige Pixel beträgt, wird es schwierig diese von fremden Wärmequellen zu unterscheiden.\\
 
@@ -589,7 +589,7 @@ Das Tragen einer Jacke macht es für die Algorithmen beinahe unmöglich die Pers
 		\caption{Infrarotbild einer Person die einen Schal trägt}
 		\label{fig:scarfIR}
 	\end{subfigure}\hfill%
-	\caption{Infrarotbilder aus dem Kleider Experiment}
+	\caption{Infrarotbilder aus dem Kleidungsexperiment}
 \end{figure}
 
 \noindent
@@ -614,7 +614,7 @@ Die Tests mit allen Kleidungsstücken zeigen schon bei der manuellen, visuellen 
 		\caption{Ground-Truth des Experiments mit allen Kleidern}
 		\label{fig:groundTruthClothAll}
 	\end{subfigure}
-	\caption{Experiment mit Jacke Mütze und Schal}
+	\caption{Experimente mit Jacke, Mütze und Schal}
 	\label{fig:AllCloth}
 \end{figure}
 

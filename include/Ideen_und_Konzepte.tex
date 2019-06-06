@@ -5,43 +5,44 @@ Gemäss der Problemstellung sollten passende Algorithmen gesucht und analysiert 
 
 \section{Algorithmensuche}
 
-Um Diese Aufgabe zu lösen, wird ein bewährter und passender Algorithmus benötigt. Dazu wurde in der Recherchephase ermittelt, welche Arten von Algorithmen für solche Fälle verwendet werden. Dabei wurden diverse Publikationen gelesen und deren Ergebnisse analysiert. Es wurde darauf geachtet wie gut die gefundenen Publikationen zu diesem Projekt passen, und welche Ähnlichkeiten und Unterschiede existieren. Ein weiterer wichtiger Punkt war die allgemeine Relevanz der Arbeiten, wie in Kapitel \ref{ch:StandDerTechnik} bereits besprochen wurden, dass gewisse Ansätze veraltet sind. Die gefundenen Algorithmen, wurden danach evaluiert und bewertet, sodass schlussendlich ein Algorithmus ausgewählt werden konnte, der bestmöglich zur Lösung der Aufgabe beitragen würde. Die Algorithmen wurden bewusst eher oberflächlich analysiert, um möglichst früh eine Art von Algorithmus auswählen zu können, um die zeitlichen Ressourcen in die Vertiefung in diesen Bereich investieren zu können.\\
+Um diese Aufgabe zu lösen, wird ein bewährter und passender Algorithmus benötigt. Dazu wurde in der Recherchephase ermittelt, welche Arten von Algorithmen für solche Fälle verwendet werden. Dabei wurden diverse Publikationen gelesen und deren Ergebnisse analysiert. Es wurde darauf geachtet, wie gut die gefundenen Publikationen zu diesem Projekt passen und welche Ähnlichkeiten und Unterschiede existieren. 
+Da, wie in Kapitel \ref{ch:StandDerTechnik} bereits besprochen, gewisse Ansätze veraltet sind, war auch die allgemeine Relevanz der Arbeit ein wichtiger Punkt in der Bewertung. Die gefundenen Algorithmen, wurden danach evaluiert und bewertet, sodass schlussendlich ein Algorithmus ausgewählt werden konnte, der bestmöglich zur Lösung der Aufgabe beitragen würde. Die Algorithmen wurden bewusst eher oberflächlich analysiert.  Dadurch konnte früh eine Art von Algorithmus ausgewählt werden, um mehr zeitliche Ressourcen in die Vertiefung dieser Bereiche investieren zu können.\\
 Die gefundenen Algorithmen werden in diesem Kapitel kurz vorgestellt.
 
 \subsection{Clustering von Wärmebereichen}
 
-Es werden Cluster von Pixeln über einem bestimmten Temperatur-Threshold gebildet. Diese werden einzeln analysiert und anhand von Temperaturverteilung innerhalb des Clusters und der Form des Clusters wird entschieden ob es sich um eine Person handelt. Sind die Cluster evaluiert und markiert als Person oder keine Person, können die Zentren der Personen-Cluster direkt als Treffer verwendet werden.
+Es werden Cluster von Pixeln, die über einem bestimmten Temperatur-Threshold liegen, gebildet. Diese werden einzeln analysiert und anhand von Temperaturverteilung innerhalb des Clusters, sowie der Form des Clusters als Person oder keine Person markiert. Sind die Cluster evaluiert und markiert, können die Zentren der Personen-Cluster direkt als Treffer verwendet werden.
 
 
 \subsection{K-Nearest Neighbors}
 
-\gls{k-NN} ist ein simpler Algorithmus der Datenpunkte vergleicht und danach entscheidet, welche die grösste Ähnlichkeit besitzen. Dieser Algorithmus wird ähnlich dem \gls{CNN} mit Referenzdaten bestückt und entscheidet daraufhin, zu welcher Klasse ein Bild die grösste Ähnlichkeit aufweist.
+\gls{k-NN} ist ein simpler Algorithmus, der Datenpunkte vergleicht und danach entscheidet, wie ähnlich sich diese sind. Dieser Algorithmus wird ähnlich dem \gls{CNN} mit Referenzdaten bestückt und entscheidet daraufhin, zu welcher Klasse ein Bild die grösste Ähnlichkeit aufweist.
 
 \subsection{Support Vector Machines}
 
-\gls{SVM}'s sind Klassifikatoren die versuchen bei klassifizierten Datenpunkten eine Funktion zu finden, bei der möglichst viel Abstand zwischen den Klassen bleibt. Diese Funktion wird danach verwendet, um neue Daten zu klassifizieren. Um diese Funktion zu generieren werden Klassifizierte Daten benötigt. \gls{SVM}'s waren das mittel der Wahl für Objekterkennung auf Bildern, bis sie von \gls{CNN}'s abgelöst wurden.
+\gls{SVM}'s sind Klassifikatoren, die versuchen bei bereits klassifizierten Datenpunkten eine Funktion zu finden, bei der möglichst viel Abstand zwischen den Klassen bleibt. Diese Funktion wird danach verwendet, um neue Daten zu klassifizieren. Um diese Funktion zu generieren werden klassifizierte Daten benötigt. \gls{SVM}'s waren das Mittel der Wahl für Objekterkennung auf Bildern, bis sie von \gls{CNN}'s abgelöst wurden.
 
 \subsection{Hough-Transformationen}
 
-Hough-Transormationen erkennen Formen, wie Kreise und Linien auf Bildern. Dazu muss das Bild zuerst mittels einem Kantendetektionsalgorithmus so bearbeitet werden, dass nur noch kanten zu sehen sind. Danach extrahiert man mittels Hough-Transformationen Kreise und Linien. Diese Methodik könnte in diesem Projekt zur Unterstützung andere Algorithmen verwendet werden.
+Hough-Transormationen erkennen Formen, wie Kreise und Linien, auf Bildern. Dazu muss das Bild zuerst mittels einem Kantendetektionsalgorithmus so bearbeitet werden, dass nur noch Kanten zu sehen sind. Danach extrahiert man mittels Hough-Transformationen Kreise und Linien. Diese Methodik könnte in diesem Projekt zur Unterstützung anderer Algorithmen verwendet werden.
 
 
 \subsection{Thresholding}
 
-Beim Thresholding wird das Infrarotbild mittels mehreren fixierten Werten in ein Binärbild umgewandelt, in welchem dann nur noch weisse Flecken zu sehen sein sollten, die Personen repräsentieren. Dazu wird in diesem Fall eine Mindest- und Maximaltemperatur festgelegt. Alle Pixel die innerhalb dieses Bereichs liegen, werden weiss eingefärbt, alle anderen schwarz. Danach wird auf dieses Bild \gls{Erode} und \gls{Dilate} angewendet. Bei \gls{Erode} wird mit einer kleine Matrix, einem sogenannten Kernel, über das Binärbild iteriert. Immer, wenn mindestens ein Feld des Kernels schwarz ist, wird die gesamte Fläche des Kernels, auf dem resultierenden Bild schwarz eingefärbt. \gls{Dilate} funktioniert nach dem gleichen Prinzip, aber arbeitet dabei mit den weissen Pixeln.\\
+Beim Thresholding wird das Infrarotbild mittels mehreren fixierten Werten in ein Binärbild umgewandelt, in welchem dann nur noch weisse Flecken zu sehen sein sollten, die Personen repräsentieren. Dazu wird in diesem Fall eine Mindest- und Maximaltemperatur festgelegt. Alle Pixel, die innerhalb dieses Bereichs liegen, werden weiss eingefärbt, alle anderen schwarz. Danach wird auf dieses Bild \gls{Erode} und \gls{Dilate} angewendet. Bei \gls{Erode} wird mit einer kleinen Matrix, einem sogenannten Kernel, über das Binärbild iteriert. Immer, wenn mindestens ein Feld des Kernels schwarz ist, wird die gesamte Fläche des Kernels, auf dem resultierenden Bild schwarz eingefärbt. \gls{Dilate} funktioniert nach dem gleichen Prinzip, aber arbeitet dabei mit den weissen Pixeln.\\
 Idealerweise, ist am Ende nur noch pro Person eine geschlossene, weisse Fläche übrig. Die Zentren dieser Flächen stellen dann die Position der Person dar.
 
 
 \subsection{Convolutional Neural Network}
 
-Während der Recherche stellte sich heraus, dass das \gls{CNN} für diesen Bereich der Objekterkennung, eine sehr beliebte Variante ist. Die Mehrheit der Arbeiten, die zu diesem Thema gefunden wurden, verwendeten \gls{CNN} in irgend einer Form.\\
-\gls{CNN} funktionieren wie in Kapitel \ref{sec:technicalBase} erklärt, indem sie Filter trainieren, welche aus dem ursprünglichen Bild die nötigen Informationen extrahieren, um zu bestimmen, zu welcher Klasse das Bild gehört. Um dieses Training zu ermöglichen werden sehr viele Trainingsdaten benötigt.
+Während der Recherche stellte sich heraus, dass das \gls{CNN} für diesen Bereich der Objekterkennung, eine sehr beliebte Variante ist. Die Mehrheit der Arbeiten, die zu diesem Thema gefunden wurden, verwendeten \gls{CNN} in irgendeiner Form.\\
+\gls{CNN}'s funktionieren, wie in Kapitel \ref{sec:technicalBase} erklärt, indem sie Filter trainieren, welche aus dem ursprünglichen Bild die nötigen Informationen extrahieren, um zu bestimmen, zu welcher Klasse das Bild gehört. Um dieses Training zu ermöglichen werden sehr viele Trainingsdaten benötigt.
 
 
 \section{Datensammlung}
 
-Da einige der erwähnten Methoden einen relativ grossen Datensatz benötigen, um Trainiert zu werden, stellen sich die Fragen wie diese gesammelt und vor allem, wie diese gelabelt werden. Das Sammeln an sich kann durch ein simples Skript realisiert werden, indem die Infrarotbilder periodisch von den Infrarotkameras angefordert und abgespeichert werden. Zusätzlich wurden parallel dazu auch Bilder einer optischen Kamera im Raum persistiert.\\
-Das Labeln der Infrarotbilder konnte auf zwei Arten umgesetzt werden. Man Labelt alle Bilder die verwendet werden sollen manuell mit Hilfe eines Labeling Tools. Oder man erstellt ein komplexes Programm, das mittels 'State of the Art' Bildverarbeitung aus den optischen Bilder die Personen erkennt und deren Position auf die Position im Infrarotbild umrechnet.\\
+Da einige der erwähnten Methoden einen relativ grossen Datensatz benötigen, um trainiert zu werden, stellen sich die Fragen wie diese gesammelt und vor allem, wie diese gelabelt werden. Das Sammeln an sich kann durch ein simples Skript realisiert werden, indem die Infrarotbilder periodisch von den Infrarotkameras angefordert und abgespeichert werden. Zusätzlich wurden parallel dazu auch Bilder einer optischen Kamera im Raum persistiert.\\
+Das Labeln der Infrarotbilder konnte auf zwei Arten umgesetzt werden. Man labelt alle Bilder, die verwendet werden sollen manuell mit Hilfe eines Labeling Tools. Oder man erstellt ein komplexes Programm, das mittels 'State of the Art' Bildverarbeitung aus den optischen Bildern die Personen erkennt und deren Position auf die Position im Infrarotbild umrechnet.\\
 \\
 Dieser zweite Ansatz wäre vollautomatisch, schnell und wiederverwendbar, jedoch wäre die Erstellung eines solchen Programms sehr aufwendig und es könnte auch nicht garantiert werden, dass alle Personen korrekt markiert wurden. Es müsste also trotzdem manuell kontrolliert werden, ob das Labeln korrekt ablief. 
 
@@ -53,39 +54,39 @@ Um dem Umgang mit den Algorithmen zu vereinfachen und deren Ergebnisse zu optimi
 
 \subsection{Windowing}
 
-Es wird jeweils nur ein kleiner Ausschnitt des Bildes analysiert. Dazu wird mit einem Fenster über Bild iteriert und z.B. immer 20x20 Pixel analysiert. Dies reduziert die Aufgabe auf ein Klassifizierungsproblem. D.h. der Algorithmus muss nur noch entscheiden ob es sich in dem Ausschnitt um eine Person handelt. Zudem können mit dieser Methode reine Hintergrundausschnitte mittels einem Threshold verworfen werden. Dadurch kann bei Bildern mit grossem Hintergrundanteil die Performanz deutlich gesteigert werden.
+Es wird jeweils nur ein kleiner Ausschnitt des Bildes analysiert. Dazu wird mit einem Fenster über Bild iteriert und z.B. immer 20x20 Pixel analysiert. Dies reduziert die Aufgabe auf ein Klassifizierungsproblem. D.h. der Algorithmus muss nur noch entscheiden, ob es sich in dem Ausschnitt um eine Person handelt. Zudem können mit dieser Methode reine Hintergrundausschnitte mittels einem Threshold verworfen werden. Dadurch kann bei Bildern mit grossem Hintergrundanteil die Performanz deutlich gesteigert werden.
 
 
 \subsection{Hintergrund Differenz Analyse}
 
-Es wird ein Referenzhintergrund mittels einem Rolling Average verfahren erstellt. Dabei werden fortlaufend Hintergrundbilder aufgezeichnet. Der Durchschnitt aller Hintergrundbilder der letzten \textit{n} Tage wird berechnet und stellt dann den Referenzhintergrund dar. Dies bietet die Möglichkeit den Referenzhintergrund von dem zu analysierenden Bild zu subtrahieren, wodurch nur noch die relevanten Partien des Bildes übrig bleiben. Der Haupteffekt dieser Methode ist es, dass fremde Wärmequellen, welche über längere Zeit existieren entfernt werden können.\\
-Das Problem bei dieser Methode besteht darin, dass keine Bilder mit Personen zu dem Rolling Average hinzugefügt werden sollten. Dies setzt voraus, dass man ein bereits funktionierendes System hat um die Bilder für den Rolling Average auszuwählen.
+Es wird ein Referenzhintergrund mittels einem Rolling Average-Verfahren erstellt. Dabei werden fortlaufend Hintergrundbilder aufgezeichnet. Der Durchschnitt aller Hintergrundbilder der letzten \textit{n} Tage wird berechnet und stellt dann den Referenzhintergrund dar. Dies bietet die Möglichkeit, den Referenzhintergrund von dem zu analysierenden Bild zu subtrahieren, wodurch nur noch die relevanten Partien des Bildes übrig bleiben. Der Haupteffekt dieser Methode ist es, dass fremde Wärmequellen, welche über längere Zeit existieren, entfernt werden können.\\
+Das Problem bei dieser Methode besteht darin, dass keine Bilder mit Personen zu dem Rolling Average hinzugefügt werden sollten. Dies setzt voraus, dass man ein bereits funktionierendes System hat, um die Bilder für den Rolling Average auszuwählen.
 
 
 \subsection{Clustering}
 
-Wird die Windowing Methode eingesetzt kann es passieren, dass die selbe Person mehrmals erkannt wird. Um solche Treffer einer einzelnen Person zuzuweisen, kann Clustering eingesetzt werden. Dabei wird ein Threshold festgelegt der dein Maximalabstand zwischen zusammengehörenden Treffern darstellt. Mittels diesem Threshold werden danach die Treffer zu Clustern zusammengeführt.
+Wird die Windowing Methode eingesetzt, kann es passieren, dass dieselbe Person mehrmals erkannt wird. Um solche Treffer einer einzelnen Person zuzuweisen, kann Clustering eingesetzt werden. Dabei wird ein Threshold festgelegt, der den Maximalabstand zwischen zusammengehörenden Treffern darstellt. Mittels diesem Threshold werden danach die Treffer zu Clustern zusammengeführt.
 
 
-\section{Algorithmen Auswahl}
+\section{Algorithmenauswahl}
 
-Eine Ideale Evaluation der Algorithmen würde die komplette Implementation und Validation aller Algorithmen voraussetzen. Da dies zeitlich im Rahmen dieser Arbeit nicht möglich ist, werden die Algorithmen vor allem danach bewertet wie sie in ähnlichen Projekten oder Anwendungsfällen eingesetzt wurden und was für Ergebnisse sie in diesen geliefert haben. Dabei wird bei der Auswahl in Betracht gezogen in welchen Punkten sich die Projekte gleichen und welchen Einfluss das hat.\\
+Eine ideale Evaluation der Algorithmen würde die komplette Implementation und Validation aller Algorithmen voraussetzen. Da dies zeitlich im Rahmen dieser Arbeit nicht möglich ist, werden die Algorithmen vor allem danach bewertet, wie sie in ähnlichen Projekten oder Anwendungsfällen eingesetzt wurden und was für Ergebnisse sie in diesen geliefert haben. Dabei wird bei der Auswahl in Betracht gezogen, in welchen Punkten sich die Projekte gleichen und welchen Einfluss das hat.\\
 \\
 Dabei wurde nach den folgenden Kriterien gewertet:
 \begin{itemize}
 	\item In ähnlichen Projekten erfolgreich verwendet
 	\item Performanz
 	\item Benötigte Datenmenge
-	\item Genauigkeit die in vergleichbaren Projekten erreicht wurde
+	\item Genauigkeit, die in vergleichbaren Projekten erreicht wurde
 	\item Komplexität
 \end{itemize}
 
 \subsection{Ergebnis}
 
 Die meisten in diesem Themenbereich gefundenen, aktuellen Arbeiten wurden in einer Form mit \gls{CNN} durchgeführt. Auch die Ergebnisse dieser Arbeiten sprechen für die Verwendung eines \gls{CNN}, wie z.B. eine Arbeit der ETH Zürich \parencite{gomez2018thermal} in der erfolgreich ein \gls{CNN}, in einem sehr ähnlichen Projekt, eingesetzt wurde. \\
-ein \gls{k-NN} oder eine \gls{SVM} zu verwenden scheint nicht sinnvoll da ein \gls{CNN} etwa den Gleichen Entwicklungs- und Trainingsaufwand verlangt und dafür bessere Ergebnisse liefert \parencite{comparison_algorithms}.
-Deshalb wurde in dieser Arbeit ein \gls{CNN} verwendet. zur Unterstützung wurde Windowing verwendet, da sich diese Kombination bewährt hat \parencite{gomez2018thermal} und da Windowing das Training des CNN sehr vereinfacht.\\
-Zusätzlich wurde entschieden als Referenz eine Threshold-Methode zu implementieren. Um abschätzen zu können wie gut das \gls{CNN} abschneidet.
+Ein \gls{k-NN} oder eine \gls{SVM} zu verwenden scheint nicht sinnvoll, da ein \gls{CNN} etwa den gleichen Entwicklungs- und Trainingsaufwand verlangt und dafür bessere Ergebnisse liefert \parencite{comparison_algorithms}.
+Deshalb wurde in dieser Arbeit ein \gls{CNN} verwendet. Zur Unterstützung wurde Windowing verwendet, da sich diese Kombination bewährt hat \parencite{gomez2018thermal} und da Windowing das Training des CNN sehr vereinfacht.\\
+Zusätzlich wurde entschieden, als Referenz eine Threshold-Methode zu implementieren, um abschätzen zu können, wie gut das \gls{CNN} abschneidet.
 
 
 

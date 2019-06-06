@@ -11,18 +11,18 @@
 
 \section{UDP-Schnittstelle}
 
-Um die Bilder automatisiert erhalten zu können wurde eine Schnittstelle zu den Infrarotkameras implementiert. Es wurde das UDP-Protokoll verwendet, da die Kameras nur über dieses Protokoll angesprochen werden konnten.\\
-Die einzige andere Möglichkeit an Bilder zu gelangen wäre, über die GUI Applikation des Herstellers Videos aufzunehmen. Diese sind jedoch bereits auf RGB konvertiert, beinhalten also nicht alle Information des ursprünglichen Bildes und die Applikation kann nicht automatisiert angesprochen werden. Folglich ist dies keine praktikable Variante um effizient Daten zu sammeln.\\
+Um die Bilder automatisiert erhalten zu können, wurde eine Schnittstelle zu den Infrarotkameras implementiert. Es wurde das UDP-Protokoll verwendet, da die Kameras nur über dieses Protokoll angesprochen werden konnten.\\
+Die einzige andere Möglichkeit an Bilder zu gelangen, wäre über die GUI Applikation des Herstellers Videos aufzunehmen. Diese sind jedoch bereits auf RGB konvertiert, beinhalten also nicht alle Information des ursprünglichen Bildes und die Applikation kann nicht automatisiert angesprochen werden. Folglich ist dies keine praktikable Variante, um effizient Daten zu sammeln.\\
 \\
-Die Kameras können ausserdem nur mittels UDP-Broadcasts identifiziert und an einen Socket gebunden werden. Aus diesem Grund konnten die Kameras nicht im allgemeinen Schulnetzwerk installiert werden, sondern mussten in einem separaten Netzwerk betrieben werden. In diesem Netzwerk konnten sie über einen Computer angesteuert werden, der widerum mit dem HSLU-Netzwerk verbunden ist. Um die Entwicklung der Schnittstelle möglichst einfach zu gestalten wurde versucht einen Remoteinterpreter aufzusetzen. Diese Funktion von Pycharm \parencite{pycharm} erlaubt es, auf einem lokalen System zu entwickeln aber die Software direkt auf einem Remote-System auszuführen und zu debuggen.\\
-Leider wird dies für Windows Remote Systeme nicht unterstützt. Deshalb wurde der Code jeweils manuell via sftp auf den Computer im Sitzungszimmer kopiert. Danach wurde mittels Windows Remotedesktopverbindung die Software ausgeführt und getestet. \\
+Die Kameras können ausserdem nur mittels UDP-Broadcasts identifiziert und an einen Socket gebunden werden. Aus diesem Grund konnten die Kameras nicht im allgemeinen Schulnetzwerk installiert werden, sondern mussten in einem separaten Netzwerk betrieben werden. In diesem Netzwerk konnten sie über einen Computer angesteuert werden, der widerum mit dem HSLU-Netzwerk verbunden ist. Um die Entwicklung der Schnittstelle möglichst einfach zu gestalten, wurde versucht, einen Remoteinterpreter aufzusetzen. Diese Funktion von Pycharm \parencite{pycharm} erlaubt es, auf einem lokalen System zu entwickeln, aber die Software direkt auf einem Remote-System auszuführen und zu debuggen.\\
+Leider wird dies von Pycharm für Windows Remote Systeme nicht unterstützt. Deshalb wurde der Code jeweils manuell via sftp auf den Computer im Sitzungszimmer kopiert. Danach wurde mittels Windows Remotedesktopverbindung die Software ausgeführt und getestet. \\
 \\
-In einer ersten Variante wurde in dieser Schnittstelle mit Einzelbildern gearbeitet. Dies bietet den Vorteil, dass man die Bildrate einfach definieren und steuern kann. Leider war die Qualitiät dieser Bilder sehr schlecht. Durch eine Rücksprach mit dem Hersteller stellte sich heraus, das die Verwendung der Streaming Funktion der Kameras qualitativ bessere Bilder liefert. Deshalb wurde die Schnittstelle auf die Verwendung von Streams abgeändert. Dabei war die Generator Funktionalität von Python sehr hilfreich. Die Eigenschaft von Generators, dass diese erst ausgeführt werden, wenn ein Objekt angefragt wird, konnte genutzt werden, um jederzeit das aktuellste Bild zu erhalten.
+In einer ersten Variante arbeitete die Schnittstelle mit Einzelbildern. Dies bietet den Vorteil, dass man die Bildrate einfach definieren und steuern kann. Leider war die Qualitiät dieser Bilder sehr schlecht. Durch eine Rücksprach mit dem Hersteller stellte sich heraus, das die Verwendung der Streamingfunktion der Kameras qualitativ bessere Bilder liefert. Deshalb wurde die Schnittstelle auf die Verwendung von Streams abgeändert. Dabei war die Generator-Funktionalität von Python sehr hilfreich. Die Eigenschaft von Generator-Funktionen, dass diese erst ausgeführt werden, wenn ein Objekt angefragt wird, konnte genutzt werden, um jederzeit das aktuellste Bild zu erhalten.
 
 \section{Datensammlung}
 
 Um die Trainingsdaten effizient zu sammeln wurde ein  Skript erstellt, welches von beiden Kameras gleichzeitig Bilder anfordert und abspeichert. Dieses musste über mehrere Monate unterbruchlos laufen und wurde deshalb so implementiert, dass es sich bei einem Fehler automatisch neu startet. Zusätzlich wurden parallel dazu auch Bilder der Referenzkamera aufgezeichnet, um das Labeling der Infrarotbilder zu vereinfachen und als Ground Truth zu verifizieren.\\
-Alle aufgezeichneten Bilder wurden lokal auf einer Festplatte des Computers im Sitzungszimmer gespeichert. Um alle Bilder eindeutig zu identifizieren, wurden sie mit Art des Bildes, Infrarot oder Ground Truth, Zeitstempel und bei den Infrarotbildern mit Kamera 1 oder 2 versehen. Um das ganze übersichtlicher zu gestalten wurde das ganze in einem Ordnersystem abgelegt, das wie folgt aufgebaut ist.
+Alle aufgezeichneten Bilder wurden lokal auf einer Festplatte des Computers im Sitzungszimmer gespeichert. Um alle Bilder eindeutig zu identifizieren, wurden sie mit Art des Bildes, d.h. Infrarot oder Ground Truth, Zeitstempel und bei den Infrarotbildern mit Kamera 1 oder 2 versehen. Um dies übersichtlicher zu gestalten, wurde das Ganze in einem Ordnersystem abgelegt, das wie folgt aufgebaut ist.
 
 \begin{itemize}[leftmargin=4cm, align=left, labelsep=*, labelwidth=*]
 	\item[Ordnerschema] ../ [Jahr] / [Monat] / [Tag] / [Bildtyp]\_[Uhrzeit]\_[Kamera].[Dateityp]
@@ -32,43 +32,43 @@ Alle aufgezeichneten Bilder wurden lokal auf einer Festplatte des Computers im S
 
 \section{CNN}
 
-Um das \gls{CNN} trainieren zu können müssen die Bilder gelabelt, \gls{Padding} hinzugefügt, \glspl{Window} extrahiert und normalisiert werden. Dazu wurden verschiedene Module implementiert, welche diese Aufgaben übernehmen.
+Um das \gls{CNN} trainieren zu können, müssen die Bilder gelabelt, \gls{Padding} hinzugefügt, \glspl{Window} extrahiert und normalisiert werden. Dazu wurden verschiedene Module implementiert, welche diese Aufgaben übernehmen.
 
 \subsection{Labeln}
 \label{sec:labeling}
 
-Für das Labeln der Bilder wurde \textit{labelme} \parencite{labelme2016} verwendet da dies einfaches und praktisches User Interface bietet. Die Labels wurden jeweils in dem Verzeichnis \textit{labels} abgelegt, der auf der gleichen ebene wie das Verzeichnis \textit{ir\_images} in dem die dazugehörigen Infrarotbilder abgelegt sind.\\
-Die rohen Infrarotbilder wurden als .npy-Dateien gespeichert \parencite{npyformat}. Dies, weil die Pixelwerte der Bilder in Kelvin*10 sind, d.h. 2731 entspricht 0\degree C. Aus diesem Grund konnten sie nicht auf einfache Art in ein Grafikformat persistiert werden. Zudem ist es wünschenswert Berechnungen mit den Originalwerten durchzuführen.\\
-Um die Infrarotbilder aber labeln zu können wird ein Bild mit .jpg oder ähnlichem Format benötigt. Dazu wurde das Bild auf Graustufen reduziert. Dabei geht zwar ein Teil der Information verloren, aber man kann genug erkennen um die Bilder korrekt zu Labeln. zudem konnte im Zweifelsfall das RGB Bild der Referenzkamera zu Hilfe gezogen werden. Da die konvertierten Bilder die gleichen Dimensionen aufweisen können die definierten Labels direkt auf die Infrarotbilder angewendet werden.
+Für das Labeln der Bilder wurde \textit{labelme} \parencite{labelme2016} verwendet, da dies ein einfaches und praktisches User Interface bietet. Die Labels wurden jeweils in dem Verzeichnis \textit{/labels/} abgelegt. Dieses muss sich im gleichen Verzeichnis befinden wie der Ordner \textit{/ir\_images/}. Darin sind die dazugehörigen Infrarotbilder abgelegt.\\
+Die rohen Infrarotbilder wurden als .npy-Dateien gespeichert \parencite{npyformat}. Dies, weil die Pixelwerte der Bilder in Kelvin*10 sind, d.h. 2731 entspricht 0\degree C. Aus diesem Grund konnten sie nicht auf einfache Art in ein Grafikformat persistiert werden. Zudem ist es wünschenswert, Berechnungen mit den Originalwerten durchzuführen.\\
+Um die Infrarotbilder aber labeln zu können, wird ein Bild mit .jpg oder ähnlichem Format benötigt. Dazu wurde das Bild auf Graustufen reduziert. Dabei geht zwar ein Teil der Information verloren, aber man kann genug erkennen, um die Bilder korrekt zu labeln. Zudem konnte im Zweifelsfall das RGB Bild der Referenzkamera zu Hilfe gezogen werden. Da die konvertierten Bilder die gleichen Dimensionen aufweisen, können die definierten Labels direkt auf die Infrarotbilder angewendet werden.
 
 \subsection{Preprocessing der Trainingsdaten}
 
-Um das vorbereiten der Trainigsdaten möglichst einfach zu gestalten wurde die Klasse Loader implementiert. Dies bietet die Methode \textit{load\_data\_by\_labels}, welche für ein spezifiziertes Verzeichnis alle Objekte lädt für die ein Label existiert. Diese Methode basiert darauf das die Labels und Infrarotbildern wie vorgängig erwähnt im selben Verzeichnis und in den Ordnern \textit{labels} und \textit{ir\_images} abgelegt wurden. Die Methode kann zudem mit mehreren Parameter angepasst weden.
+Um das Vorbereiten der Trainigsdaten möglichst einfach zu gestalten, wurde die Klasse Loader implementiert. Diese bietet die Methode \textit{load\_data\_by\_labels}, welche für ein spezifiziertes Verzeichnis alle Objekte lädt für die ein Label existiert. Diese Methode basiert darauf, dass die Labels und Infrarotbildern, wie vorgängig erwähnt, im selben Verzeichnis und in den Ordnern \textit{labels} und \textit{ir\_images} abgelegt wurden. Die Methode kann zudem mit mehreren Parameter angepasst weden.
 
 \subsubsection{Loader}
 
 \noindent -Konstruktor Parameter:
 \begin{itemize}[leftmargin=*, labelindent=3cm, labelsep=1cm]
 	\item[\textit{source\_folder}] String: Das Verzeichnis aus dem die Trainingsdaten geladen werden sollen, muss die Ordner \textit{ir\_images} und \textit{labels} beinhalten.
-	\item[\textit{window\_size}] (int, int): Die grösse des Fensters das um das Label extrahiert werden soll.
-	\item[\textit{extend\_by\_roaming}] Boolean: Um jedes Label werden mit einem Versatz von ein bis drei Pixeln zusätzliche Fenster extrahiert. Dies ist eine Methode um mehr Trainigsdaten zu generieren und das CNN darauf zu trainieren die Objekte nicht nur zentriert zu erkennen.
+	\item[\textit{window\_size}] (int, int): Die Grösse des Fensters, das um das Label extrahiert werden soll.
+	\item[\textit{extend\_by\_roaming}] Boolean: Um jedes Label wird mit einem Versatz von ein bis drei Pixeln zusätzliche Fenster extrahiert. Dies ist eine Methode, um mehr Trainingsdaten zu generieren und das CNN darauf zu trainieren, die Objekte nicht nur zentriert zu erkennen.
 \end{itemize}
 \vspace{2em}
 \noindent\textit{load\_data\_by\_labels} Parameter:
 \begin{itemize}[leftmargin=*,labelindent=3cm, labelsep=1cm]
-		\item[\textit{cam}] Int: 1 oder 2 von welcher der Kameras die Bilder geladen werden sollen. Wird dieser Parameter nicht verwendet werden Bilder beider Kameras verwendet.
-		\item[\textit{no\_background}] Boolean: Es werden soviele, zufällig ausgewählte Hintergrundausschnitte aus einem Referenzbild geladen wie die negativ Klasse enthält, wenn True.
-		\item[\textit{rotate\_negatives}] Boolean: rotiert alle Fenster der negativ Klasse 3 mal um 90\degree und spiegelt sie, wenn True.
-		\item[\textit{rotate\_positives}] Boolean: rotiert alle Fenster der positiv Klasse 3 mal um 90\degree und spiegelt sie, wenn True.
+		\item[\textit{cam}] Int: 1 oder 2 -- Von welcher der Kameras die Bilder geladen werden sollen. Wird dieser Parameter nicht verwendet, werden Bilder beider Kameras verwendet.
+		\item[\textit{no\_background}] Boolean: Es werden soviele, zufällig ausgewählte Hintergrundausschnitte aus einem Referenzbild geladen, wie die negativ Klasse enthält, wenn True.
+		\item[\textit{rotate\_negatives}] Boolean: rotiert alle Fenster der negativ Klasse dreimal um 90\degree und spiegelt sie, wenn True.
+		\item[\textit{rotate\_positives}] Boolean: rotiert alle Fenster der positiv Klasse dreimal um 90\degree und spiegelt sie, wenn True.
 \end{itemize}
 
-\noindent mit diesen Möglichkeiten können die Daten in zwei Zeilen Code individuell für jedes Training vorbereitet werden.\\
+\noindent Mit diesen Möglichkeiten können die Daten in zwei Zeilen Code individuell für jedes Training vorbereitet werden.\\
 \\
-Vor dem Training werden die Daten dann zusätzlich noch normalisiert, damit alle Werte zwischen 0 und 1 liegen und das Datenset wird gemischt, dass beim Training nicht ganze Batches dieselbe Klasse repräsentieren.
+Vor dem Training werden die Daten dann zusätzlich noch normalisiert, damit alle Werte zwischen 0 und 1 liegen. Zusätzlich wird das Datenset gemischt, damit beim Training nicht ganze Batches dieselbe Klasse repräsentieren.
 
 \subsection{Aufbau des CNNs}
 
-Es wurden Verschiedene \gls{CNN} Architekturen getestet. Zu Beginn wurde versucht einen Binär Klassifizierer zu entwickeln. Da aber die Negativklasse zu viele verschieden Objekte beinhaltete wurde entschieden mit drei Klassen zu arbeiten, \textit{Person}, \textit{Fremde Wärmequellen} und \textit{Hintergrund}. Diese Version erzeugte erstmals akzeptable Resultate. Daraufhin wurde weiter getestet und recherchiert um das Modell zusätzlich zu optimieren. Aufgrund dieser recherche wurde Das \gls{CNN} nach dem Vorbild des LR-CNN \parencite{cnnArchitecture} aufgebaut, da auch diese Arbeit sich auf Bilder mit niedriger Auflösung spezialisiert. Das verwendete CNN sieht wie folgt aus:
+Es wurden verschiedene \gls{CNN} Architekturen getestet. Zu Beginn wurde versucht, einen Binärklassifizierer zu entwickeln. Da aber die Negativklasse zu viele verschieden Objekte beinhaltete, wurde entschieden mit drei Klassen zu arbeiten, \textit{Person}, \textit{Fremde Wärmequellen} und \textit{Hintergrund}. Diese Version erzeugte erstmals akzeptable Resultate. Daraufhin wurde weiter getestet und recherchiert um das Modell zusätzlich zu optimieren. Aufgrund dieser Recherche wurde das \gls{CNN} nach dem Vorbild des LR-CNN \parencite{cnnArchitecture} aufgebaut, da auch diese Arbeit sich auf Bilder mit niedriger Auflösung spezialisiert. Das verwendete CNN sieht wie folgt aus:
 
 % Tabelle mit ergebnissen
 {
@@ -101,7 +101,7 @@ Es wurden Verschiedene \gls{CNN} Architekturen getestet. Zu Beginn wurde versuch
 			\textit{Fully Connected Dense Layer} & Outputsize 3 Softmax Activation\\
 			\hline
 		\end{tabularx}
-		\caption{Architektur des Finalen CNN}
+		\caption{Architektur des finalen CNN}
 		\label{tbl:cnnArchitecture}
 	\end{table}
 	\vspace{3em}
@@ -126,7 +126,7 @@ Es wurden Verschiedene \gls{CNN} Architekturen getestet. Zu Beginn wurde versuch
 			\textit{Epochen} & 7\\
 			\hline
 		\end{tabularx}
-		\caption{Hyperparameter des Finalen CNN}
+		\caption{Hyperparameter des finalen CNN}
 		\label{tbl:hyperparameter}
 	\end{table}
 }
@@ -143,17 +143,17 @@ Es wurden Verschiedene \gls{CNN} Architekturen getestet. Zu Beginn wurde versuch
 
 \subsection{Training}
 
-Für das training wurden x Ausschnitte aus x Bildern verwendet. Diese wurden rotiert und gespiegelt. Für die Negativklasse wurde zusätzlich Roaming eingesetzt. Dies weil auf diese Art Randgebiete von Wärmequellen eher als kein Treffer gewertet werden. Insgesamt wurden auf diese Weise 7323 Trainingsbilder erzeugt. Mit denen das \gls{CNN} trainiert werden konnte. Für die Grösse des Bildausschnitts wurde ein 16x16 Fenster verwendet, da dieses gross genug ist um im Normalfall eine ganze Person zu beinhalten aber auch klein genug um nur eine einzelne Person zu umschliessen.
+Für das training wurden 585 Ausschnitte aus 126 Bildern verwendet. Diese wurden rotiert und gespiegelt. Für die Negativklasse wurde zusätzlich Roaming eingesetzt. Dies, weil auf diese Art Randgebiete von Wärmequellen eher als kein Treffer gewertet werden. Insgesamt wurden auf diese Weise 7323 Trainingsbilder erzeugt mit denen das \gls{CNN} trainiert werden konnte. Für die Grösse des Bildausschnitts wurde ein 16x16 Fenster verwendet, da dieses gross genug ist, um im Normalfall eine ganze Person zu beinhalten, aber auch klein genug um nur eine einzelne Person zu umschliessen.
 
 \subsection{Anwendung des trainierten Modells}
 
 Um nun ein Bild zu analysieren und zu bestimmen, an welchen Positionen sich die Personen im Bild befinden, wurde die Klasse \textit{People\_Finder} implementiert. Diese bietet nach aussen die Methode \textit{find\_people(image)} an. Diese Methode retourniert die Treffer und deren Position.\\
-In dieser Methode wird das Bild mit \gls{Padding} versehen und in \glspl{Window} unterteilt, diese werden dann mit dem \gls{CNN} ausgewertet. Wird ein \gls{Window} als Person markiert, wird das Zentrum des \glspl{Window} gespeichert. Um mehrere Treffer auf derselben Person zu verhindern werden abschliessend alle Treffer zu \gls{Cluster} zusammengefasst. So werden Treffer die direkt nebeneinander liegen zu einem einzelnen Treffer zusammengeführt.
+In dieser Methode wird das Bild mit \gls{Padding} versehen und in \glspl{Window} unterteilt. Diese werden dann mit dem \gls{CNN} ausgewertet. Wird ein \gls{Window} als Person markiert, wird das Zentrum des \glspl{Window} gespeichert. Um mehrere Treffer auf derselben Person zu verhindern, werden abschliessend alle Treffer zu \gls{Cluster} zusammengefasst. So werden Treffer die direkt nebeneinander liegen zu einem einzelnen Treffer zusammengeführt.
 
 \section{Threshold-Methode}
 
-Die Threshold-Methode wurde zu Beginn so implementiert, dass mit verschiedenen Schieberegler die Parameter festgelegt werden konnten. Diese Methode vereinfachte das Finden von passenden Parametern enorm. Die finale Version der Threshold-Methode nimmt ein \textit{Threshold} Datenobjekt als Parameter entgegen. So können die Parameter angepasst werden ohne, dass die Implementation geändert werden muss.\\
-Die Folgenden Thresholds wurden verwendet:
+Die Threshold-Methode wurde zu Beginn so implementiert, dass mit verschiedenen Schieberegler die Parameter festgelegt werden konnten. Diese Methode vereinfachte das Finden von passenden Parametern enorm. Die finale Version der Threshold-Methode nimmt ein \textit{Threshold}-Datenobjekt als Parameter entgegen. So können die Parameter angepasst werden ohne, dass die Implementation geändert werden muss.\\
+Die folgenden Thresholds wurden verwendet:
 
 % Tabelle mit ergebnissen
 {
@@ -186,7 +186,7 @@ Die Folgenden Thresholds wurden verwendet:
 }
 
 \noindent
-Bei der Verarbeitung wird das Infrarotbild zuerst um Faktor 10 vergrössert, da die Kernel sonst zu gross wären. Danach werden alle Pixel, die zwischen Minimal- und Maximaltemperatur liegen, auf den Wert 255 (Weiss) und alle übrigen auf den Wert 0 (Schwarz) gesetzt. Auf das resultierende Bild wird zuerst horizontal und danach vertikal, \gls{Erode} und \gls{Dilate} angewendet. Auf dem daraus resultierenden Binärbild werden nun mittels der OpenCV-Funktion \textit{find\_contours()} die Zentren aller geschlossenen weissen Flächen bestimmt. Diese Zentren entsprechen der Position der Personen.
+Bei der Verarbeitung wird das Infrarotbild zuerst um Faktor 10 vergrössert, da die Kernel sonst zu gross wären. Danach werden alle Pixel, die zwischen Minimal- und Maximaltemperatur liegen, auf den Wert 255 (Weiss) und alle übrigen auf den Wert 0 (Schwarz) gesetzt. Auf das resultierende Bild wird zuerst horizontal und danach vertikal \gls{Erode} und \gls{Dilate} angewendet. Auf dem daraus resultierenden Binärbild werden nun mittels der OpenCV-Funktion \textit{find\_contours()} die Zentren aller geschlossenen, weissen Flächen bestimmt. Diese Zentren entsprechen der Position der Personen.
 
 
 \section{Evaluationssystem}
@@ -199,7 +199,7 @@ Damit die Evaluation simpel und effizient durchgeführt werden konnte, wurde ein
 \end{itemize}
 
 \noindent
-Im untersten Verzeichnis müssen die beiden Ordner, \textit{/ir\_images/} und \textit{/labels/}, enthalten sein. Bei der Auswertung der Experimente wird zu jeder .json-Datei in \textit{/labels/} das passende Infrarotbild aus \textit{/ir\_images/} geladen und mittels dem zu testenden Algorithmus ausgewertet. Die Resultate des Algorithmus werden daraufhin in der \textit{Validator} Klasse mit den Labels verglichen. Dabei werden True Positive, False Positive, False Negative sowie der Mean Squared Error der Treffer zu den Labels ermittelt. Diese Daten werden als \textit{Score} Objekt retourniert.\\
+Im untersten Verzeichnis müssen die beiden Ordner \textit{/ir\_images/} und \textit{/labels/} enthalten sein. Bei der Auswertung der Experimente wird zu jeder .json-Datei in \textit{/labels/} das passende Infrarotbild aus \textit{/ir\_images/} geladen und mittels dem zu testenden Algorithmus ausgewertet. Die Resultate des Algorithmus werden daraufhin in der \textit{Validator}-Klasse mit den Labels verglichen. Dabei werden True Positive, False Positive, False Negative sowie der Mean Squared Error der Treffer zu den Labels ermittelt. Diese Daten werden als \textit{Score}-Objekt retourniert.\\
 
 \subsection{Klassen}
 
@@ -213,7 +213,7 @@ In den folgenden Abschnitten verwendete Fachbegriffe werden im Kapitel \ref{sec:
 \end{itemize}
 
 \noindent
-Um die Ergebnisse mehrere Bilder oder Experimente zusammenfassen und visualisieren zu können. Wurde die \textit{Summary} Klasse erstellt. Die \textit{Summary} Klasse bietet die Möglichkeit mehrere \textit{Score} Objekte zusammenzufassen. Zudem können beliebig viele \textit{Summary}'s zusammengeführt werden.
+Um die Ergebnisse mehrerer Bilder oder Experimente zusammenfassen und visualisieren zu können, wurde die \textit{Summary}-Klasse erstellt. Die \textit{Summary}-Klasse bietet die Möglichkeit, mehrere \textit{Score}-Objekte zusammenzufassen. Zudem können beliebig viele \textit{Summary}'s zusammengeführt werden.
 
 \subsubsection{Summary}
 
